@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Precursor Property — Purchase Intelligence Report | Example Address</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#151c2e;--navy-mid:#1e2840;--navy-light:#273352;
+  --gold:#c4963a;--gold-light:#d4aa55;
+  --gold-accessible:#8a6518;
+  --offwhite:#f8f7f4;
+  --text:#1a1f2e;--text-mid:#3d4560;--text-muted:#6b7491;
+  --green:#2e7d52;--red:#b93030;--amber:#c4963a;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:Georgia,serif;
+  color:var(--text);
+  background:#d8d8d8;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:60px;
+}
+
+/* ── STICKY NAVBAR ─── */
+.site-nav{
+  position:sticky;top:0;z-index:200;
+  height:56px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;
+  background:rgba(21,28,46,0.97);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(196,150,58,0.22);
+}
+.nav-logo{display:flex;align-items:center;gap:9px}
+.nav-logo-mark{width:28px;height:28px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center}
+.nav-logo-mark span{font-size:13px;font-weight:900;color:var(--navy);letter-spacing:-0.02em}
+.nav-brand{font-size:13px;font-weight:700;letter-spacing:0.04em;color:#fff;text-transform:uppercase}
+.nav-meta{display:flex;align-items:center;gap:14px}
+.nav-pill{font-size:10.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 12px;border-radius:999px;background:rgba(196,150,58,0.16);border:1px solid rgba(196,150,58,0.38);color:var(--gold)}
+.nav-label{font-size:11.5px;color:rgba(255,255,255,0.42);font-family:system-ui,sans-serif}
+@media(max-width:600px){.nav-meta{display:none}}
+
+/* ── PDF PAPER ─── */
+.pdf-viewer{padding:24px 0 40px}
+.pdf-paper{
+  max-width:860px;
+  margin:0 auto;
+  background:#fff;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08),0 8px 40px rgba(0,0,0,0.14);
+}
+
+/* ── DOCUMENT HEADER BAND ─── */
+.doc-header{
+  background:var(--navy);
+  padding:22px 56px 18px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:3px solid var(--gold);
+}
+.doc-header-left{display:flex;flex-direction:column;gap:3px}
+.doc-header-brand{font-size:15px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);font-family:system-ui,sans-serif}
+.doc-header-type{font-size:11px;letter-spacing:0.06em;color:rgba(255,255,255,0.48);font-family:system-ui,sans-serif;font-weight:400}
+.doc-header-right{text-align:right}
+.doc-header-orderId{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);font-family:system-ui,sans-serif}
+.doc-header-date{font-size:11px;color:rgba(255,255,255,0.55);font-family:system-ui,sans-serif;margin-top:2px}
+
+/* ── COVER PAGE ─── */
+.cover{
+  padding:52px 56px 48px;
+  background:var(--navy);
+  position:relative;overflow:hidden;
+}
+.cover::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 30%,rgba(196,150,58,0.07),transparent),radial-gradient(ellipse 40% 50% at 0% 80%,rgba(196,150,58,0.04),transparent);pointer-events:none}
+.cover-inner{position:relative;z-index:1}
+.cover-report-label{font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(196,150,58,0.75);margin-bottom:16px;font-family:system-ui,sans-serif}
+.cover-address{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:400;line-height:1.05;letter-spacing:-0.03em;color:#fff;margin-bottom:4px}
+.cover-suburb{font-size:1.05rem;color:rgba(255,255,255,0.45);margin-bottom:32px;font-style:italic}
+.cover-rating-banner{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:12px 22px;
+  border-radius:8px;
+  background:rgba(196,150,58,0.13);border:1.5px solid rgba(196,150,58,0.4);
+  margin-bottom:40px;
+}
+.cover-rating-dot{width:11px;height:11px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.cover-rating-label{font-size:9.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.4);font-family:system-ui,sans-serif}
+.cover-rating-value{font-size:13px;font-weight:700;color:var(--gold);letter-spacing:0.05em;font-family:system-ui,sans-serif}
+.cover-meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(255,255,255,0.1);border-radius:8px;overflow:hidden}
+.cover-meta-cell{padding:12px 18px;border-right:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07)}
+.cover-meta-cell:nth-child(even){border-right:none}
+.cover-meta-cell:nth-last-child(-n+2){border-bottom:none}
+.cover-meta-k{font-size:9.5px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:3px;font-family:system-ui,sans-serif}
+.cover-meta-v{font-size:13px;color:rgba(255,255,255,0.82);font-weight:600;font-family:system-ui,sans-serif}
+.cover-divider{height:1px;background:linear-gradient(90deg,var(--gold),rgba(196,150,58,0.2),transparent);margin-top:48px}
+.cover-footer{padding:14px 0 0;display:flex;align-items:center;justify-content:space-between}
+.cover-footer-text{font-size:10px;color:rgba(255,255,255,0.25);font-family:system-ui,sans-serif;letter-spacing:0.02em}
+
+/* ── PAGE BREAK ─── */
+.page-break{
+  margin:0 -56px;
+  padding:9px 56px;
+  background:#d8d8d8;
+  display:flex;justify-content:space-between;align-items:center;
+  border-top:1px solid #c4c4c4;border-bottom:1px solid #c4c4c4;
+}
+.pb-footer{font-size:8.5px;color:#888;font-family:system-ui,sans-serif;letter-spacing:0.01em}
+.pb-page{font-size:8.5px;color:#aaa;font-family:system-ui,sans-serif}
+
+/* ── CONTENT AREA ─── */
+.doc-body{padding:0 56px}
+
+/* ── SECTION ─── */
+.pdf-section{padding:40px 0 0}
+.pdf-section + .pdf-section{border-top:none}
+
+.section-heading{
+  font-family:Georgia,serif;
+  font-size:17px;font-weight:400;
+  color:var(--navy);
+  border-bottom:1.5px solid var(--navy);
+  padding-bottom:7px;
+  margin-bottom:18px;
+  letter-spacing:-0.01em;
+}
+.section-sub-heading{
+  font-family:Georgia,serif;
+  font-size:14px;font-weight:700;
+  color:var(--navy);
+  margin:20px 0 10px;
+  letter-spacing:-0.005em;
+}
+
+/* ── PROSE ─── */
+p.doc-p{
+  font-family:Georgia,serif;
+  font-size:13.5px;line-height:1.8;
+  color:#2a2f40;
+  text-align:justify;
+  margin-bottom:12px;
+}
+p.doc-p strong{font-weight:700;color:var(--navy)}
+
+/* ── INFO TABLE (2-col detail table) ─── */
+.info-table{width:100%;border-collapse:collapse;margin:16px 0;font-family:system-ui,sans-serif;font-size:12.5px;border:1px solid #ddd}
+.info-table tr{border-bottom:1px solid #ebebeb}
+.info-table tr:last-child{border-bottom:none}
+.info-table td{padding:9px 13px;vertical-align:top;line-height:1.5;color:#3d4560}
+.info-table td:first-child{font-weight:700;color:var(--navy);width:38%;font-size:11.5px;letter-spacing:0.04em;text-transform:uppercase;background:#f5f5f3;border-right:1px solid #e2e2de}
+.info-table tr:nth-child(even) td:first-child{background:#f0f0ee}
+
+/* ── DATA TABLE (multi-col) ─── */
+.data-table{width:100%;border-collapse:collapse;margin:14px 0;font-family:system-ui,sans-serif;font-size:12px;border:1px solid #d0d0cc}
+.data-table thead tr{background:var(--navy)}
+.data-table thead th{padding:9px 12px;font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.7);text-align:left;border-right:1px solid rgba(255,255,255,0.1)}
+.data-table thead th:last-child{border-right:none}
+.data-table tbody tr{border-bottom:1px solid #e8e8e4}
+.data-table tbody tr:last-child{border-bottom:none}
+.data-table tbody tr:nth-child(even){background:#f7f7f5}
+.data-table td{padding:9px 12px;color:#3d4560;line-height:1.45;vertical-align:top;border-right:1px solid #ebebeb}
+.data-table td:last-child{border-right:none}
+.data-table td strong{color:var(--navy);font-weight:700}
+.data-table .check{color:var(--green);font-weight:700}
+.data-table .flag{color:var(--amber);font-weight:700}
+.data-table .cross{color:var(--red);font-weight:700}
+.data-table .highlight-row td{background:#fffbe8}
+
+/* ── RED FLAGS ─── */
+.red-flag{
+  margin:14px 0;padding:14px 16px;
+  border-left:3px solid var(--amber);
+  background:#fffbe8;
+  border-radius:0 6px 6px 0;
+}
+.red-flag-header{
+  font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--gold-accessible);margin-bottom:6px;
+  font-family:system-ui,sans-serif;
+  display:flex;align-items:center;gap:7px;
+}
+.red-flag-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0;display:inline-block}
+.red-flag-body{font-size:12.5px;line-height:1.72;color:#3d4560;font-family:system-ui,sans-serif}
+
+/* ── GREEN CLEAR ─── */
+.clear-note{
+  margin:10px 0;padding:11px 15px;
+  border-left:3px solid var(--green);
+  background:#f0faf5;
+  border-radius:0 5px 5px 0;
+  font-size:12.5px;line-height:1.65;
+  color:#2a4a38;font-family:system-ui,sans-serif;
+}
+.clear-note strong{color:var(--green);font-weight:700}
+
+/* ── CALLOUT BOX ─── */
+.callout{
+  margin:14px 0;padding:14px 16px;
+  border-radius:6px;
+  font-size:12.5px;line-height:1.7;
+  font-family:system-ui,sans-serif;
+}
+.callout.gold{background:#fffbe8;border:1.5px solid rgba(196,150,58,0.4);color:#4a3800}
+.callout.navy{background:#f2f3f6;border:1.5px solid rgba(21,28,46,0.15);color:#2a2f40}
+.callout.amber-strong{background:rgba(196,150,58,0.08);border:1.5px solid rgba(196,150,58,0.35);color:#3d4560}
+.callout-label{font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:5px;color:var(--gold-accessible)}
+
+/* ── STAT BANNER ─── */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:16px 0}
+.stat-cell{border:1px solid #ddd;border-radius:6px;padding:14px 16px;background:#f9f9f8}
+.stat-value{font-size:22px;font-weight:700;color:var(--navy);letter-spacing:-0.03em;font-family:Georgia,serif}
+.stat-label{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#888;margin-top:3px;font-family:system-ui,sans-serif}
+
+/* ── RATING SUMMARY BOX ─── */
+.rating-box{
+  padding:16px 20px;
+  border:1.5px solid rgba(196,150,58,0.45);
+  border-radius:8px;
+  background:rgba(196,150,58,0.06);
+  margin:18px 0;
+  font-family:system-ui,sans-serif;
+}
+.rating-box-title{font-size:9.5px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(21,28,46,0.5);margin-bottom:6px}
+.rating-box-value{font-size:14px;font-weight:800;color:var(--amber);letter-spacing:0.04em;text-transform:uppercase}
+.rating-box-sub{font-size:12px;color:#3d4560;margin-top:5px;line-height:1.55}
+
+/* ── REDACTED / TITLE SECTION ─── */
+.redacted-wrap{position:relative;border-radius:8px;overflow:hidden;margin:8px 0}
+.redacted-content{opacity:0.2;pointer-events:none;user-select:none;filter:blur(1.5px)}
+.redacted-overlay{
+  position:absolute;inset:0;z-index:2;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  background:rgba(255,255,255,0.04);
+}
+.redacted-overlay svg{position:absolute;inset:0;width:100%;height:100%;opacity:0.18}
+.sample-badge{
+  background:var(--navy);color:var(--gold);
+  padding:11px 26px;border-radius:999px;
+  font-size:12px;font-weight:700;letter-spacing:0.07em;
+  box-shadow:0 6px 28px rgba(21,28,46,0.3);
+  border:1.5px solid rgba(196,150,58,0.4);
+  text-align:center;z-index:3;position:relative;
+  font-family:system-ui,sans-serif;
+  text-transform:uppercase;
+}
+
+/* ── COVER PAGE (cont. — second page area) ─── */
+.amber-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:4px 11px;border-radius:999px;
+  background:rgba(196,150,58,0.14);border:1px solid rgba(196,150,58,0.38);
+  font-size:11px;font-weight:700;letter-spacing:0.07em;
+  color:#7a5a12;font-family:system-ui,sans-serif;
+}
+.amber-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block}
+.green-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:4px 11px;border-radius:999px;
+  background:rgba(46,125,82,0.1);border:1px solid rgba(46,125,82,0.3);
+  font-size:11px;font-weight:700;letter-spacing:0.07em;
+  color:var(--green);font-family:system-ui,sans-serif;
+}
+.green-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block}
+
+/* ── NOTICE FOOTNOTE ─── */
+.footnote{font-size:11px;color:#888;line-height:1.6;font-family:system-ui,sans-serif;margin-top:8px;font-style:italic;border-top:1px solid #e8e8e4;padding-top:8px}
+
+/* ── BOTTOM PADDING ─── */
+.doc-bottom{padding:40px 56px 52px}
+
+/* ── RESPONSIVE ─── */
+@media(max-width:920px){
+  .doc-header,.cover,.doc-body,.page-break,.doc-bottom{padding-left:32px;padding-right:32px}
+  .page-break{margin-left:-32px;margin-right:-32px}
+}
+@media(max-width:640px){
+  .doc-header,.cover,.doc-body,.page-break,.doc-bottom{padding-left:20px;padding-right:20px}
+  .page-break{margin-left:-20px;margin-right:-20px}
+  .cover-meta-grid{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:1fr 1fr}
+}
+
+.nav-back-link{display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,0.15);margin-right:6px;transition:border-color 0.18s,background 0.18s;flex-shrink:0}
+.nav-back-link:hover{border-color:rgba(255,255,255,0.35);background:rgba(255,255,255,0.07)}
+.nav-order-btn{display:inline-flex;align-items:center;padding:7px 16px;background:var(--gold);color:var(--navy);font-size:12.5px;font-weight:700;border-radius:999px;letter-spacing:0.01em;transition:background 0.18s,transform 0.18s;white-space:nowrap;text-decoration:none}
+.nav-order-btn:hover{background:var(--gold-light);transform:translateY(-1px)}
+@media(max-width:600px){.nav-order-btn{font-size:11px;padding:6px 12px}}
+
+/* ORDER BANNER */
+.order-banner{
+  position:fixed;bottom:0;left:0;right:0;z-index:300;
+  background:var(--navy);
+  border-top:2px solid var(--gold);
+  padding:14px 24px;
+  box-shadow:0 -8px 32px rgba(0,0,0,0.22);
+  animation:slideUp 0.5s var(--ease) 1.5s both;
+}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.order-banner-inner{
+  max-width:860px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+}
+.order-banner-title{font-size:13.5px;font-weight:700;color:#fff;margin-bottom:2px;font-family:system-ui,sans-serif}
+.order-banner-sub{font-size:12px;color:rgba(255,255,255,0.55);font-family:system-ui,sans-serif;line-height:1.4}
+.order-banner-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.order-banner-btn{
+  display:inline-flex;align-items:center;
+  padding:10px 20px;
+  background:var(--gold);color:var(--navy);
+  font-size:13px;font-weight:700;
+  border-radius:999px;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:background 0.18s,transform 0.18s;
+}
+.order-banner-btn:hover{background:var(--gold-light);transform:translateY(-1px)}
+.order-banner-dismiss{
+  width:28px;height:28px;border-radius:50%;
+  border:1px solid rgba(255,255,255,0.2);
+  background:transparent;
+  color:rgba(255,255,255,0.45);
+  font-size:13px;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:border-color 0.18s,color 0.18s;
+  flex-shrink:0;
+}
+.order-banner-dismiss:hover{border-color:rgba(255,255,255,0.5);color:#fff}
+@media(max-width:600px){
+  .order-banner{padding:12px 16px}
+  .order-banner-sub{display:none}
+  .order-banner-btn{font-size:12px;padding:8px 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- STICKY NAVBAR -->
+<nav class="site-nav">
+  <div class="nav-logo">
+    <a href="index.html" class="nav-back-link" title="Back to website">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <div class="nav-logo-mark"><span>PP</span></div>
+    <span class="nav-brand">Precursor Property</span>
+  </div>
+  <div class="nav-meta">
+    <span class="nav-label" style="display:none" id="nav-label-desktop">Sample Report</span>
+    <span class="nav-pill">Full Due Diligence</span>
+    <a href="index.html#contact" class="nav-order-btn">Order Your Report &rarr;</a>
+  </div>
+</nav>
+
+<!-- PDF VIEWER WRAPPER -->
+<div class="pdf-viewer">
+<div class="pdf-paper">
+
+  <!-- DOCUMENT HEADER BAND -->
+  <div class="doc-header">
+    <div class="doc-header-left">
+      <div class="doc-header-brand">Precursor Property</div>
+      <div class="doc-header-type">Purchase Intelligence — Full Due Diligence Report</div>
+    </div>
+    <div class="doc-header-right">
+      <div class="doc-header-orderId">Order ID: PP-2026-0430</div>
+      <div class="doc-header-date">30 April 2026 &nbsp;|&nbsp; Confidential</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ PAGE 1 — COVER -->
+  <div class="cover">
+    <div class="cover-inner">
+      <div class="cover-report-label">Full Due Diligence — Purchase Intelligence Report</div>
+      <div class="cover-address">Example Address</div>
+      <div class="cover-suburb">Eltham, VIC 3095</div>
+
+      <div class="cover-rating-banner">
+        <div class="cover-rating-dot"></div>
+        <div>
+          <div class="cover-rating-label">Due Diligence Rating</div>
+          <div class="cover-rating-value">AMBER — PROCEED WITH CAUTION</div>
+        </div>
+      </div>
+
+      <div class="cover-meta-grid">
+        <div class="cover-meta-cell">
+          <div class="cover-meta-k">Property Type</div>
+          <div class="cover-meta-v">Townhouse / Unit</div>
+        </div>
+        <div class="cover-meta-cell">
+          <div class="cover-meta-k">Bedrooms</div>
+          <div class="cover-meta-v">3 (+ 1 downstairs)</div>
+        </div>
+        <div class="cover-meta-cell">
+          <div class="cover-meta-k">Bathrooms</div>
+          <div class="cover-meta-v">1</div>
+        </div>
+        <div class="cover-meta-cell">
+          <div class="cover-meta-k">Car Spaces</div>
+          <div class="cover-meta-v">3 (off-street)</div>
+        </div>
+        <div class="cover-meta-cell">
+          <div class="cover-meta-k">Listing Type</div>
+          <div class="cover-meta-v">Investment / Rental</div>
+        </div>
+        <div class="cover-meta-cell">
+          <div class="cover-meta-k">Listing Agent</div>
+          <div class="cover-meta-v">Barry Plant Whitehorse</div>
+        </div>
+        <div class="cover-meta-cell">
+          <div class="cover-meta-k">Suburb</div>
+          <div class="cover-meta-v">Eltham, VIC 3095</div>
+        </div>
+        <div class="cover-meta-cell">
+          <div class="cover-meta-k">LGA</div>
+          <div class="cover-meta-v">Nillumbik Shire</div>
+        </div>
+      </div>
+
+      <div class="cover-divider"></div>
+      <div class="cover-footer">
+        <div class="cover-footer-text">precursorproperty.com.au &nbsp;|&nbsp; Purchase Intelligence Report &nbsp;|&nbsp; Confidential — prepared for client use only &nbsp;|&nbsp; © 2026 Precursor Property Pty Ltd</div>
+        <div class="cover-footer-text">Page 1</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page break 1→2 -->
+  <div class="doc-body" style="padding-top:0;padding-bottom:0">
+    <div class="page-break">
+      <div class="pb-footer">Precursor Property — Purchase Intelligence Report &nbsp;|&nbsp; Example Address &nbsp;|&nbsp; 30 April 2026</div>
+      <div class="pb-page">Page 2</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ PAGE 2 — EXECUTIVE SUMMARY -->
+  <div class="doc-body">
+    <div class="pdf-section">
+      <div class="section-heading">Executive Summary</div>
+
+      <p class="doc-p">Example Address, Eltham is a three-bedroom (plus a fourth downstairs) renovated townhouse-style dwelling on a Plan of Subdivision title (Lot 1 PS817415), situated approximately 1.3 km from Eltham railway station and 1.0 km from the Eltham Major Activity Centre. The property is currently tenanted and managed by Barry Plant Whitehorse, making it a functional investment proposition in a tightly held, high-amenity suburb 24 km north-east of Melbourne's CBD.</p>
+
+      <p class="doc-p">The VicPlan Planning Property Report (2 May 2026) confirms the zone is NRZ1 (Neighbourhood Residential Zone — Schedule 1) with a Significant Landscape Overlay Schedule 3 (SLO3). No flood, heritage, or bushfire overlays apply, and the property is confirmed not in a Designated Bushfire Prone Area — a materially cleaner planning profile than initially estimated. Eltham is a fundamentally sound suburb underpinned by strong owner-occupier demographics (86% owner-occupied), a highly desirable lifestyle offer, and proximity to the activity centre.</p>
+
+      <p class="doc-p">However, the macro-economic environment is materially more difficult than 12 months ago: the RBA cash rate has risen to 4.10% following two consecutive hikes in 2026, the property is negatively geared on any reasonable financing assumption, and the Owners Corporation obligations and title details require confirmation before exchange. The overall due diligence rating is <strong>AMBER</strong> — strong property and planning fundamentals, but the rate environment, negative gearing, and outstanding due diligence items (Section 32, LANDATA, building inspection) mean the buyer should proceed methodically.</p>
+
+      <div class="rating-box">
+        <div class="rating-box-title">Overall Due Diligence Rating</div>
+        <div class="rating-box-value">⬤ &nbsp;AMBER — PROCEED WITH CAUTION</div>
+        <div class="rating-box-sub">Strong property and planning fundamentals. Rate environment, negative gearing, and outstanding due diligence items require methodical resolution before exchange.</div>
+      </div>
+    </div>
+
+    <div class="pdf-section">
+      <div class="section-heading">Red Flags</div>
+
+      <div class="red-flag">
+        <div class="red-flag-header"><span class="red-flag-dot"></span> RISING INTEREST RATE ENVIRONMENT</div>
+        <div class="red-flag-body">The RBA raised rates to 4.10% in March 2026 (two hikes) with further upside risk signalled for May 2026. At 6.5%+ variable rates, the property is strongly negatively geared (~$440/week out of pocket on P&amp;I). Stress-test serviceability at the APRA buffer rate of 9.5% before committing.</div>
+      </div>
+
+      <div class="red-flag">
+        <div class="red-flag-header"><span class="red-flag-dot"></span> OWNERS CORPORATION ALMOST CERTAINLY APPLIES (PS TITLE)</div>
+        <div class="red-flag-body">This is Lot 1 PS817415 — a Plan of Subdivision title in a multi-dwelling complex. An Owners Corporation almost certainly applies. The OC certificate in the Section 32 must be reviewed before exchange — confirm annual levies, arrears, insurance scope, and any restrictions on pets or short-term rental.</div>
+      </div>
+
+      <div class="red-flag">
+        <div class="red-flag-header"><span class="red-flag-dot"></span> ASBESTOS RISK — PRE-2003 CONSTRUCTION</div>
+        <div class="red-flag-body">The property appears pre-2003 construction based on its style and comparable properties on Bridge Street. Properties built before 2003 commonly contain asbestos-containing materials. A licensed building inspector must assess this before purchase — any renovation or demolition work requires a licensed asbestos removalist.</div>
+      </div>
+
+      <div class="red-flag">
+        <div class="red-flag-header"><span class="red-flag-dot"></span> RENTAL YIELD BELOW COST OF BORROWING</div>
+        <div class="red-flag-body">At an estimated gross yield of 3.8–4.2% against a variable mortgage rate of 6.5%+, this property is negatively geared. The holding cost shortfall is approximately $440/week on a P&amp;I loan. Confirm current rent and lease terms with the managing agent before making any offer.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page break 2→3 -->
+  <div class="doc-body" style="padding-top:0;padding-bottom:0">
+    <div class="page-break">
+      <div class="pb-footer">Precursor Property — Purchase Intelligence Report &nbsp;|&nbsp; Example Address &nbsp;|&nbsp; 30 April 2026</div>
+      <div class="pb-page">Page 3</div>
+    </div>
+  </div>
+
+  <div class="doc-body">
+    <div class="pdf-section" style="padding-top:32px">
+      <div class="red-flag">
+        <div class="red-flag-header"><span class="red-flag-dot"></span> SLO3 OVERLAY — VEGETATION &amp; WORKS RESTRICTIONS</div>
+        <div class="red-flag-body">VicPlan confirms Significant Landscape Overlay Schedule 3 (SLO3) applies to this property. A planning permit may be required to remove trees or vegetation, and for external works affecting landscape character. Check SLO3 schedule provisions at planning.vic.gov.au/Nillumbik before any landscaping or structural works are planned.</div>
+      </div>
+
+      <p class="doc-p" style="font-size:11.5px;font-style:italic;color:#888;font-family:system-ui,sans-serif;text-align:left;">Red flags identify material concerns requiring buyer attention before proceeding. They do not necessarily indicate the property should not be purchased — they indicate specific risks that must be investigated, priced, or mitigated.</p>
+    </div>
+
+    <div class="pdf-section">
+      <div class="section-heading">Property Overview</div>
+
+      <p class="doc-p">Example Address, Eltham VIC 3095 is a townhouse-style dwelling listed as unit 1 of a multi-dwelling development. Based on the Barry Plant rental listing and available comparable data, the property comprises three bedrooms on the upper level (two with built-in robes) plus a fourth bedroom downstairs, one bathroom (renovated, with shower, hand basin and toilet), lounge room with timber floorboards, kitchen/meals area with electric cooking and timber floors, rear yard, under-house storage, off-street parking for three vehicles, and a split-system air conditioning and heating unit.</p>
+
+      <p class="doc-p">The property is positioned approximately 900 m from Eltham Primary School, 1.0 km from Eltham High School, 1.3 km from Eltham Railway Station, and 1.0 km from Eltham Shopping Centre. This is a genuinely walkable location within the Eltham Major Activity Centre catchment — one of the suburb's strongest amenity drawcards. The property is currently leased and managed by Barry Plant Whitehorse.</p>
+
+      <table class="info-table">
+        <tr><td>Full Address</td><td>Example Address</td></tr>
+        <tr><td>Title Reference</td><td>Lot 1 PS817415 (Plan of Subdivision)</td></tr>
+        <tr><td>SPI (Standard Parcel ID)</td><td>1\PS817415</td></tr>
+        <tr><td>Council Property No.</td><td>201810 (Nillumbik Shire)</td></tr>
+        <tr><td>Zone</td><td>NRZ1 — Neighbourhood Residential Zone Schedule 1</td></tr>
+        <tr><td>Overlay</td><td>SLO3 — Significant Landscape Overlay Schedule 3</td></tr>
+        <tr><td>Property Type</td><td>Unit / Townhouse (Plan of Subdivision)</td></tr>
+        <tr><td>Bedrooms</td><td>3 (upper) + 1 (lower) — effectively 4</td></tr>
+        <tr><td>Bathrooms</td><td>1 (renovated)</td></tr>
+        <tr><td>Car Spaces</td><td>3 (off-street)</td></tr>
+        <tr><td>Year Built (est.)</td><td>Pre-2003 (exact date to be confirmed via council)</td></tr>
+        <tr><td>Current Status</td><td>Leased — managed by Barry Plant Whitehorse</td></tr>
+        <tr><td>Information Sources</td><td>VicPlan 2 May 2026, Barry Plant listing</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Page break 3→4 -->
+  <div class="doc-body" style="padding-top:0;padding-bottom:0">
+    <div class="page-break">
+      <div class="pb-footer">Precursor Property — Purchase Intelligence Report &nbsp;|&nbsp; Example Address &nbsp;|&nbsp; 30 April 2026</div>
+      <div class="pb-page">Page 4</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ PAGE 4 — TITLE (REDACTED) + OC -->
+  <div class="doc-body">
+    <div class="pdf-section">
+      <div class="section-heading">Title &amp; Encumbrances</div>
+
+      <div class="redacted-wrap">
+        <div class="redacted-content">
+          <p class="doc-p">The VicPlan Planning Property Report (2 May 2026) confirms the following title details: Lot 1 PS817415 (Standard Parcel Identifier: 1\PS817415). This is a Plan of Subdivision title — consistent with a unit or townhouse in a multi-dwelling development. The Council Property Number is 201810 (Nillumbik Shire). The title is administered under the Nillumbik Planning Scheme.</p>
+          <p class="doc-p">A Plan of Subdivision (PS) title means the property is one of multiple lots created by a registered plan of subdivision. The lot boundaries, common property (if any), and any easements or restrictions noted on the plan are legally binding. A full LANDATA title search (~$15–25 at landata.vic.gov.au) is still strongly recommended before exchange to confirm: registered easements, caveats, mortgages, and any covenant or restriction noted on the title that may not appear in the VicPlan report.</p>
+          <div class="clear-note"><strong>LANDATA title search recommended before exchange</strong> — approx. $15–25 via landata.vic.gov.au. Confirms registered easements, caveats, mortgages, and any title restrictions not appearing in VicPlan.</div>
+          <table class="data-table" style="margin-top:14px">
+            <thead><tr><th>Item</th><th>Detail</th><th>Source</th></tr></thead>
+            <tbody>
+              <tr><td>Title Type</td><td>Plan of Subdivision (PS)</td><td>VicPlan, 2 May 2026</td></tr>
+              <tr><td>Lot on Plan</td><td>Lot 1 PS817415</td><td>VicPlan, 2 May 2026</td></tr>
+              <tr><td>Registered Encumbrances</td><td>Not yet confirmed — LANDATA search required</td><td>—</td></tr>
+              <tr><td>Caveats</td><td>Not yet confirmed — LANDATA search required</td><td>—</td></tr>
+              <tr><td>Easements</td><td>Not yet confirmed — LANDATA search required</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="redacted-overlay">
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="0" x2="100" y2="100" stroke="#151c2e" stroke-width="0.7" vector-effect="non-scaling-stroke"/>
+            <line x1="100" y1="0" x2="0" y2="100" stroke="#151c2e" stroke-width="0.7" vector-effect="non-scaling-stroke"/>
+          </svg>
+          <div class="sample-badge">Sample Title &amp; Encumbrances Analysis Here</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pdf-section">
+      <div class="section-heading">Owners Corporation (OC)</div>
+
+      <p class="doc-p">Because this property is a unit in a multi-dwelling complex, an Owners Corporation almost certainly applies. An Owners Corporation governs the shared management of common property — typically including driveways, gardens, shared walls, external maintenance, and building insurance. Membership is mandatory and brings annual levy obligations, voting rights proportional to the lot entitlement, and rules that may restrict specific uses of the property.</p>
+
+      <table class="data-table">
+        <thead><tr><th>Item</th><th>Status</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><strong>OC Likely Applies?</strong></td><td class="flag">YES</td><td>Unit/townhouse complex — PS title confirms</td></tr>
+          <tr><td>OC Registration</td><td>To be confirmed</td><td>Via SRO OC Register / Section 32</td></tr>
+          <tr><td>Annual Levies</td><td>Not publicly disclosed</td><td>Must be obtained via Section 32</td></tr>
+          <tr><td>Known Restrictions</td><td class="flag">Check OC Rules</td><td>Pets, short-term rental (Airbnb) — review in Section 32</td></tr>
+          <tr><td>Insurance</td><td>Confirm scope</td><td>Building insurance typically held by OC</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout gold">
+        <div class="callout-label">Action Required</div>
+        The Section 32 vendor statement <strong>MUST</strong> include the OC certificate. Review levies, arrears, insurance, and OC rules before signing. Many Owners Corporations in Nillumbik have introduced restrictions on short-term accommodation — confirm with the Section 32.
+      </div>
+    </div>
+
+    <div class="pdf-section">
+      <div class="section-sub-heading">GAIC (Growth Areas Infrastructure Contribution)</div>
+      <div class="clear-note"><strong>GAIC does NOT apply</strong> to this property. Eltham is an established inner-to-middle suburb well within the Urban Growth Boundary. No GAIC levy is triggered on this purchase.</div>
+    </div>
+  </div>
+
+  <!-- Page break 4→5 -->
+  <div class="doc-body" style="padding-top:0;padding-bottom:0">
+    <div class="page-break">
+      <div class="pb-footer">Precursor Property — Purchase Intelligence Report &nbsp;|&nbsp; Example Address &nbsp;|&nbsp; 30 April 2026</div>
+      <div class="pb-page">Page 5</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ PAGE 5 — ZONING & PLANNING -->
+  <div class="doc-body">
+    <div class="pdf-section">
+      <div class="section-heading">Zoning &amp; Planning Controls</div>
+
+      <p class="doc-p">The VicPlan Planning Property Report (retrieved 2 May 2026) confirms the zone applicable to Example Address is the <strong>Neighbourhood Residential Zone — Schedule 1 (NRZ1)</strong> under the Nillumbik Planning Scheme. This is a more restrictive designation than the General Residential Zone and reflects Nillumbik Shire's deliberate policy to protect the low-density, leafy character of established Eltham residential areas.</p>
+
+      <table class="data-table">
+        <thead><tr><th>Zone Detail</th><th>Confirmed Detail / Implication</th></tr></thead>
+        <tbody>
+          <tr class="highlight-row"><td><strong>Zone</strong></td><td><strong>Neighbourhood Residential Zone — Schedule 1 (NRZ1)</strong> ✓ Confirmed via VicPlan 2 May 2026</td></tr>
+          <tr><td>What NRZ1 Means</td><td>Protects areas of predominantly single and double-storey residential development. Manages and ensures development respects neighbourhood character. More restrictive than GRZ.</td></tr>
+          <tr><td>Dwellings on a Lot</td><td>NRZ: maximum 2 dwellings on a lot without a permit. A planning permit is required for 3+ dwellings — protects against overdevelopment of neighbouring lots.</td></tr>
+          <tr><td>Permit for Extension</td><td>A planning permit may be required for extensions/additions. A building permit is always required. Check with Nillumbik council.</td></tr>
+          <tr><td>Building Height</td><td>No standard height control in the zone itself, but Schedule 1 may specify one. Check NRZ1 schedule at planning.vic.gov.au for Nillumbik.</td></tr>
+          <tr><td>Minimum Garden Area</td><td>Mandatory minimum garden area applies to NRZ lots ≥400m². Cannot be exempted via schedule.</td></tr>
+          <tr><td>Neighbourhood Character</td><td>NRZ1 explicitly requires development to respect neighbourhood character, heritage, environmental and landscape characteristics — very strong protections.</td></tr>
+          <tr><td>GAIC</td><td>Not applicable — Eltham is well within the Urban Growth Boundary</td></tr>
+          <tr><td>Source</td><td>VicPlan Planning Property Report, 2 May 2026 (planning scheme data updated 30 April 2026)</td></tr>
+        </tbody>
+      </table>
+
+      <p class="doc-p">For a buyer intending to owner-occupy or hold as a rental investment, the NRZ1 has little impact on day-to-day occupation. You can live in or rent the property without restriction. The practical implications are: (a) any future renovation or extension requires care — a planning permit may be needed; (b) neighbouring properties are also constrained from overdevelopment, protecting the streetscape; and (c) the NRZ1 is a long-term amenity protection — this area will remain low-density and leafy, which is a positive for capital values.</p>
+    </div>
+  </div>
+
+  <!-- Page break 5→6 -->
+  <div class="doc-body" style="padding-top:0;padding-bottom:0">
+    <div class="page-break">
+      <div class="pb-footer">Precursor Property — Purchase Intelligence Report &nbsp;|&nbsp; Example Address &nbsp;|&nbsp; 30 April 2026</div>
+      <div class="pb-page">Page 6</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ PAGE 6 — OVERLAYS & RISK -->
+  <div class="doc-body">
+    <div class="pdf-section">
+      <div class="section-heading">Overlays &amp; Constraints</div>
+
+      <p class="doc-p">The VicPlan Planning Property Report (2 May 2026) confirms the overlays applicable to Example Address. <strong>Only one overlay applies: the Significant Landscape Overlay — Schedule 3 (SLO3).</strong> No Heritage Overlay, no flood overlays, no Bushfire Management Overlay, and no Design and Development Overlay apply to this parcel. This is a relatively clean overlay profile.</p>
+
+      <table class="data-table">
+        <thead><tr><th>Overlay</th><th>Status</th><th>Implication for Buyer</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Significant Landscape Overlay Schedule 3 (SLO3)</strong></td><td class="flag">✓ CONFIRMED APPLIES</td><td>A planning permit may be required to remove, lop or destroy vegetation, and for buildings and works affecting landscape character. Confirm SLO3 requirements at planning.vic.gov.au → Nillumbik Planning Scheme.</td></tr>
+          <tr><td>Heritage Overlay (HO)</td><td class="check">✓ DOES NOT APPLY</td><td>No Heritage Overlay confirmed via VicPlan. Renovations are not subject to heritage controls.</td></tr>
+          <tr><td>Bushfire Management Overlay (BMO)</td><td class="check">✓ DOES NOT APPLY</td><td>No BMO confirmed via VicPlan. No special bushfire construction requirements apply.</td></tr>
+          <tr><td>Designated Bushfire Prone Area (BPA)</td><td class="check">✓ NOT IN BPA</td><td>VicPlan explicitly states: "This property is not in a designated bushfire prone area."</td></tr>
+          <tr><td>Flood — LSIO / SBO / FO</td><td class="check">✓ DOES NOT APPLY</td><td>No flood overlays confirmed via VicPlan report.</td></tr>
+          <tr><td>Design &amp; Development Overlay (DDO)</td><td class="check">✓ DOES NOT APPLY</td><td>No DDO on this parcel — confirmed via VicPlan.</td></tr>
+          <tr><td>Neighbourhood Character Overlay (NCO)</td><td class="check">✓ DOES NOT APPLY</td><td>Character managed through NRZ1 zone and SLO3 overlay.</td></tr>
+          <tr><td>Environmental Significance Overlay (ESO)</td><td class="check">✓ DOES NOT APPLY</td><td>No ESO on this parcel — confirmed via VicPlan.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="rating-box">
+        <div class="rating-box-title">Overlay Risk Rating</div>
+        <div class="rating-box-value" style="color:var(--green)">LOW — SLO3 ONLY</div>
+        <div class="rating-box-sub">No flood, heritage, bushfire, or DDO overlays. SLO3 is the only planning constraint beyond the NRZ1 zone itself. Check permit requirements for tree removal / external works.</div>
+      </div>
+
+      <p class="doc-p"><strong>SLO3 — What this means practically:</strong> The SLO is applied broadly across Nillumbik to protect the municipality's distinctive leafy, treed character. Key practical implications: (a) removing, lopping, or destroying vegetation (particularly trees) may require a planning permit; (b) buildings and works that could affect the landscape character may require a permit; (c) internal renovations are generally unaffected. Buyers who want to significantly alter the garden, remove trees, or build structures should confirm permit requirements with Nillumbik council before purchase.</p>
+    </div>
+
+    <div class="pdf-section">
+      <div class="section-heading">Risk Assessment</div>
+
+      <table class="data-table">
+        <thead><tr><th>Risk Type</th><th>Status</th><th>Practical Implication</th></tr></thead>
+        <tbody>
+          <tr><td>Flood — LSIO</td><td class="check">✓ CONFIRMED CLEAR</td><td>VicPlan confirms no flood overlay on this parcel.</td></tr>
+          <tr><td>Flood — SBO (stormwater)</td><td class="check">✓ CONFIRMED CLEAR</td><td>VicPlan confirms no Special Building Overlay.</td></tr>
+          <tr><td>Floodway Overlay (FO)</td><td class="check">✓ CONFIRMED CLEAR</td><td>VicPlan confirms no Floodway Overlay.</td></tr>
+          <tr><td>Bushfire (BMO)</td><td class="check">✓ CONFIRMED CLEAR</td><td>VicPlan confirms no Bushfire Management Overlay.</td></tr>
+          <tr><td>Designated Bushfire Prone Area</td><td class="check">✓ NOT IN BPA</td><td>VicPlan explicitly confirms: not in a designated bushfire prone area.</td></tr>
+          <tr><td>SLO3 (Significant Landscape Overlay)</td><td class="flag">⚑ CONFIRMED APPLIES</td><td>SLO3 applies. May require planning permit for vegetation removal or buildings/works affecting landscape character.</td></tr>
+          <tr><td>EPA Contamination Register</td><td class="check">✓ Clear</td><td>No known contamination entries. Verify at EPA Victoria public register.</td></tr>
+          <tr><td>Asbestos Risk</td><td class="flag">⚑ MODERATE</td><td>Property appears pre-2003 construction. Asbestos-containing materials possible. Building inspection essential.</td></tr>
+          <tr><td>OC / Strata Title</td><td class="flag">⚑ FLAG</td><td>PS title (Lot 1 PS817415) — Owners Corporation almost certainly applies. Confirm via Section 32.</td></tr>
+          <tr><td>Title Encumbrances</td><td class="flag">⚑ UNCONFIRMED</td><td>Title reference confirmed (Lot 1 PS817415). Full LANDATA search still required to confirm registered encumbrances.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="rating-box">
+        <div class="rating-box-title">Overall Risk Rating</div>
+        <div class="rating-box-value" style="color:var(--amber)">LOW TO MODERATE — cleaner than initially estimated</div>
+        <div class="rating-box-sub"><strong>Confirmed Clear:</strong> No flood, no bushfire, no heritage, not in BPA — confirmed via VicPlan 2 May 2026. <strong>Active Flag:</strong> SLO3 overlay applies — check permit requirements for tree removal / external works. <strong>Key Remaining Actions:</strong> Asbestos inspection, LANDATA title search, Section 32 / OC certificate.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page break 6→7 -->
+  <div class="doc-body" style="padding-top:0;padding-bottom:0">
+    <div class="page-break">
+      <div class="pb-footer">Precursor Property — Purchase Intelligence Report &nbsp;|&nbsp; Example Address &nbsp;|&nbsp; 30 April 2026</div>
+      <div class="pb-page">Page 7</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ PAGE 7 — MARKET CONDITIONS -->
+  <div class="doc-body">
+    <div class="pdf-section">
+      <div class="section-heading">Victorian Market Conditions</div>
+
+      <div class="stat-grid">
+        <div class="stat-cell">
+          <div class="stat-value">4.10%</div>
+          <div class="stat-label">RBA Cash Rate</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value">63.4%</div>
+          <div class="stat-label">Melbourne Clearance Rate (Apr 25, 2026)</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value">+9.49%</div>
+          <div class="stat-label">Eltham Unit Median — 12-Month Change</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value">&lt;2%</div>
+          <div class="stat-label">Eltham Unit Vacancy Rate (est.)</div>
+        </div>
+      </div>
+
+      <p class="doc-p">The macro environment for Victorian property in April 2026 is materially more complex than 12 months ago. The Reserve Bank of Australia raised the cash rate to 4.10% in March 2026 — the second consecutive hike — reversing the three cuts delivered in 2025. Inflation rose to 3.3% annually (trimmed mean) on the March quarter CPI, above the RBA's 2–3% target band. The RBA's March 2026 board statement explicitly identified a material risk that inflation would remain above target for longer, and energy price pressures from Middle East supply disruptions are adding near-term inflationary pressure. The next decision is 5 May 2026 — markets are divided on whether a third consecutive hike will occur.</p>
+
+      <p class="doc-p">For property buyers, this translates into elevated mortgage costs and an APRA serviceability buffer that tests lending at 7.5%+ above variable rates. The Melbourne auction clearance rate was 63.4% in the week to 25 April 2026, indicating a moderately balanced market (above 70% would signal a strong seller's market). Early CoreLogic autumn 2026 data showed clearance rates hovering 70–71% when final late results are included, suggesting the market is holding up, albeit with more negotiation and passed-in properties than the 2021–2022 peak.</p>
+
+      <p class="doc-p"><strong>What this means for a buyer:</strong> If you are relying on variable-rate lending, the current environment demands conservative cashflow modelling and a genuine stress-test at 8% interest rates. Buyers who can absorb volatility and have a 5–10 year holding horizon are better positioned than those requiring near-term positive cash flow. Locking in a competitive fixed rate (circa 6.0–6.5%) for 1–2 years is worth discussing with a broker to manage near-term rate risk.</p>
+    </div>
+
+    <div class="pdf-section">
+      <div class="section-heading">Suburb Capital Growth Analysis</div>
+
+      <table class="data-table">
+        <thead><tr><th>Metric</th><th>Eltham (Units)</th><th>Eltham (Houses)</th><th>Melbourne Metro</th></tr></thead>
+        <tbody>
+          <tr><td>Median Price</td><td><strong>$865,000</strong></td><td>$1,250,000</td><td>$775,000 (approx)</td></tr>
+          <tr><td>1-Year Growth</td><td><strong>+9.49%</strong></td><td>+0.97%</td><td>+2–4%</td></tr>
+          <tr><td>Annual Sales Volume</td><td>74 units / 12mo</td><td>200 houses / 12mo</td><td>—</td></tr>
+          <tr><td>Days on Market</td><td>26 days</td><td>26 days</td><td>30–35 days (est.)</td></tr>
+          <tr><td>Median Gross Yield</td><td>4.06%</td><td>2.96%</td><td>3–4% (metro median)</td></tr>
+          <tr><td>Price Trend</td><td>↑ Rising</td><td>→ Flat</td><td>→ Flat to rising</td></tr>
+        </tbody>
+      </table>
+
+      <p class="doc-p">Eltham's unit market has been one of the stronger performers in the north-east Melbourne corridor over the 12 months to December 2025, recording approximately 9.5% annual growth. The REIV median unit price for the June 2025 quarter was $839,000. The median house price was $1,300,000 — placing Eltham at a premium to the Melbourne metro median, reflecting the suburb's desirability, strong school catchments, and tightly held character.</p>
+
+      <p class="doc-p">The unit growth figure should be interpreted with some caution: Eltham is a low-volume unit market (74 sales in 12 months), meaning the median can shift significantly with a small number of high-value transactions. The underlying story is one of strong lifestyle demand for Eltham broadly, with units attracting investors and buyers priced out of the detached house market. The suburb's <strong>86% owner-occupier rate</strong> is exceptionally high and is a structural support for long-term capital values.</p>
+    </div>
+  </div>
+
+  <!-- Page break 7→8 -->
+  <div class="doc-body" style="padding-top:0;padding-bottom:0">
+    <div class="page-break">
+      <div class="pb-footer">Precursor Property — Purchase Intelligence Report &nbsp;|&nbsp; Example Address &nbsp;|&nbsp; 30 April 2026</div>
+      <div class="pb-page">Page 8</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ PAGE 8 — COMPARABLES -->
+  <div class="doc-body">
+    <div class="pdf-section">
+      <div class="section-sub-heading" style="margin-top:32px">Neighbouring Suburb Comparison</div>
+
+      <table class="data-table">
+        <thead><tr><th>Suburb</th><th>Med. Price (Houses)</th><th>Med. Price (Units)</th><th>1yr Growth (H)</th><th>Gross Yield (U)</th><th>DOM</th><th>Distance</th></tr></thead>
+        <tbody>
+          <tr class="highlight-row"><td><strong>Eltham ★</strong></td><td>$1,250,000</td><td>$865,000</td><td>+0.97%</td><td>4.06%</td><td>26d</td><td>Subject</td></tr>
+          <tr><td>Eltham North</td><td>$1,226,000</td><td>$852,000</td><td>-0.80%</td><td>3.57%</td><td>25d</td><td>2.5km</td></tr>
+          <tr><td>Montmorency</td><td>$1,150,000 est.</td><td>$780,000 est.</td><td>+1.5% est.</td><td>3.8% est.</td><td>28d est.</td><td>3km</td></tr>
+          <tr><td>Research</td><td>$1,400,000+ est.</td><td>N/A</td><td>+1% est.</td><td>N/A</td><td>35d est.</td><td>4km</td></tr>
+          <tr><td>Diamond Creek</td><td>$980,000 est.</td><td>$700,000 est.</td><td>+2% est.</td><td>4.2% est.</td><td>30d est.</td><td>6km</td></tr>
+        </tbody>
+      </table>
+
+      <p class="doc-p" style="font-size:11.5px;font-family:system-ui,sans-serif;font-style:italic;color:#888">★ Subject suburb. Estimates for some suburb figures sourced from CoreLogic, YIP, PropertyValue and comparable agency data.</p>
+
+      <p class="doc-p">Eltham compares favourably to its immediate neighbours for a buyer seeking a combination of lifestyle amenity and unit market accessibility. Eltham North is slightly cheaper but shows negative growth. Research commands a significant premium for detached houses but offers little in the unit market. Diamond Creek is more affordable, with similar or slightly better yield — worth considering if the buyer's budget is flexible. On balance, Eltham remains the standout for lifestyle, school catchments, and transport connectivity in this cluster.</p>
+    </div>
+
+    <div class="pdf-section">
+      <div class="section-heading">Comparable Sales</div>
+
+      <p class="doc-p">Comparable sales were researched using Fletchers Real Estate, Ray White Eltham, and PropertyValue data. The search focused on units and townhouses sold in Eltham and immediately adjacent suburbs within the last 12–18 months, matching on 3–4 bedrooms and similar configuration. Note that Eltham's unit market is low-volume (74 sales per year), meaning the comparable pool is limited.</p>
+
+      <table class="data-table">
+        <thead><tr><th>Address</th><th>Sale Date</th><th>Price</th><th>Bed</th><th>Bath</th><th>Type</th><th>Distance</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Comp. Address A, Eltham</td><td>Feb 2024</td><td>~$680K est.</td><td>3</td><td>2</td><td>Townhouse</td><td>0.3km</td><td>Comparable configuration, walkable to station</td></tr>
+          <tr><td>Comp. Address B, Eltham</td><td>Aug 2025</td><td>$1,060,000</td><td>3+</td><td>2</td><td>Unit</td><td>1.2km</td><td>Strong result — above median</td></tr>
+          <tr><td>Comp. Address C, Eltham</td><td>2024/25</td><td>$576,000</td><td>2</td><td>1</td><td>Unit</td><td>2km</td><td>Lower bed count, useful lower bound</td></tr>
+          <tr><td>Comp. Address D, Eltham</td><td>2024/25</td><td>$715,000</td><td>3</td><td>2</td><td>House</td><td>2km</td><td>Free-standing house comp</td></tr>
+          <tr><td>Comp. Address E, Eltham</td><td>2024/25</td><td>$561,500</td><td>3</td><td>2</td><td>House</td><td>2.5km</td><td>Lower end — street context</td></tr>
+          <tr><td>Comp. Address F, Eltham</td><td>2024/25</td><td>$745,000</td><td>3</td><td>1</td><td>House</td><td>1.5km</td><td>Similar bedroom count, good indicator</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout navy" style="background:#f5f5f3;border:1.5px solid #ddd">
+        <div style="display:flex;justify-content:space-between;align-items:center;font-family:system-ui,sans-serif;font-size:12px;color:#3d4560">
+          <div>📍 <strong>Listing:</strong> $780,000</div>
+          <div><strong>Low:</strong> $560,000</div>
+          <div style="color:var(--gold-accessible)">◆ <strong>Est. Fair Value: ~$780K</strong></div>
+          <div><strong>High:</strong> $1,060,000</div>
+        </div>
+      </div>
+
+      <p class="doc-p">The comparable evidence suggests a fair value range for Example Address of approximately <strong>$700,000 – $850,000</strong>, depending on the property's condition, the specific lot size, the Owners Corporation levy quantum, and current market conditions. The most relevant comparables — townhouses and 3-bedroom units within 1–2 km — cluster in the $680,000–$780,000 range. A buyer should target an offer in the <strong>$720,000–$780,000 range</strong>, with capacity to negotiate based on OC fees, building inspection findings, and days on market.</p>
+    </div>
+  </div>
+
+  <!-- Page break 8→9 -->
+  <div class="doc-body" style="padding-top:0;padding-bottom:0">
+    <div class="page-break">
+      <div class="pb-footer">Precursor Property — Purchase Intelligence Report &nbsp;|&nbsp; Example Address &nbsp;|&nbsp; 30 April 2026</div>
+      <div class="pb-page">Page 9</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ PAGE 9 — RENTAL YIELD -->
+  <div class="doc-body">
+    <div class="pdf-section">
+      <div class="section-heading">Rental Yield Analysis</div>
+
+      <div class="stat-grid">
+        <div class="stat-cell">
+          <div class="stat-value">$560–620/wk</div>
+          <div class="stat-label">Est. Weekly Rent</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value">$29,120–32,240</div>
+          <div class="stat-label">Est. Annual Gross Rent</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value">3.7%–4.2%</div>
+          <div class="stat-label">Est. Gross Yield</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value">&lt;2%</div>
+          <div class="stat-label">Suburb Vacancy Rate</div>
+        </div>
+      </div>
+
+      <p class="doc-p">Eltham's median weekly rent for units is approximately $660 per week (YIP/CoreLogic, Dec 2025). Barry Plant's suburb profile shows a median rental price of $776 per week across all property types. For a 3-bedroom unit/townhouse of this configuration and central Eltham location, a conservative rental estimate is $560–$620 per week. This yields an estimated gross rental income of $29,120–$32,240 per year. At a purchase price of $760,000 (midpoint estimate), the estimated gross yield is approximately <strong>3.8–4.2%</strong>.</p>
+
+      <p class="doc-p">Rental demand in Eltham is structurally strong. The suburb's proximity to the Eltham railway line, school catchments (Eltham Primary, Eltham High, Loyola College, Eltham College), and the Eltham activity centre makes it highly attractive to professional families and couples. The vacancy rate is estimated below 2%. The typical tenant profile is professional couples or small families seeking access to the Hurstbridge train line and the quality school network.</p>
+
+      <div class="callout gold">
+        <div class="callout-label">Investment Verdict</div>
+        The rental yield (3.8–4.2%) is below the RBA cash rate (4.10%) and well below the standard variable mortgage rate (6.5%+). This property is <strong>negatively geared</strong> on any reasonable financing assumption. For a pure income investor, this is not a compelling buy. For a long-term capital growth investor comfortable holding through a negative gearing period — and who values Eltham's fundamental quality — the investment case is more defensible.
+      </div>
+
+      <div class="rating-box">
+        <div class="rating-box-title">Rental Demand Assessment</div>
+        <div class="rating-box-value" style="color:var(--green);font-size:12px">RENTAL DEMAND: STRONG &nbsp;|&nbsp; <span style="color:var(--amber)">YIELD: BELOW COST OF CAPITAL</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page break 9→10 -->
+  <div class="doc-body" style="padding-top:0;padding-bottom:0">
+    <div class="page-break">
+      <div class="pb-footer">Precursor Property — Purchase Intelligence Report &nbsp;|&nbsp; Example Address &nbsp;|&nbsp; 30 April 2026</div>
+      <div class="pb-page">Page 10</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ PAGE 10 — TRANSPORT & INFRA -->
+  <div class="doc-body">
+    <div class="pdf-section">
+      <div class="section-heading">Transport &amp; Connectivity</div>
+
+      <table class="data-table">
+        <thead><tr><th>Mode</th><th>Line / Route</th><th>Nearest Stop</th><th>Walk (min)</th><th>To CBD (min)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Train</strong></td><td>Hurstbridge Line</td><td>Eltham Station</td><td>~17 min / 1.3km</td><td>~56 min (peak)</td></tr>
+          <tr><td>Bus</td><td>Route 577 (Eltham–Greensborough)</td><td>Bridge St / Main Rd</td><td>~8 min walk</td><td>Connects to train network</td></tr>
+          <tr><td>Bus</td><td>Route 578 / 579 (local)</td><td>Main Road corridor</td><td>~10 min walk</td><td>Local connector</td></tr>
+          <tr><td>Car (peak)</td><td>Eastern Freeway via Fitzsimons Lane</td><td>—</td><td>—</td><td>~45–60 min</td></tr>
+          <tr><td>Car (off-peak)</td><td>Eastern Freeway via Main Rd</td><td>—</td><td>—</td><td>~30–35 min</td></tr>
+        </tbody>
+      </table>
+
+      <p class="doc-p">Example Address is 1.3 km from Eltham Station on the Hurstbridge Line — a 15–18 minute walk or a very short drive. Eltham Station provides direct services to Melbourne CBD (Flinders Street Station) in approximately 56 minutes at peak hour. This is towards the longer end of Melbourne's commute spectrum, but buyers in Eltham typically accept and indeed value the trade-off between commute time and the suburb's exceptional lifestyle, green space, and community character.</p>
+
+      <div class="rating-box">
+        <div class="rating-box-title">Connectivity Rating</div>
+        <div class="rating-box-value" style="color:var(--green);font-size:12px">GOOD — TRAIN 17 MIN WALK, FREEWAY VIA FITZSIMONS LANE</div>
+      </div>
+    </div>
+
+    <div class="pdf-section">
+      <div class="section-heading">Infrastructure Pipeline</div>
+
+      <p class="doc-p">Eltham's infrastructure position is mature rather than transformational. The <strong>North East Link road project</strong> (under construction as of 2026) — connecting the Eastern Freeway at Bulleen to Greensborough and beyond — is the most significant infrastructure project affecting the north-east Melbourne corridor. North East Link is expected to dramatically reduce travel times between Eltham, Greensborough, and the Eastern Freeway, improving road connectivity and supporting local employment nodes.</p>
+
+      <table class="data-table">
+        <thead><tr><th>Project</th><th>Status</th><th>Completion</th><th>Impact on Property</th></tr></thead>
+        <tbody>
+          <tr><td><strong>North East Link (NELink)</strong></td><td>Under construction</td><td>2028 (est.)</td><td class="check">POSITIVE: reduces road travel time to CBD/Eastern Freeway by 10–15 min</td></tr>
+          <tr><td>Hurstbridge Line upgrades</td><td>Planning / ongoing</td><td>Rolling program</td><td class="check">POSITIVE: service frequency improvements support long-term liveability</td></tr>
+          <tr><td>Eltham Major Activity Centre</td><td>Ongoing investment</td><td>Ongoing</td><td class="check">POSITIVE: council and state investment supports local amenity</td></tr>
+          <tr><td>Eltham Library &amp; Community Centre</td><td>Completed 2023</td><td>Complete</td><td class="check">POSITIVE: community infrastructure directly boosts suburb appeal</td></tr>
+        </tbody>
+      </table>
+
+      <p class="doc-p">North East Link is the single most important infrastructure project for Eltham property values. When completed (estimated 2028), it is expected to reduce travel times to the Eastern Freeway and CBD, making Eltham materially more attractive to car-commuting households. This is a genuine medium-term tailwind for property values. Schools — including Eltham High (government), Loyola College (Catholic), and Eltham College (private) — remain a major drawcard within 2 km of this property.</p>
+    </div>
+  </div>
+
+  <!-- Page break 10→11 -->
+  <div class="doc-body" style="padding-top:0;padding-bottom:0">
+    <div class="page-break">
+      <div class="pb-footer">Precursor Property — Purchase Intelligence Report &nbsp;|&nbsp; Example Address &nbsp;|&nbsp; 30 April 2026</div>
+      <div class="pb-page">Page 11</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ PAGE 11 — DEMOGRAPHICS & CRIME -->
+  <div class="doc-body">
+    <div class="pdf-section">
+      <div class="section-heading">Suburb Demographics</div>
+
+      <div class="stat-grid">
+        <div class="stat-cell">
+          <div class="stat-value">50–59</div>
+          <div class="stat-label">Median Age</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value">86.1%</div>
+          <div class="stat-label">Owner-Occupied</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value">~12%</div>
+          <div class="stat-label">Renting</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value">18,847</div>
+          <div class="stat-label">Population (2021) +2.9% since 2016</div>
+        </div>
+      </div>
+
+      <p class="doc-p"><strong>Owner-occupier profile:</strong> Eltham is overwhelmingly an owner-occupier suburb (86.1%), with a predominant household type of couples with children. The median age of 50–59 reflects an ageing but established professional population. Residents work predominantly in professional occupations. For an owner-occupier buyer, this means a stable, community-oriented neighbourhood with strong schools, low crime, and excellent amenity.</p>
+
+      <p class="doc-p"><strong>Investor profile:</strong> The demographics suggest a relatively small but high-quality tenant demand pool. Tenants in Eltham are typically professional couples or families renting while they save for a deposit, or executive renters who value the lifestyle. Vacancy rates are structurally low. The downside is that this is not a high-volume rental market — periods of vacancy can be longer than in inner-city suburbs with larger renter populations.</p>
+    </div>
+
+    <div class="pdf-section">
+      <div class="section-heading">Crime Index</div>
+
+      <table class="data-table">
+        <thead><tr><th>Category</th><th>Nillumbik LGA Status</th></tr></thead>
+        <tbody>
+          <tr><td>Overall Crime Rate</td><td class="check">Below Victorian state average</td></tr>
+          <tr><td>Property Crime</td><td class="check">Low (residential burglary, vehicle theft)</td></tr>
+          <tr><td>Personal Crime</td><td class="check">Low (assault, robbery)</td></tr>
+          <tr><td>Crime Trend</td><td>Broadly stable — consistent with population growth</td></tr>
+        </tbody>
+      </table>
+
+      <p class="doc-p" style="font-size:11.5px;font-family:system-ui,sans-serif;font-style:italic;color:#888;text-align:left">Source: Crime Statistics Agency Victoria (crimestatistics.vic.gov.au). Note: Exact current suburb-level data should be verified at the CSA website.</p>
+
+      <p class="doc-p">Nillumbik LGA — which covers Eltham — consistently records crime rates below the Victorian state average across both property and personal crime categories. This reflects the socio-economic profile of the municipality: an affluent, predominantly owner-occupier community with high levels of education and employment. Property crime (residential burglary, theft from vehicles) is the dominant category, and rates remain low in absolute terms. Buyers and tenants can expect a safe neighbourhood environment consistent with Eltham's family-oriented character.</p>
+    </div>
+  </div>
+
+  <!-- Page break 11→12 -->
+  <div class="doc-body" style="padding-top:0;padding-bottom:0">
+    <div class="page-break">
+      <div class="pb-footer">Precursor Property — Purchase Intelligence Report &nbsp;|&nbsp; Example Address &nbsp;|&nbsp; 30 April 2026</div>
+      <div class="pb-page">Page 12</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ PAGE 12 — COUNCIL & VENDOR -->
+  <div class="doc-body">
+    <div class="pdf-section">
+      <div class="section-heading">Local Council Direction</div>
+
+      <p class="doc-p">Nillumbik Shire Council (nillumbik.vic.gov.au) is the responsible planning authority for Eltham. The Shire has a clear and long-standing strategic vision: protect Nillumbik's green wedge character, direct growth to activity centres (principally Eltham, Diamond Creek, and Greensborough), and minimise density outside those centres. This is not a council that welcomes ad hoc densification or development that compromises neighbourhood character.</p>
+
+      <table class="data-table">
+        <thead><tr><th>Council Direction</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td>Housing Classification</td><td>Incremental change area — low-to-medium density near activity centre</td></tr>
+          <tr><td>Density Tolerance</td><td>Limited density increase supported near Eltham MAC; low-density elsewhere</td></tr>
+          <tr><td>Character Protection</td><td><strong>Strong</strong> — SLO and NRZ controls widely applied across Nillumbik</td></tr>
+          <tr><td>Council Priorities</td><td>Open space, community infrastructure, sustainability, heritage preservation</td></tr>
+          <tr><td>Eltham MAC Investment</td><td>Ongoing support for the Eltham Major Activity Centre as economic/social hub</td></tr>
+        </tbody>
+      </table>
+
+      <p class="doc-p">For a buyer at Example Address, council's direction is broadly supportive of property values: the strong character controls mean the streetscape and neighbourhood quality around this property are likely to remain stable over the next 10–20 years. The risk from council policy is not density creep (Nillumbik actively resists this) but rather the possibility that planning controls restrict future extensions or alterations — buyers who intend to substantially renovate should check the SLO and OC rules carefully.</p>
+    </div>
+
+    <div class="pdf-section">
+      <div class="section-heading">Vendor Intelligence</div>
+
+      <p class="doc-p">The property is currently leased through Barry Plant Whitehorse and is not actively listed for sale on Domain or REA as at 30 April 2026. This report has been prepared in the context of the buyer's intent to investigate a potential purchase — which may be an off-market inquiry, a private sale approach, or a pending listing. Because no current for-sale campaign is publicly active, traditional vendor intelligence signals (days on market, price reductions) are not available.</p>
+
+      <p class="doc-p">What we can assess is the vendor's likely position based on the rental history: the property has been actively managed as an investment, suggesting the current vendor is a property investor rather than an owner-occupier. Investors selling into the current rate environment (where holding costs have risen materially following the 2026 rate hikes) may have genuine motivation to sell — particularly if the property is negatively geared. This is a potential source of buyer leverage.</p>
+
+      <table class="data-table">
+        <thead><tr><th>Factor</th><th>Assessment</th></tr></thead>
+        <tbody>
+          <tr><td>Current Listing Status</td><td>Not publicly listed for sale — off-market or pending</td></tr>
+          <tr><td>Property Status</td><td>Currently leased / managed by Barry Plant Whitehorse</td></tr>
+          <tr><td>Vendor Type (Likely)</td><td>Investor — property held as rental</td></tr>
+          <tr><td>Rate Motivation</td><td class="flag">Rising holding costs (4.10% cash rate) may create motivation to sell</td></tr>
+          <tr><td>Leverage Assessment</td><td>Moderate buyer leverage — cannot confirm without active campaign data</td></tr>
+        </tbody>
+      </table>
+
+      <div class="rating-box">
+        <div class="rating-box-title">Vendor Leverage Assessment</div>
+        <div class="rating-box-value" style="color:var(--amber);font-size:12px">LEVERAGE: MODERATE — RISING RATE COSTS MAY MOTIVATE VENDOR</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page break 12→13 -->
+  <div class="doc-body" style="padding-top:0;padding-bottom:0">
+    <div class="page-break">
+      <div class="pb-footer">Precursor Property — Purchase Intelligence Report &nbsp;|&nbsp; Example Address &nbsp;|&nbsp; 30 April 2026</div>
+      <div class="pb-page">Page 13</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ PAGE 13 — PLANNING CHECKS & GROWTH -->
+  <div class="doc-body">
+    <div class="pdf-section">
+      <div class="section-heading">Planning &amp; Building Checks</div>
+
+      <table class="data-table">
+        <thead><tr><th>Check</th><th>Status</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Zone (NRZ1)</td><td class="check">✓ CONFIRMED</td><td>Neighbourhood Residential Zone Schedule 1 — confirmed via VicPlan 2 May 2026</td></tr>
+          <tr><td>Overlay (SLO3)</td><td class="flag">⚑ CONFIRMED APPLIES</td><td>Significant Landscape Overlay Schedule 3 — confirmed via VicPlan. Check permit requirements for vegetation removal.</td></tr>
+          <tr><td>Heritage Overlay</td><td class="check">✓ CONFIRMED NONE</td><td>No Heritage Overlay — confirmed via VicPlan. No heritage restrictions on renovation.</td></tr>
+          <tr><td>Flood Overlays</td><td class="check">✓ CONFIRMED NONE</td><td>No LSIO, SBO, or FO — confirmed via VicPlan.</td></tr>
+          <tr><td>Bushfire / BPA</td><td class="check">✓ CONFIRMED NONE</td><td>Not in BMO or designated BPA — confirmed via VicPlan. No bushfire construction requirements.</td></tr>
+          <tr><td>Subject Site — Planning Permits</td><td class="flag">⚑ Not confirmed</td><td>Check Nillumbik council planning permit portal at nillumbik.vic.gov.au</td></tr>
+          <tr><td>Subject Site — Building Permits</td><td class="flag">⚑ Not confirmed</td><td>Request via Section 10.3 council search or building inspector</td></tr>
+          <tr><td>Unapproved Works</td><td class="flag">⚑ Unknown</td><td>Building inspector to assess during pre-purchase inspection</td></tr>
+          <tr><td>Nearby Planning Permits (200m)</td><td class="check">✓ None identified</td><td>No significant development permits identified within 200m in public searches</td></tr>
+        </tbody>
+      </table>
+
+      <p class="doc-p" style="font-size:11.5px;font-family:system-ui,sans-serif;font-style:italic;color:#888;text-align:left">Building permit history for the subject site should be confirmed via a formal council property information request (Section 10.3 search) or a licensed building inspector. This report reflects only publicly visible records.</p>
+    </div>
+
+    <div class="pdf-section">
+      <div class="section-heading">10-Year Growth Projection</div>
+
+      <table class="data-table">
+        <thead><tr><th>Scenario</th><th>Annual Growth Rate</th><th>Value at 5 Years</th><th>Value at 10 Years</th></tr></thead>
+        <tbody>
+          <tr><td>Conservative</td><td>3.0% pa</td><td>$881,048</td><td>$1,021,376</td></tr>
+          <tr class="highlight-row"><td><strong>Base (assumed)</strong></td><td><strong>5.5% pa</strong></td><td><strong>$993,290</strong></td><td><strong>$1,298,190</strong></td></tr>
+          <tr><td>Optimistic</td><td>7.5% pa</td><td>$1,091,078</td><td>$1,566,384</td></tr>
+        </tbody>
+      </table>
+
+      <p class="doc-p">Based on a purchase price assumption of $760,000 and Eltham's unit market history, the base scenario (5.5% pa) projects the property growing to approximately $993,290 at year 5 and $1,298,190 at year 10. The conservative scenario (3.0% pa — reflecting subdued near-term growth given the rate environment) reaches $881,048 at year 5. The optimistic scenario (7.5% pa — driven by North East Link delivery and sustained demand) reaches $1,566,384 at year 10.</p>
+
+      <p class="doc-p" style="font-size:11.5px;font-family:system-ui,sans-serif;font-style:italic;color:#888;text-align:left">These projections are illustrative estimates only, based on historical growth rates and publicly available data. They do not constitute financial advice and should not be relied upon as a prediction of future property values. Past performance is not a reliable indicator of future results. Independent financial advice is recommended before making any investment decision.</p>
+    </div>
+  </div>
+
+  <!-- Page break 13→14 -->
+  <div class="doc-body" style="padding-top:0;padding-bottom:0">
+    <div class="page-break">
+      <div class="pb-footer">Precursor Property — Purchase Intelligence Report &nbsp;|&nbsp; Example Address &nbsp;|&nbsp; 30 April 2026</div>
+      <div class="pb-page">Page 14</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ PAGE 14 — NEGOTIATION -->
+  <div class="doc-body">
+    <div class="pdf-section">
+      <div class="section-heading">Negotiation Talking Points</div>
+
+      <table class="info-table">
+        <tr><td>Comparable Evidence Range</td><td>$560,000 – $1,060,000 (wide — limited direct comps)</td></tr>
+        <tr><td>Most Relevant Comparable Range</td><td>$680,000 – $780,000 (3-bed units/townhouses, 1–2km)</td></tr>
+        <tr><td>Estimated Fair Value</td><td><strong>$720,000 – $790,000</strong> (subject to condition and OC fees)</td></tr>
+        <tr><td>Current Listing Status</td><td>Not publicly listed — off-market inquiry required</td></tr>
+        <tr><td>Listing Price Assessment</td><td>Cannot assess — no public ask price. <strong>Target range: $720K–$790K</strong></td></tr>
+      </table>
+
+      <table class="data-table" style="margin-top:16px">
+        <thead><tr><th>Leverage Point</th><th>Evidence</th><th>Strength</th></tr></thead>
+        <tbody>
+          <tr><td>Rising holding costs (rate hikes)</td><td>RBA at 4.10%, two hikes in 2026 — investor vendors feel this</td><td class="check">Strong</td></tr>
+          <tr><td>No active campaign / off-market</td><td>No public listing = no competing bidders — price discovery by negotiation</td><td class="check">Strong</td></tr>
+          <tr><td>Asbestos risk (pre-2003)</td><td>Building inspection likely to identify ACM — buyer can request price reduction</td><td class="flag">Moderate</td></tr>
+          <tr><td>OC fees unknown</td><td>High or unexpected OC levies reduce affordability — use Section 32 to negotiate</td><td class="flag">Moderate</td></tr>
+          <tr><td>Limited comparable unit sales</td><td>Thin comparable evidence makes aggressive price defence harder for vendor</td><td class="flag">Moderate</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pdf-section">
+      <div class="section-sub-heading">Recommended Contract Conditions</div>
+      <p class="doc-p">The following conditions should be included in any offer or purchase contract: (1) Subject to satisfactory building and pest inspection; (2) Subject to LANDATA title search confirming title free of unexpected encumbrances; (3) Subject to review and acceptance of the Section 32 vendor statement, including the Owners Corporation certificate; (4) Subject to finance approval at the buyer's nominated lender (allow 14–21 days); (5) Sunset clause: if conditions not satisfied by a specified date, contract is void.</p>
+    </div>
+
+    <div class="pdf-section">
+      <div class="section-sub-heading">Due Diligence Gaps to Resolve Before Signing</div>
+      <p class="doc-p">The following items remain unresolved and must be addressed before exchange: (a) LANDATA title search — confirm title type, lot on plan, registered encumbrances; (b) Section 32 vendor statement — confirm OC registration, annual levies, arrears, rules; (c) VicPlan planning property report — confirm exact zone and all applicable overlays; (d) Licensed building inspection — confirm structural integrity, presence of ACM, and any unapproved works; (e) Nillumbik council Section 10.3 search — confirm building permit history; (f) Mortgage broker confirmation — confirm borrowing capacity at current 4.10% cash rate with serviceability buffer.</p>
+    </div>
+  </div>
+
+  <!-- Page break 14→15 -->
+  <div class="doc-body" style="padding-top:0;padding-bottom:0">
+    <div class="page-break">
+      <div class="pb-footer">Precursor Property — Purchase Intelligence Report &nbsp;|&nbsp; Example Address &nbsp;|&nbsp; 30 April 2026</div>
+      <div class="pb-page">Page 15</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ PAGE 15 — FINANCE -->
+  <div class="doc-body">
+    <div class="pdf-section">
+      <div class="section-heading">Finance Snapshot</div>
+
+      <p class="doc-p">The following financial analysis is based on a purchase price assumption of <strong>$760,000</strong> (midpoint of the estimated fair value range), with standard 20% deposit (80% LVR), interest rate of 6.5% (variable owner-occupier — indicative), and 30-year loan term. All figures are indicative. Speak to a licensed mortgage broker before making any purchase decision.</p>
+
+      <div class="section-sub-heading">Day One Cash Required to Settle</div>
+      <table class="info-table">
+        <tr><td>Minimum Deposit (20%)</td><td><strong>$152,000</strong></td></tr>
+        <tr><td>Stamp Duty (est.)</td><td>$37,570</td></tr>
+        <tr><td>Conveyancing (est.)</td><td>$2,000</td></tr>
+        <tr><td>Building Inspection (est.)</td><td>$650</td></tr>
+        <tr><td>Loan Establishment Fees (est.)</td><td>$750</td></tr>
+        <tr><td><strong>Total Cash Required</strong></td><td><strong>$192,970</strong></td></tr>
+      </table>
+
+      <div class="callout gold">
+        <div class="callout-label">First Home Buyer Note</div>
+        First home buyers purchasing a property under $600,000 may be eligible for a full stamp duty exemption. Properties between $600,000 and $750,000 attract a partial concession. At a purchase price of $760,000, no first home buyer duty concession applies — however, confirm eligibility with your conveyancer if the final purchase price is negotiated below $750,000.
+      </div>
+
+      <div class="section-sub-heading">Loan Repayment Scenarios</div>
+      <table class="data-table">
+        <thead><tr><th>Loan Scenario</th><th>Monthly Repayment</th><th>Annual Repayment</th></tr></thead>
+        <tbody>
+          <tr class="highlight-row"><td><strong>P&amp;I — 6.5% / 30 years</strong></td><td><strong>$3,843</strong></td><td><strong>$46,116</strong></td></tr>
+          <tr><td>Interest Only — 6.5% / 5yr IO period</td><td>$3,293</td><td>$39,520</td></tr>
+        </tbody>
+      </table>
+      <p class="doc-p" style="font-size:11.5px;font-family:system-ui,sans-serif;color:#888;text-align:left">Loan amount: $608,000 (80% LVR, no LMI)</p>
+
+      <div class="section-sub-heading">Minimum Income to Service (APRA Buffer — 9.5%)</div>
+      <table class="info-table">
+        <tr><td>Assessment Rate (6.5% + 3.0% Buffer)</td><td>9.5% pa</td></tr>
+        <tr><td>Monthly Repayment at Assessment Rate</td><td>$5,112</td></tr>
+        <tr><td>Est. Minimum Household Income (Gross)</td><td><strong>$191,715 pa</strong></td></tr>
+        <tr><td>Note</td><td>Actual serviceability depends on full financial position, debts, and lender policy</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Page break 15→16 -->
+  <div class="doc-body" style="padding-top:0;padding-bottom:0">
+    <div class="page-break">
+      <div class="pb-footer">Precursor Property — Purchase Intelligence Report &nbsp;|&nbsp; Example Address &nbsp;|&nbsp; 30 April 2026</div>
+      <div class="pb-page">Page 16</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ PAGE 16 — RATE SENSITIVITY -->
+  <div class="doc-body">
+    <div class="pdf-section">
+      <div class="section-heading">Rate Sensitivity Analysis</div>
+
+      <p class="doc-p">Monthly P&amp;I repayment on a $608,000 loan at varying interest rates. Current base: 6.5%.</p>
+
+      <table class="data-table">
+        <thead><tr><th>Interest Rate</th><th>Monthly P&amp;I</th><th>Annual P&amp;I</th><th>vs. Base (Monthly)</th></tr></thead>
+        <tbody>
+          <tr><td>5.0%</td><td>$3,264</td><td>$39,168</td><td>−$579</td></tr>
+          <tr><td>5.5%</td><td>$3,452</td><td>$41,424</td><td>−$391</td></tr>
+          <tr><td>6.0%</td><td>$3,645</td><td>$43,740</td><td>−$198</td></tr>
+          <tr class="highlight-row"><td><strong>6.5% ★ CURRENT BASE</strong></td><td><strong>$3,843</strong></td><td><strong>$46,116</strong></td><td><strong>—</strong></td></tr>
+          <tr><td>7.0%</td><td>$4,045</td><td>$48,540</td><td>+$202</td></tr>
+          <tr><td>7.5%</td><td>$4,251</td><td>$51,012</td><td>+$408</td></tr>
+          <tr><td>8.0%</td><td>$4,461</td><td>$53,532</td><td>+$618</td></tr>
+        </tbody>
+      </table>
+
+      <p class="doc-p">At the current standard variable rate assumption of 6.5%, monthly P&amp;I repayments on a $608,000 loan are approximately $3,843. If rates rise to 8.0% (the stress scenario), repayments increase to approximately $4,461 per month — $618 more per month than today, or $7,416 more per year. Buyers should ensure they can absorb this additional cost before committing. If rates fall to 5.0%, repayments reduce to $3,264 per month — a saving of $579 per month.</p>
+    </div>
+
+    <div class="pdf-section">
+      <div class="section-heading">Equity &amp; Wealth Projection</div>
+
+      <table class="data-table">
+        <thead><tr><th>Year</th><th>Est. Property Value</th><th>Approx. Loan Balance</th><th>Equity</th><th>Equity %</th></tr></thead>
+        <tbody>
+          <tr class="highlight-row"><td><strong>Year 0</strong></td><td>$760,000</td><td>$608,000</td><td>$152,000</td><td>20%</td></tr>
+          <tr><td>Year 1</td><td>$801,800</td><td>$601,204</td><td>$200,596</td><td>25%</td></tr>
+          <tr><td>Year 2</td><td>$845,899</td><td>$593,953</td><td>$251,946</td><td>30%</td></tr>
+          <tr><td>Year 3</td><td>$892,423</td><td>$586,216</td><td>$306,207</td><td>34%</td></tr>
+          <tr><td>Year 5</td><td>$993,290</td><td>$569,153</td><td>$424,137</td><td>43%</td></tr>
+          <tr><td>Year 7</td><td>$1,105,556</td><td>$549,728</td><td>$555,828</td><td>50%</td></tr>
+          <tr><td>Year 10</td><td>$1,298,190</td><td>$515,434</td><td>$782,756</td><td>60%</td></tr>
+        </tbody>
+      </table>
+
+      <p class="doc-p">Assuming a 5.5% base annual growth rate, your equity position grows from $152,000 (20%) at purchase to approximately $782,756 (60%) by year 10. This represents an equity gain of $630,756 over a decade — a combination of capital appreciation and debt reduction. This equity can be deployed as a deposit on a second property or drawn down for other investment purposes.</p>
+
+      <p class="doc-p" style="font-size:11.5px;font-family:system-ui,sans-serif;font-style:italic;color:#888;text-align:left">Equity projections are illustrative only, based on simplified assumptions. Actual property values, loan balances, and equity positions will vary. This does not constitute financial advice.</p>
+    </div>
+  </div>
+
+  <!-- Page break 16→17 -->
+  <div class="doc-body" style="padding-top:0;padding-bottom:0">
+    <div class="page-break">
+      <div class="pb-footer">Precursor Property — Purchase Intelligence Report &nbsp;|&nbsp; Example Address &nbsp;|&nbsp; 30 April 2026</div>
+      <div class="pb-page">Page 17</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ PAGE 17 — CASH FLOW & ALTERNATIVES -->
+  <div class="doc-body">
+    <div class="pdf-section">
+      <div class="section-heading">Cash Flow Analysis</div>
+
+      <table class="info-table">
+        <tr><td>Estimated Weekly Rent Received</td><td>$590</td></tr>
+        <tr><td>Weekly Shortfall — P&amp;I Loan (6.5%)</td><td><strong>$320 per week OUT OF POCKET</strong></td></tr>
+        <tr><td>Weekly Shortfall — IO Loan (6.5%)</td><td>$193 per week OUT OF POCKET</td></tr>
+        <tr><td>Gearing Position</td><td><strong>NEGATIVELY GEARED</strong> (rental income &lt; mortgage cost)</td></tr>
+      </table>
+
+      <table class="data-table" style="margin-top:12px">
+        <thead><tr><th>Cash Flow Item</th><th>P&amp;I Loan</th><th>Interest Only</th></tr></thead>
+        <tbody>
+          <tr><td>Gross annual rental income (50 wks)</td><td>$29,500</td><td>$29,500</td></tr>
+          <tr><td>Annual mortgage repayment</td><td>$46,116</td><td>$39,520</td></tr>
+          <tr><td><strong>Net annual cash flow</strong></td><td class="cross"><strong>−$16,616</strong></td><td class="cross"><strong>−$10,020</strong></td></tr>
+          <tr><td><strong>Net weekly position</strong></td><td class="cross"><strong>−$320/wk</strong></td><td class="cross"><strong>−$193/wk</strong></td></tr>
+          <tr><td>Gearing</td><td>Negative</td><td>Negative</td></tr>
+        </tbody>
+      </table>
+
+      <p class="doc-p">At an estimated rent of $590/week ($29,500 annually net of 2 weeks vacancy), this property costs approximately <strong>$320 per week out of pocket</strong> on a principal &amp; interest loan at 6.5%. On an interest-only loan, the shortfall reduces to approximately $193 per week. For an investor, the negative gearing shortfall may be partially offset by tax deductions on mortgage interest, depreciation allowances, and property management costs — speak to an accountant for personalised tax advice.</p>
+
+      <p class="doc-p" style="font-size:11.5px;font-family:system-ui,sans-serif;font-style:italic;color:#888;text-align:left">Cash flow estimates are indicative only, based on simplified assumptions and estimated rental income. They do not account for property management fees, council rates, landlord insurance, maintenance, depreciation, or individual tax circumstances. This does not constitute financial or tax advice.</p>
+    </div>
+  </div>
+
+  <!-- Page break 17→18 -->
+  <div class="doc-body" style="padding-top:0;padding-bottom:0">
+    <div class="page-break">
+      <div class="pb-footer">Precursor Property — Purchase Intelligence Report &nbsp;|&nbsp; Example Address &nbsp;|&nbsp; 30 April 2026</div>
+      <div class="pb-page">Page 18</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ PAGE 18 — ALTERNATIVES & NEXT STEPS -->
+  <div class="doc-body">
+    <div class="pdf-section">
+      <div class="section-heading">Alternative Properties to Consider</div>
+
+      <p class="doc-p">The following three currently active or recently active listings in the Eltham area represent comparable alternatives in a similar price range. These are presented to ensure the buyer is making an informed choice and has considered what else their budget can acquire. They are not presented as superior options — but buyers benefit from understanding the competitive landscape.</p>
+
+      <table class="data-table">
+        <thead><tr><th>Detail</th><th>Option 1</th><th>Option 2</th><th>Option 3</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Type / Location</strong></td><td>2-bed townhouse<br>Eltham (Bridge St area)</td><td>3-bed unit<br>Eltham (central)</td><td>3–4 bed townhouse<br>Diamond Creek</td></tr>
+          <tr><td>Price Range</td><td>$650,000–$700,000</td><td>$700,000–$800,000</td><td>$600,000–$750,000</td></tr>
+          <tr><td>Key Advantage</td><td>Entry-level price — lower holding cost</td><td>Similar spec, potentially better value</td><td>Lower price, slightly better yield, North East Link upside</td></tr>
+          <tr><td>Key Risk</td><td>Fewer bedrooms, lower rental potential</td><td>OC / unit title risks (same as subject)</td><td>Less desirable suburb vs Eltham for long-term capital growth</td></tr>
+          <tr><td>Zone / Overlays</td><td>Check VicPlan</td><td>Check VicPlan</td><td>Check VicPlan</td></tr>
+        </tbody>
+      </table>
+
+      <p class="doc-p">On balance, Example Address remains a credible option among the alternatives in this price bracket. Its central Eltham location — walkable to the station, schools, and the activity centre — is a genuine differentiator that lower-priced alternatives in outer suburbs cannot match. If the buyer resolves outstanding due diligence items satisfactorily and can negotiate to the $720,000–$760,000 range, this property represents a reasonable buy in one of Melbourne's north-east's most consistently desirable suburbs.</p>
+    </div>
+
+    <div class="pdf-section">
+      <div class="section-heading">Recommended Next Steps</div>
+
+      <div class="callout navy" style="margin-bottom:10px">
+        <strong>1. Engage a conveyancer or solicitor</strong><br>Before making any offer, engage a licensed Victorian conveyancer. They will review the Section 32 vendor statement, conduct title searches, and advise on contract conditions.
+      </div>
+      <div class="callout navy" style="margin-bottom:10px">
+        <strong>2. Obtain LANDATA title search</strong><br>Conduct a full title search via LANDATA (~$15–25 at landata.vic.gov.au) to confirm title type, lot on plan, and any registered encumbrances, caveats, or easements.
+      </div>
+      <div class="callout navy" style="margin-bottom:10px">
+        <strong>3. Request the Section 32 vendor statement</strong><br>Ask the listing agent or vendor for the Section 32. Review the Owners Corporation certificate carefully — confirm annual levies, arrears, insurance, and OC rules (pets, short-term rental).
+      </div>
+      <div class="callout navy" style="margin-bottom:10px">
+        <strong>4. Commission a licensed building inspection</strong><br>Engage a licensed building inspector before exchange. Specifically request assessment for asbestos-containing materials (given estimated pre-2003 construction), structural integrity, and any unapproved works.
+      </div>
+      <div class="callout navy" style="margin-bottom:10px">
+        <strong>5. Generate a VicPlan planning property report</strong><br>Go to mapshare.vic.gov.au and search the property address. Download the planning property report to confirm the exact zone and all applicable overlays for the subject parcel.
+      </div>
+      <div class="callout navy" style="margin-bottom:10px">
+        <strong>6. Speak to a mortgage broker</strong><br>Confirm your borrowing capacity at the current 4.10% cash rate environment with the APRA 3.0% serviceability buffer. Understand your options for fixed versus variable rate structuring.
+      </div>
+      <div class="callout navy" style="margin-bottom:10px">
+        <strong>7. Engage the managing agent</strong><br>Contact Barry Plant Whitehorse to understand the vendor's timeline, any upcoming campaign, and the current rental income and lease terms. This will help calibrate your offer strategy.
+      </div>
+    </div>
+  </div>
+
+  <!-- Page break 18→19 -->
+  <div class="doc-body" style="padding-top:0;padding-bottom:0">
+    <div class="page-break">
+      <div class="pb-footer">Precursor Property — Purchase Intelligence Report &nbsp;|&nbsp; Example Address &nbsp;|&nbsp; 30 April 2026</div>
+      <div class="pb-page">Page 19</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ PAGE 19 — DISCLAIMER -->
+  <div class="doc-bottom">
+    <div class="section-heading">Important Disclaimer</div>
+
+    <p class="doc-p">This report is prepared by Precursor Property for informational purposes only. It does not constitute financial, investment, legal, or professional advice. Data is sourced from publicly available records as at the report date of 30 April 2026. Precursor Property accepts no liability for any decision made in reliance on this report. A full title search, independent legal advice, and a licensed building inspection are recommended before any purchase decision. Precursor Property is not a licensed financial adviser under the Corporations Act 2001 (Cth).</p>
+
+    <p class="doc-p">Sources used in the preparation of this report include: Domain.com.au, REA/realestate.com.au, Barry Plant Whitehorse (barryplant.com.au), Fletchers Real Estate, Ray White Eltham, PropertyValue.com.au, YourInvestmentPropertyMag.com.au (CoreLogic data), Woodards.com.au, Reserve Bank of Australia (rba.gov.au), Crime Statistics Agency Victoria, Nillumbik Shire Council, Planning Victoria (planning.vic.gov.au), and AuHousePrices.com. All data is indicative and subject to the limitations of publicly available information at the report date.</p>
+
+    <div style="margin-top:32px;padding-top:20px;border-top:1px solid #ddd;display:flex;justify-content:space-between;align-items:center;font-family:system-ui,sans-serif">
+      <div style="font-size:10px;color:#aaa;letter-spacing:0.02em">© 2026 Precursor Property Pty Ltd &nbsp;|&nbsp; precursorproperty.com.au &nbsp;|&nbsp; Purchase Intelligence Report</div>
+      <div style="font-size:10px;color:#aaa">Page 19 of 19</div>
+    </div>
+  </div>
+
+</div><!-- /pdf-paper -->
+</div><!-- /pdf-viewer -->
+
+
+<!-- STICKY BOTTOM ORDER BANNER -->
+<div class="order-banner" id="order-banner">
+  <div class="order-banner-inner">
+    <div class="order-banner-left">
+      <div class="order-banner-title">This is a sample report</div>
+      <div class="order-banner-sub">Order a Full Due Diligence report for any Victorian property — delivered in 48 hours.</div>
+    </div>
+    <div class="order-banner-actions">
+      <a href="index.html#contact" class="order-banner-btn">Order Your Report &rarr;</a>
+      <button class="order-banner-dismiss" onclick="document.getElementById('order-banner').style.display='none'" aria-label="Dismiss">&#10005;</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
