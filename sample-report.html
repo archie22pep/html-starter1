@@ -342,6 +342,10 @@ p.doc-p strong{font-weight:700;color:var(--navy)}
 
 /* Fintech reskin refinements */
 .pdf-paper{border-radius:16px;overflow:hidden}
+/* Wide data tables scroll horizontally on small screens instead of overflowing */
+@media(max-width:640px){
+  .data-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}
+}
 .nav-logo-mark{border-radius:8px}
 .nav-order-btn,.order-banner-btn{color:#fff!important}
 /* Keep red-flag / amber callouts amber-cohesive (warning semantics) */
