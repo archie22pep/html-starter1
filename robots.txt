@@ -17,4 +17,4 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-Sitemap: https://precursorproperty.com/sitemap.xml
+Sitemap: https://www.precursorproperty.com/sitemap.xml
