@@ -78,6 +78,10 @@
   .disclaimer{margin-top:36px;padding:16px 18px;background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);font-size:8.5pt;color:var(--muted);line-height:1.5;}
   .report-footer{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:12px;border-top:1px solid var(--line);font-size:8.5pt;color:var(--muted);}
   .dots{letter-spacing:2px;font-size:11pt;}
+  .toc{columns:2;column-gap:34px;margin:16px 0;}
+  .toc .toc-item{break-inside:avoid;-webkit-column-break-inside:avoid;display:flex;gap:10px;align-items:baseline;font-size:10.5pt;margin:0 0 8px;}
+  .toc .toc-item .n{color:var(--blue);font-weight:800;min-width:20px;text-align:right;flex:0 0 auto;}
+  .toc .toc-item .t{color:var(--ink);}
   .sample-banner{position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 14px;background:var(--ink);color:#fff;padding:9px 18px;font-size:9.5pt;text-align:center;}
   .sample-banner .tag{color:#c5d4ea;} .sample-banner .tag b{color:#fff;font-weight:700;}
   .sample-banner a{display:inline-block;background:var(--blue);color:#fff;font-weight:700;padding:6px 14px;border-radius:999px;text-decoration:none;font-size:9pt;}
@@ -86,6 +90,13 @@
   .sample-cta h3{color:#fff;font-size:14pt;margin:0 0 6px;} .sample-cta p{color:#c5d4ea;margin:0 0 14px;font-size:10.5pt;}
   .sample-cta a{display:inline-block;background:var(--blue);color:#fff;font-weight:700;padding:11px 22px;border-radius:999px;text-decoration:none;}
   @media print{.sample-banner,.sample-cta{display:none}}
+  /* Faux-PDF document framing — screen only. Print/real-PDF output stays clean. */
+  @media screen{
+    body{background:#e7ecf3;}
+    .cover,.page{max-width:900px;margin:28px auto;border:1px solid #d6deea;border-radius:5px;box-shadow:0 6px 30px rgba(11,26,43,.14);overflow:hidden;}
+    .cover{min-height:1180px;}
+    .page{background:#fff;}
+  }
   @page{size:A4;margin:14mm 0;}
   @media print{.page{max-width:none;padding:0 18mm;} h2.section-title{page-break-after:avoid;} table,figure,.callout,.flag-card,.split-box,.stat-grid,.explainer{page-break-inside:avoid;} .cover{min-height:auto;height:267mm;}}
 </style>
