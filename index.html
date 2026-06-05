@@ -1022,7 +1022,7 @@ nav.topnav{
       <div class="sample-viewer-chrome">
         <div class="svc-brand"><span class="svc-dot"></span>Precursor Property</div>
         <div class="svc-meta">Purchase Intelligence &middot; Full Due Diligence, Example Address, Montmorency</div>
-        <div class="svc-scrollhint" aria-hidden="true">Scroll to explore &darr;</div>
+        <div class="svc-scrollhint" aria-hidden="true">Live preview &middot; hover to pause</div>
       </div>
       <div class="sample-viewer-scroll" tabindex="0" aria-label="Scrollable sample report preview">
         <div class="srep-section">
@@ -1690,6 +1690,39 @@ async function handleSubmit(e){
 }
 function toggleAccordion(id){var acc=document.getElementById('accordion-'+id);var isOpen=acc.classList.contains('open');document.querySelectorAll('.legal-accordion').forEach(function(a){a.classList.remove('open');a.querySelector('.legal-trigger').setAttribute('aria-expanded','false');});if(!isOpen){acc.classList.add('open');acc.querySelector('.legal-trigger').setAttribute('aria-expanded','true');}}
 function openLegal(id){document.getElementById('legal').scrollIntoView({behavior:'smooth'});setTimeout(function(){var acc=document.getElementById('accordion-'+id);if(!acc.classList.contains('open')){toggleAccordion(id);}},400);}
+
+/* Sample report: gentle auto-scrolling "live preview".
+   Keeps native scrolling. Pauses on hover / wheel / touch / focus and resumes
+   after a short idle. Only runs while on-screen. Ping-pongs top<->bottom.
+   Honors prefers-reduced-motion (stays a normal manual scroller). */
+(function(){
+  var v=document.querySelector('.sample-viewer-scroll');
+  if(!v) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  v.style.scrollSnapType='none'; // smooth continuous motion, no snap fighting
+  var paused=false, inView=false, dir=1, idle=null, rafId=null, acc=0, SPEED=0.9;
+  function loop(){
+    if(paused || !inView || v.scrollHeight <= v.clientHeight+4){ rafId=null; return; }
+    acc += SPEED*dir;
+    var d=acc|0; if(d){ v.scrollTop+=d; acc-=d; }
+    if(v.scrollTop + v.clientHeight >= v.scrollHeight-1) dir=-1;
+    else if(v.scrollTop<=0) dir=1;
+    rafId=requestAnimationFrame(loop);
+  }
+  function start(){ if(rafId===null && !paused && inView) rafId=requestAnimationFrame(loop); }
+  function pause(){ paused=true; }
+  function resumeSoon(){ clearTimeout(idle); idle=setTimeout(function(){ paused=false; start(); }, 2000); }
+  v.addEventListener('mouseenter', pause);
+  v.addEventListener('mouseleave', resumeSoon);
+  v.addEventListener('focusin', pause);
+  v.addEventListener('focusout', resumeSoon);
+  v.addEventListener('wheel', function(){ pause(); resumeSoon(); }, {passive:true});
+  v.addEventListener('touchstart', function(){ pause(); }, {passive:true});
+  v.addEventListener('touchend', resumeSoon, {passive:true});
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ es.forEach(function(e){ inView=e.isIntersecting; if(inView) start(); }); }, {threshold:0.25}).observe(v);
+  } else { inView=true; start(); }
+})();
 </script>
 </body>
 </html>
