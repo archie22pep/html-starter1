@@ -15,7 +15,7 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-42ZVB1XCDB"></script>
@@ -228,6 +228,23 @@
   --sh-lg:0 12px 32px rgba(11,26,43,.10);
   --sh-xl:0 24px 60px rgba(11,26,43,.12);
   --ease:cubic-bezier(.16,1,.3,1);--max-w:1180px;
+  --font-display:"Space Grotesk","Inter",system-ui,sans-serif;
+  /* ---- Liquid Glass tokens (honest web approximation: backdrop-filter + inset highlight) ---- */
+  /* "Amped light glass": crisper edges, more depth, blue-tinted shadow */
+  --glass-blur:blur(22px) saturate(185%);
+  --glass-blur-strong:blur(30px) saturate(195%);
+  --glass-bg:rgba(255,255,255,.56);
+  --glass-bg-strong:rgba(255,255,255,.66);
+  --glass-bg-soft:rgba(255,255,255,.42);
+  --glass-border:rgba(255,255,255,.92);
+  --glass-hi:inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 0 1px rgba(255,255,255,.42);
+  --glass-sh:0 16px 50px rgba(11,26,43,.12),0 3px 10px rgba(37,99,235,.07);
+  --glass-sh-lg:0 30px 80px rgba(11,26,43,.16),0 6px 16px rgba(37,99,235,.10);
+  /* dark-surface glass */
+  --glass-dk-bg:rgba(255,255,255,.06);
+  --glass-dk-bg-2:rgba(255,255,255,.09);
+  --glass-dk-border:rgba(255,255,255,.16);
+  --glass-dk-hi:inset 0 1px 0 rgba(255,255,255,.18);
 }
 html{scroll-behavior:smooth;scroll-padding-top:80px}
 body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;color:var(--text);background:var(--canvas);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
@@ -647,6 +664,181 @@ footer{background:var(--ink);padding:52px 0 30px;color:rgba(255,255,255,.6)}
   .eyebrow .dot,.svc-scrollhint,.form-submit:disabled::after{animation:none}
   .price-card,.process-step,.btn,.testi-card{transition:none}
 }
+
+/* =====================================================================
+   LIQUID GLASS LAYER  (restrained premium overlay)
+   Honest web approximation of Apple "Liquid Glass": backdrop-filter +
+   layered translucency + inset highlight borders + tinted ambient field.
+   This is NOT an official Apple package. CSS-only: no markup/JS touched.
+   ===================================================================== */
+
+/* Ambient brand field — fixed blue + cyan glow orbs the glass refracts over.
+   Amped "light glassmorphism": brighter, more defined orbs, still a white canvas.
+   background-attachment:fixed keeps them still while content scrolls past. */
+body{background:var(--canvas)}
+/* Orb field on a fixed, GPU-composited layer so any motion is a cheap transform,
+   never a background-position repaint (protects INP / Core Web Vitals). */
+body::after{
+  content:"";position:fixed;inset:-8%;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(620px 620px at 13% 3%,   rgba(37,99,235,.17),  transparent 60%),
+    radial-gradient(540px 540px at 90% 1%,    rgba(45,180,235,.16), transparent 58%),
+    radial-gradient(700px 700px at 80% 44%,   rgba(96,165,250,.14), transparent 60%),
+    radial-gradient(600px 600px at 6% 70%,    rgba(45,180,235,.13), transparent 60%),
+    radial-gradient(760px 760px at 58% 96%,   rgba(37,99,235,.12),  transparent 60%);
+}
+
+/* Let the ambient field bleed through "surface" sections so the orbs read */
+.section.surface{
+  background:linear-gradient(180deg,rgba(248,250,252,.58),rgba(241,245,249,.42));
+  backdrop-filter:blur(2px);
+}
+.trust-strip{background:rgba(248,250,252,.66);backdrop-filter:blur(6px)}
+.legal-section{background:linear-gradient(180deg,rgba(248,250,252,.72),rgba(241,245,249,.6))}
+
+/* ---- Top nav: clearer liquid glass ---- */
+nav.topnav{
+  background:linear-gradient(180deg,rgba(255,255,255,.66),rgba(255,255,255,.5));
+  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+  border-bottom:1px solid rgba(255,255,255,.5);
+  box-shadow:0 1px 0 rgba(11,26,43,.04),0 8px 30px rgba(11,26,43,.05);
+}
+.mobile-nav{
+  background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,255,255,.86));
+  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+  border-top:1px solid rgba(255,255,255,.6);
+}
+
+/* ---- Hero: brighter blue + cyan orbs so the glass report card pops ---- */
+.hero{
+  background:
+    radial-gradient(760px 520px at 82% -8%, rgba(37,99,235,.22), transparent 60%),
+    radial-gradient(520px 460px at 60% 8%,  rgba(45,180,235,.18), transparent 58%),
+    radial-gradient(680px 520px at 4% 24%,  rgba(96,165,250,.16), transparent 60%),
+    linear-gradient(180deg,#fff,rgba(248,250,252,.65));
+}
+
+/* ---- Generic light-glass panels ---- */
+.report-card,.process-step,.testi-card,.faq-item,.price-card,
+.comp-alt-item,.expert-stat,.contact-form,.sample-viewer,
+.sample-lock-card,.hero-chip,.trust-rating,.ds-logo-item{
+  background:var(--glass-bg-strong);
+  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+  border-color:var(--glass-border);
+  box-shadow:var(--glass-hi),var(--glass-sh);
+}
+/* Content-dense panels stay a touch more opaque for legibility */
+.report-card,.contact-form,.sample-viewer{background:rgba(255,255,255,.82)}
+
+.process-step:hover,.testi-card:hover,.faq-item:hover,
+.comp-alt-item:hover,.price-card:hover{
+  box-shadow:var(--glass-hi),var(--glass-sh-lg);
+}
+.price-card.featured{box-shadow:0 0 0 4px var(--accent-ring),var(--glass-hi),var(--glass-sh-lg)}
+.price-card.selected{box-shadow:0 0 0 3px var(--accent-ring),var(--glass-hi),var(--glass-sh)}
+
+/* Sample-viewer chrome reads as a frosted toolbar */
+.sample-viewer-chrome{background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(248,250,252,.5));backdrop-filter:var(--glass-blur)}
+
+/* Keep form inputs crisp & solid — glass on inputs hurts readability */
+.form-input{background:#fff}
+.form-input:focus-visible{box-shadow:0 0 0 3px var(--accent-ring),var(--glass-hi)}
+
+/* ---- Dark-surface glass (ink sections): white-edged refraction ---- */
+.testi-featured,.comp-precursor,.expert-method-card,.stream-visual.dark-visual{
+  background:linear-gradient(180deg,var(--glass-dk-bg-2),var(--glass-dk-bg)),var(--ink);
+  border:1px solid var(--glass-dk-border);
+  box-shadow:var(--glass-dk-hi),0 24px 64px rgba(11,26,43,.4);
+}
+.signal-card{
+  background:var(--glass-dk-bg);
+  backdrop-filter:blur(10px) saturate(150%);-webkit-backdrop-filter:blur(10px) saturate(150%);
+  border-color:var(--glass-dk-border);
+  box-shadow:var(--glass-dk-hi);
+}
+.signal-card:hover{background:var(--glass-dk-bg-2);box-shadow:var(--glass-dk-hi),0 14px 40px rgba(11,26,43,.35)}
+
+/* Primary CTAs: subtle glass sheen on the accent fill */
+.btn-primary,.nav-cta,.form-submit{
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),var(--sh-md);
+}
+
+/* ---- Process: connected glass timeline (layout recompose) ---- */
+.process-timeline{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;position:relative;padding:0;margin:0}
+.process-timeline::before{content:"";position:absolute;top:29px;left:12.5%;right:12.5%;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,var(--accent-light) 16%,var(--accent) 50%,var(--accent-light) 84%,transparent);opacity:.5;z-index:0}
+.ptl-step{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center}
+.ptl-node{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:20px;color:var(--accent);position:relative;
+  background:var(--glass-bg-strong);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+  border:1px solid var(--glass-border);box-shadow:var(--glass-hi),0 10px 26px rgba(37,99,235,.18)}
+.ptl-num{position:absolute;top:-7px;right:-7px;width:23px;height:23px;border-radius:50%;background:var(--accent);color:#fff;
+  font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 7px rgba(37,99,235,.45),inset 0 1px 0 rgba(255,255,255,.3)}
+.ptl-card{flex:1;width:100%;display:flex;flex-direction:column;align-items:center;gap:8px;padding:22px 20px 20px;border-radius:var(--r-xl);
+  background:var(--glass-bg-strong);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+  border:1px solid var(--glass-border);box-shadow:var(--glass-hi),var(--glass-sh);transition:transform .22s var(--ease),box-shadow .22s}
+.ptl-card:hover{transform:translateY(-3px);box-shadow:var(--glass-hi),var(--glass-sh-lg)}
+.ptl-title{font-size:16px;font-weight:700;color:var(--ink);line-height:1.25}
+.ptl-body{font-size:13.5px;color:var(--muted);line-height:1.55}
+.ptl-time{margin-top:auto;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--success);background:var(--success-weak);padding:4px 11px;border-radius:var(--pill)}
+@media(max-width:760px){
+  .process-timeline{grid-template-columns:1fr;gap:0;position:relative}
+  .process-timeline::before{top:10px;bottom:10px;left:29px;right:auto;width:2px;height:auto;
+    background:linear-gradient(180deg,transparent,var(--accent) 10%,var(--accent) 90%,transparent)}
+  .ptl-step{flex-direction:row;align-items:flex-start;text-align:left;gap:16px;padding-bottom:24px}
+  .ptl-node{width:58px;height:58px;margin-bottom:0;flex-shrink:0}
+  .ptl-card{align-items:flex-start;width:auto;min-width:0}
+}
+@media (prefers-reduced-transparency:reduce){
+  .ptl-node,.ptl-card{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none;border-color:var(--line);box-shadow:var(--sh-md)}
+}
+
+/* Subtle ambient drift via transform ONLY (composite-only, cheap; motion-gated) */
+@media (prefers-reduced-motion:no-preference){
+  body::after{will-change:transform;animation:orb-drift 44s ease-in-out infinite alternate}
+}
+@keyframes orb-drift{from{transform:translate3d(-1.4%,-1%,0) scale(1.02)}to{transform:translate3d(1.8%,1.4%,0) scale(1.06)}}
+
+/* ---- Accessibility fallback: no translucency ---- */
+@media (prefers-reduced-transparency:reduce){
+  body{background:var(--canvas)}
+  body::after{animation:none;display:none}
+  nav.topnav,.mobile-nav{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none}
+  .section.surface{background:var(--surface);backdrop-filter:none}
+  .report-card,.process-step,.testi-card,.faq-item,.price-card,.comp-alt-item,
+  .expert-stat,.contact-form,.sample-viewer,.sample-lock-card,.hero-chip,
+  .trust-rating,.ds-logo-item,.sample-viewer-chrome{
+    background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none;border-color:var(--line);
+    box-shadow:var(--sh-md);
+  }
+  .signal-card{backdrop-filter:none;-webkit-backdrop-filter:none}
+  .testi-featured,.comp-precursor,.expert-method-card,.stream-visual.dark-visual{background:var(--ink)}
+}
+/* =====================================================================
+   PORTED PREMIUM POLISH  (from the light concept)
+   Space Grotesk display type + importance-tiered reveals + meter fill.
+   CSS only; headline stays instant to protect hero LCP.
+   ===================================================================== */
+.hero h1,.section-h,.stream-h,.review-h,.comp-precursor-price,.comp-fact,
+.stat-num,.price-amount,.expert-stat-num{font-family:var(--font-display)}
+
+/* Tiered reveal intensities (importance drives the motion budget) */
+.reveal.rv-strong{transition-duration:.85s}
+.reveal.rv-strong:not(.in){transform:translateY(30px) scale(.99)}
+.reveal.rv-soft{transition-duration:.5s}
+.reveal.rv-soft:not(.in){transform:translateY(12px)}
+
+/* Hero report card: signal meters "compute" (fill) on reveal */
+.hero-visual .rc-meter span{transform-origin:left center;transform:scaleX(0);transition:transform .9s var(--ease)}
+.hero-visual.reveal.in .rc-meter span{transform:scaleX(1)}
+.hero-visual .rc-body .rc-row:nth-child(2) .rc-meter span{transition-delay:.20s}
+.hero-visual .rc-body .rc-row:nth-child(3) .rc-meter span{transition-delay:.32s}
+.hero-visual .rc-body .rc-row:nth-child(4) .rc-meter span{transition-delay:.44s}
+.hero-visual .rc-body .rc-row:nth-child(5) .rc-meter span{transition-delay:.56s}
+
+@media(prefers-reduced-motion:reduce){
+  .reveal.rv-strong:not(.in),.reveal.rv-soft:not(.in){transform:none}
+  .hero-visual .rc-meter span{transform:none;transition:none}
+}
 </style>
 </head>
 <body>
@@ -700,7 +892,7 @@ footer{background:var(--ink);padding:52px 0 30px;color:rgba(255,255,255,.6)}
           <span class="ht"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>No subscription</span>
         </div>
       </div>
-      <div class="hero-visual" aria-hidden="true">
+      <div class="hero-visual reveal rv-strong" aria-hidden="true">
         <div class="hero-chip chip-tl">
           <div class="hc-ic ic-green"><svg width="17" height="17" viewBox="0 0 18 18" fill="none"><polyline points="2,13 7,8 11,11 16,4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><polyline points="12,4 16,4 16,8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <div><div class="hc-k">Capital growth</div><div class="hc-v tnum">7.2% p.a.</div></div>
@@ -765,10 +957,10 @@ footer{background:var(--ink);padding:52px 0 30px;color:rgba(255,255,255,.6)}
 <section class="stats-section">
   <div class="wrap">
     <div class="stats-inner">
-      <div class="stat-item reveal"><div class="stat-num tnum">300<span class="u">+</span></div><div class="stat-label">Reports delivered</div></div>
-      <div class="stat-item reveal reveal-d1"><div class="stat-num tnum">48<span class="u">hr</span></div><div class="stat-label">Average delivery</div></div>
-      <div class="stat-item reveal reveal-d2"><div class="stat-num tnum"><span class="u">$</span>25k</div><div class="stat-label">Avg saving identified</div></div>
-      <div class="stat-item reveal reveal-d3"><div class="stat-num tnum">5<span class="u"> yrs</span></div><div class="stat-label">Victorian market experience</div></div>
+      <div class="stat-item reveal rv-soft"><div class="stat-num tnum">300<span class="u">+</span></div><div class="stat-label">Reports delivered</div></div>
+      <div class="stat-item reveal rv-soft reveal-d1"><div class="stat-num tnum">48<span class="u">hr</span></div><div class="stat-label">Average delivery</div></div>
+      <div class="stat-item reveal rv-soft reveal-d2"><div class="stat-num tnum"><span class="u">$</span>25k</div><div class="stat-label">Avg saving identified</div></div>
+      <div class="stat-item reveal rv-soft reveal-d3"><div class="stat-num tnum">5<span class="u"> yrs</span></div><div class="stat-label">Victorian market experience</div></div>
     </div>
   </div>
 </section>
@@ -776,40 +968,44 @@ footer{background:var(--ink);padding:52px 0 30px;color:rgba(255,255,255,.6)}
 <!-- PROCESS -->
 <section class="section center" id="process">
   <div class="wrap">
-    <div class="section-head reveal">
+    <div class="section-head reveal rv-strong">
       <span class="section-eyebrow">How it works</span>
       <h2 class="section-h">From brief to report in as little as 24 hours</h2>
     </div>
-    <div class="process-grid">
-      <div class="process-step reveal reveal-d1">
-        <div class="step-ic"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="4" y="2.5" width="14" height="17" rx="2" stroke="currentColor" stroke-width="1.6"/><line x1="7.5" y1="7.5" x2="14.5" y2="7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="7.5" y1="11" x2="14.5" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="7.5" y1="14.5" x2="11.5" y2="14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-        <div class="step-num">STEP 01</div>
-        <div class="step-title">Submit Your Brief</div>
-        <div class="step-body">Select your stream and tier, fill in the property address and your main concern.</div>
-        <div class="step-time">5 min</div>
-      </div>
-      <div class="process-step reveal reveal-d2">
-        <div class="step-ic"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="2.5" y="5" width="17" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><line x1="2.5" y1="9" x2="19.5" y2="9" stroke="currentColor" stroke-width="1.6"/><line x1="6" y1="13.5" x2="10" y2="13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-        <div class="step-num">STEP 02</div>
-        <div class="step-title">Secure Payment</div>
-        <div class="step-body">You'll be directed to our secure Stripe checkout. Payment is processed instantly.</div>
-        <div class="step-time">Instant</div>
-      </div>
-      <div class="process-step reveal reveal-d3">
-        <div class="step-ic"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="9.5" cy="9.5" r="6.5" stroke="currentColor" stroke-width="1.6"/><line x1="14.5" y1="14.5" x2="19" y2="19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-        <div class="step-num">STEP 03</div>
-        <div class="step-title">We Research</div>
-        <div class="step-body">We pull planning data, title searches, comparable sales, and council records ourselves.</div>
-        <div class="step-time">24–72 hrs</div>
-      </div>
-      <div class="process-step reveal reveal-d4">
-        <div class="step-ic"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="2.5" y="4.5" width="17" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 6l7.5 6 7.5-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="step-num">STEP 04</div>
-        <div class="step-title">Report Delivered</div>
-        <div class="step-body">A clear PDF report arrives by email, within your chosen turnaround window.</div>
-        <div class="step-time">To your inbox</div>
-      </div>
-    </div>
+    <ol class="process-timeline">
+      <li class="ptl-step reveal rv-soft reveal-d1">
+        <div class="ptl-node"><span class="ptl-num">1</span><svg width="24" height="24" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect x="4" y="2.5" width="14" height="17" rx="2" stroke="currentColor" stroke-width="1.6"/><line x1="7.5" y1="7.5" x2="14.5" y2="7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="7.5" y1="11" x2="14.5" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="7.5" y1="14.5" x2="11.5" y2="14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="ptl-card">
+          <div class="ptl-title">Submit Your Brief</div>
+          <div class="ptl-body">Select your stream and tier, fill in the property address and your main concern.</div>
+          <div class="ptl-time">5 min</div>
+        </div>
+      </li>
+      <li class="ptl-step reveal rv-soft reveal-d2">
+        <div class="ptl-node"><span class="ptl-num">2</span><svg width="24" height="24" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect x="2.5" y="5" width="17" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><line x1="2.5" y1="9" x2="19.5" y2="9" stroke="currentColor" stroke-width="1.6"/><line x1="6" y1="13.5" x2="10" y2="13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="ptl-card">
+          <div class="ptl-title">Secure Payment</div>
+          <div class="ptl-body">You'll be directed to our secure Stripe checkout. Payment is processed instantly.</div>
+          <div class="ptl-time">Instant</div>
+        </div>
+      </li>
+      <li class="ptl-step reveal rv-soft reveal-d3">
+        <div class="ptl-node"><span class="ptl-num">3</span><svg width="24" height="24" viewBox="0 0 22 22" fill="none" aria-hidden="true"><circle cx="9.5" cy="9.5" r="6.5" stroke="currentColor" stroke-width="1.6"/><line x1="14.5" y1="14.5" x2="19" y2="19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <div class="ptl-card">
+          <div class="ptl-title">We Research</div>
+          <div class="ptl-body">We pull planning data, title searches, comparable sales, and council records ourselves.</div>
+          <div class="ptl-time">24-72 hrs</div>
+        </div>
+      </li>
+      <li class="ptl-step reveal rv-soft reveal-d4">
+        <div class="ptl-node"><span class="ptl-num">4</span><svg width="24" height="24" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect x="2.5" y="4.5" width="17" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 6l7.5 6 7.5-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="ptl-card">
+          <div class="ptl-title">Report Delivered</div>
+          <div class="ptl-body">A clear PDF report arrives by email, within your chosen turnaround window.</div>
+          <div class="ptl-time">To your inbox</div>
+        </div>
+      </li>
+    </ol>
   </div>
 </section>
 
@@ -964,7 +1160,7 @@ footer{background:var(--ink);padding:52px 0 30px;color:rgba(255,255,255,.6)}
 <!-- NOTE: These are placeholder testimonials. Replace with real client quotes before launch. -->
 <section class="section">
   <div class="wrap">
-    <div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
+    <div class="section-head reveal rv-strong" style="text-align:center;margin-left:auto;margin-right:auto">
       <span class="section-eyebrow">What clients say, 5★ across 300+ reports</span>
       <h2 class="section-h">Trusted before the biggest decisions</h2>
     </div>
@@ -1018,7 +1214,7 @@ footer{background:var(--ink);padding:52px 0 30px;color:rgba(255,255,255,.6)}
         </svg>
       </div>
       <div>
-        <div class="stream-header reveal">
+        <div class="stream-header reveal rv-strong">
           <span class="stream-badge">Stream One</span>
           <h2 class="stream-h">Purchase Intelligence</h2>
           <p class="stream-lead">For buyers focused on capital growth and rental yield. We dig into the data behind a property so you can make your offer with confidence.</p>
@@ -1075,7 +1271,7 @@ footer{background:var(--ink);padding:52px 0 30px;color:rgba(255,255,255,.6)}
         </svg>
       </div>
       <div>
-        <div class="stream-header reveal">
+        <div class="stream-header reveal rv-strong">
           <span class="stream-badge">Stream Two</span>
           <h2 class="stream-h">Development Intelligence</h2>
           <p class="stream-lead">For owners and developers exploring subdivision, renovation, or redevelopment. We assess what the site can actually do.</p>
@@ -1107,17 +1303,17 @@ footer{background:var(--ink);padding:52px 0 30px;color:rgba(255,255,255,.6)}
 <!-- SIGNALS -->
 <section class="section ink center">
   <div class="wrap">
-    <div class="section-head reveal">
+    <div class="section-head reveal rv-strong">
       <span class="section-eyebrow">What we analyse</span>
       <h2 class="section-h">Every angle that moves the decision</h2>
     </div>
     <div class="signals-grid">
-      <div class="signal-card reveal reveal-d1"><div class="signal-ic"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 19L19 3M19 3H11M19 3V11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 19L11 11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" opacity="0.45"/></svg></div><div class="signal-label">Zoning &amp; Overlays</div><div class="signal-desc">Residential zones, planning overlays, flood, heritage, bushfire constraints.</div></div>
-      <div class="signal-card reveal reveal-d2"><div class="signal-ic"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><polyline points="2,16 8,10 13,13 20,5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><polyline points="15,5 20,5 20,10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="signal-label">Capital Growth Signals</div><div class="signal-desc">10-year suburb trends, comparable sales, infrastructure pipeline impacts.</div></div>
-      <div class="signal-card reveal reveal-d3"><div class="signal-ic"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="2" y="12" width="4" height="8" rx="1" stroke="currentColor" stroke-width="1.6" opacity="0.5"/><rect x="8" y="8" width="4" height="12" rx="1" stroke="currentColor" stroke-width="1.6" opacity="0.7"/><rect x="14" y="4" width="4" height="16" rx="1" stroke="currentColor" stroke-width="1.6"/></svg></div><div class="signal-label">Development Potential</div><div class="signal-desc">Subdivision yield, lot dimensions, permit pathway, objection risk.</div></div>
-      <div class="signal-card reveal reveal-d1"><div class="signal-ic"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M11 6.5V11L14 13.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/></svg></div><div class="signal-label">Rental &amp; Yield Data</div><div class="signal-desc">Vacancy rates, rental benchmarks, demand indicators, yield modelling.</div></div>
-      <div class="signal-card reveal reveal-d2"><div class="signal-ic"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="4" y="2" width="14" height="18" rx="2" stroke="currentColor" stroke-width="1.6"/><line x1="7.5" y1="7" x2="14.5" y2="7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity="0.6"/><line x1="7.5" y1="10.5" x2="14.5" y2="10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity="0.6"/><line x1="7.5" y1="14" x2="11.5" y2="14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/></svg></div><div class="signal-label">Title &amp; Encumbrances</div><div class="signal-desc">Easements, covenants, right-of-ways, title history anomalies.</div></div>
-      <div class="signal-card reveal reveal-d3"><div class="signal-ic"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.6"/><line x1="15" y1="15" x2="20" y2="20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="signal-label">Vendor Intelligence</div><div class="signal-desc">Days on market, price history, vendor motivation signals for negotiation.</div></div>
+      <div class="signal-card reveal rv-soft reveal-d1"><div class="signal-ic"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 19L19 3M19 3H11M19 3V11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 19L11 11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" opacity="0.45"/></svg></div><div class="signal-label">Zoning &amp; Overlays</div><div class="signal-desc">Residential zones, planning overlays, flood, heritage, bushfire constraints.</div></div>
+      <div class="signal-card reveal rv-soft reveal-d2"><div class="signal-ic"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><polyline points="2,16 8,10 13,13 20,5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><polyline points="15,5 20,5 20,10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="signal-label">Capital Growth Signals</div><div class="signal-desc">10-year suburb trends, comparable sales, infrastructure pipeline impacts.</div></div>
+      <div class="signal-card reveal rv-soft reveal-d3"><div class="signal-ic"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="2" y="12" width="4" height="8" rx="1" stroke="currentColor" stroke-width="1.6" opacity="0.5"/><rect x="8" y="8" width="4" height="12" rx="1" stroke="currentColor" stroke-width="1.6" opacity="0.7"/><rect x="14" y="4" width="4" height="16" rx="1" stroke="currentColor" stroke-width="1.6"/></svg></div><div class="signal-label">Development Potential</div><div class="signal-desc">Subdivision yield, lot dimensions, permit pathway, objection risk.</div></div>
+      <div class="signal-card reveal rv-soft reveal-d1"><div class="signal-ic"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M11 6.5V11L14 13.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/></svg></div><div class="signal-label">Rental &amp; Yield Data</div><div class="signal-desc">Vacancy rates, rental benchmarks, demand indicators, yield modelling.</div></div>
+      <div class="signal-card reveal rv-soft reveal-d2"><div class="signal-ic"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="4" y="2" width="14" height="18" rx="2" stroke="currentColor" stroke-width="1.6"/><line x1="7.5" y1="7" x2="14.5" y2="7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity="0.6"/><line x1="7.5" y1="10.5" x2="14.5" y2="10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity="0.6"/><line x1="7.5" y1="14" x2="11.5" y2="14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/></svg></div><div class="signal-label">Title &amp; Encumbrances</div><div class="signal-desc">Easements, covenants, right-of-ways, title history anomalies.</div></div>
+      <div class="signal-card reveal rv-soft reveal-d3"><div class="signal-ic"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.6"/><line x1="15" y1="15" x2="20" y2="20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="signal-label">Vendor Intelligence</div><div class="signal-desc">Days on market, price history, vendor motivation signals for negotiation.</div></div>
     </div>
   </div>
 </section>
@@ -1125,7 +1321,7 @@ footer{background:var(--ink);padding:52px 0 30px;color:rgba(255,255,255,.6)}
 <!-- COMPARISON -->
 <section class="section surface">
   <div class="wrap">
-    <div class="section-head reveal">
+    <div class="section-head reveal rv-strong">
       <span class="section-eyebrow">Why Precursor</span>
       <h2 class="section-h" style="max-width:24ch">Why not a buyers agent, or Archistar?</h2>
       <p class="section-lead">Both have their place. Neither does what Precursor does.</p>
@@ -1200,33 +1396,33 @@ footer{background:var(--ink);padding:52px 0 30px;color:rgba(255,255,255,.6)}
 <!-- FAQ -->
 <section class="section surface center" id="faq">
   <div class="wrap">
-    <div class="section-head reveal">
+    <div class="section-head reveal rv-strong">
       <span class="section-eyebrow">Common questions</span>
       <h2 class="section-h">Before you order</h2>
       <p class="section-lead" style="margin:14px auto 0">Short answers to the things prospective clients usually ask before commissioning their first report.</p>
     </div>
     <div class="faq-grid" style="text-align:left">
-      <div class="faq-item reveal reveal-d1">
+      <div class="faq-item reveal rv-soft reveal-d1">
         <div class="faq-q">How is this different from a building inspection or conveyancer&rsquo;s check?</div>
         <div class="faq-a">A building inspector assesses the physical condition of the property, structure, pests, defects. A conveyancer reviews the legal contract and handles title transfer. Our reports cover what neither of them does: the data underlying the property as an investment, zoning constraints, comparable sales, capital growth signals, development potential, planning overlays. Most clients order our report <em>before</em> they pay for a building inspection or engage a conveyancer.</div>
       </div>
-      <div class="faq-item reveal reveal-d2">
+      <div class="faq-item reveal rv-soft reveal-d2">
         <div class="faq-q">Do you give recommendations, or just present data?</div>
         <div class="faq-a">Both. Every report includes a clear analytical conclusion, whether the property looks strong, has hidden risks, or doesn&rsquo;t stack up, written in plain English. We draw a careful line, though: we provide independent research and analysis, not personal investment advice. The final decision is always yours. Full disclaimer is in our Terms of Service.</div>
       </div>
-      <div class="faq-item reveal reveal-d3">
+      <div class="faq-item reveal rv-soft reveal-d3">
         <div class="faq-q">What if I&rsquo;m not happy with my report?</div>
         <div class="faq-a">If our report doesn&rsquo;t address what you asked, email us and we&rsquo;ll revise it free of charge. If you&rsquo;re still not satisfied with your first order, we&rsquo;ll refund it in full, no forms, no friction. We can offer this because we put the time in upfront and rarely need to use it.</div>
       </div>
-      <div class="faq-item reveal reveal-d1">
+      <div class="faq-item reveal rv-soft reveal-d1">
         <div class="faq-q">How fast can you turn around a report?</div>
         <div class="faq-a">Standard turnaround is 24&ndash;72 hours depending on the tier you order. If you have an auction this weekend or a tight deadline, email us at hello@precursorproperty.com.au with the address and we&rsquo;ll tell you honestly whether we can fit it in faster.</div>
       </div>
-      <div class="faq-item reveal reveal-d2">
+      <div class="faq-item reveal rv-soft reveal-d2">
         <div class="faq-q">Where do you get your data?</div>
         <div class="faq-a">Official sources only: the Victorian planning portal (Vicmap), Landata title and easement records, licensed comparable sales platforms, and direct council records for property-specific overlays and approval history. We don&rsquo;t rely on real estate portals or agent claims for analytical conclusions. Those are useful for sentiment, not data.</div>
       </div>
-      <div class="faq-item reveal reveal-d3">
+      <div class="faq-item reveal rv-soft reveal-d3">
         <div class="faq-q">Is my information confidential?</div>
         <div class="faq-a">Yes. Everything you share, property address, your reasons for considering it, your contact details, is treated as confidential. We don&rsquo;t share information with vendors, agents, or third parties. Full details in our Privacy Policy below.</div>
       </div>
@@ -1415,6 +1611,7 @@ footer{background:var(--ink);padding:52px 0 30px;color:rgba(255,255,255,.6)}
       </div>
       <div class="footer-links"><h4>Products</h4><a href="#purchase">Purchase Intelligence</a><a href="#development">Development Intelligence</a></div>
       <div class="footer-links"><h4>Company</h4><a href="#process">How It Works</a><a href="#faq">FAQ</a><a href="/blog/">Blog</a><a href="#contact">Get a Report</a><a href="sample-report.html" target="_blank">Sample Report</a><a href="#leave-review">Leave a Review</a></div>
+      <div class="footer-links"><h4>Guides</h4><a href="/blog/zoning-explained-for-victorian-buyers/">Victorian zoning explained</a><a href="/blog/planning-overlays-victoria-explained/">Planning overlays explained</a><a href="/blog/section-32-red-flags-victoria/">Section 32 red flags</a><a href="/blog/victoria-capital-growth-2026/">2026 capital growth outlook</a></div>
       <div class="footer-links"><h4>Legal</h4><a href="#legal" onclick="openLegal('privacy');return false;">Privacy Policy</a><a href="#legal" onclick="openLegal('terms');return false;">Terms of Service</a></div>
     </div>
     <div class="footer-bottom">
