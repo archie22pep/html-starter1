@@ -4,7 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Marketing + order-capture website for **Precursor Property**, a Victorian (Australia) property due-diligence report service. It began life as the Vercel "HTML Starter" template and is deployed on **Vercel** (static hosting + Edge Middleware). There is **no build step, no framework, and no test suite** — it is hand-authored static HTML.
+Marketing + order-capture website for **Precursor Property**, a Victorian (Australia) property due-diligence report service. The repository now holds **two generations of the site**:
+
+- **Repo root** — the legacy hand-authored static HTML site (still what Vercel deploys today). No build step, no framework, no test suite. Documented in the rest of this file.
+- **`web/`** — the **Next.js (App Router, TypeScript, Tailwind v4) rebuild**: multi-page marketing site + `/api/order` backend (browser-side Web3Forms lead capture, checkout routing to Stripe Payment Links today or dynamic Stripe Checkout Sessions when `STRIPE_SECRET_KEY` is set). Products/pricing live in `web/src/lib/products.ts`; editorial copy in `web/src/lib/content.ts`; design tokens in `web/src/app/globals.css`. See `web/README.md` for commands, env vars, and the Vercel cut-over (set project Root Directory to `web`). Pushing `web/` does **not** change the live site until that setting is flipped. Note `web/AGENTS.md`: the installed Next.js may be newer than training data — consult `web/node_modules/next/dist/docs/` before writing framework code.
+
+Everything below describes the **legacy root site**.
 
 ## Commands
 
@@ -50,7 +55,7 @@ The JS selects DOM by **specific ids, class names, and even input placeholders**
 
 ## Design system
 
-Current identity is "clean modern fintech": white canvas, ink `#0b1a2b`, single accent **blue `#2563eb`**, emerald `#059669` for success/checks, amber `#f59e0b` reserved for ratings, gold only for review stars. Typography is **Inter** (loaded from Google Fonts) throughout. Tokens are defined as CSS variables in `:root`; icons are inline Lucide-style SVGs (no emoji icons). `sample-report.html` mirrors the same tokens. Respect `prefers-reduced-motion` and `:focus-visible` rules already present.
+Current identity is "established advisory / trust & authority": warm paper canvas `#faf8f3`, deep pine ink `#152520` (dark sections, nav text, headings), single accent **teal `#0f766e`** (`#83c5b2` / `#2fa08e` as light variants on dark backgrounds), muted green `#166e4f` for success/guarantee notes, gold `#d9930d` for stars and report ratings, warm hairline borders, small radii (6–14px, no pill buttons). Typography is **EB Garamond** (headings, display numerals, prices — italic used for emphasis) over **Lato** (body/UI), both from Google Fonts. Tokens are defined as CSS variables in `:root`; icons are inline Lucide-style SVGs (no emoji icons). `sample-report.html` mirrors the same palette via its own `:root` vars (`--navy` is the pine ink, `--gold` is the teal accent). Respect `prefers-reduced-motion` and `:focus-visible` rules already present.
 
 ## Conventions & gotchas
 
