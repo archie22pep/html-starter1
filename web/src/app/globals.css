@@ -217,3 +217,106 @@ body {
     @apply bg-background text-foreground font-sans;
   }
 }
+
+/* Blog article prose (ported content rendered as HTML) */
+.post-prose {
+  color: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+.post-prose > * + * {
+  margin-top: 1.15rem;
+}
+.post-prose h2 {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-top: 2.4rem;
+}
+.post-prose h3 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-top: 1.6rem;
+}
+.post-prose strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+.post-prose a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.post-prose a:hover {
+  color: var(--primary-hover);
+}
+.post-prose ul,
+.post-prose ol {
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.post-prose ul {
+  list-style: disc;
+}
+.post-prose ol {
+  list-style: decimal;
+}
+.post-prose li {
+  padding-left: 0.25rem;
+}
+/* Lead / standfirst */
+.post-prose [data-lead] {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--ink);
+  font-weight: 500;
+}
+/* Numbered red-flag blocks */
+.post-prose [data-flag] {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--primary);
+  border-radius: 0 10px 10px 0;
+  background: var(--cream);
+  padding: 1.1rem 1.25rem;
+}
+.post-prose [data-flag] h3 {
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+.post-prose [data-flag] p {
+  margin-top: 0.35rem;
+  font-size: 0.98rem;
+}
+.post-prose [data-flagnum] {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+/* Callout */
+.post-prose [data-callout] {
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--primary-weak);
+  padding: 1.1rem 1.35rem;
+}
+.post-prose [data-callout] p {
+  margin: 0;
+  font-size: 0.98rem;
+}

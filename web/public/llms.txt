@@ -19,6 +19,15 @@ Precursor provides independent research and analysis, not personal financial, in
 - [FAQ](https://precursorproperty.com.au/faq): How reports differ from a building inspection or conveyancer, turnaround, data sources, confidentiality, and how each report adapts to the property.
 - [Order a report](https://precursorproperty.com.au/order): Three-step order form; payment via Stripe.
 
+## Insights (guides)
+
+- [Property tax & budget changes for Victorian investors in 2026](https://precursorproperty.com.au/blog/victorian-property-tax-changes-2026): Negative gearing (proposed), the foreign-buyer ban, land tax, VRLT, and the short-stay and ESVF levies. What is law and what is not.
+- [Victoria's 2026 rental reforms](https://precursorproperty.com.au/blog/victoria-rental-reforms-2026): No-fault evictions abolished, 90-day rent notices, minimum standards, portable bonds, and a proposed rent freeze.
+- [Victorian property capital growth in 2026](https://precursorproperty.com.au/blog/victoria-capital-growth-2026): Current medians, divergent bank forecasts, and the corridors growing 6 to 10 percent while the average sits near 2.
+- [Zoning explained for Victorian buyers](https://precursorproperty.com.au/blog/zoning-explained-for-victorian-buyers): NRZ, GRZ, RGZ, the 2025 reforms, and what decides whether you can build or subdivide.
+- [Planning overlays in Victoria](https://precursorproperty.com.au/blog/planning-overlays-victoria-explained): Flood, bushfire and heritage overlays that can restrict a build even in a good zone.
+- [Section 32 red flags](https://precursorproperty.com.au/blog/section-32-red-flags-victoria): Easements, owners-corporation debts, unpermitted works and outstanding charges to check in a vendor statement.
+
 ## Coverage
 
 - Area served: Victoria, Australia.
