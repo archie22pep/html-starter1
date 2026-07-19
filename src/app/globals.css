@@ -156,10 +156,10 @@ body {
   }
 }
 .wave-drift {
-  animation: wave-drift 9s linear infinite;
+  animation: wave-drift 11s linear infinite;
 }
 .wave-drift-slow {
-  animation: wave-drift 14s linear infinite;
+  animation: wave-drift 17s linear infinite;
 }
 @keyframes bob {
   from {
@@ -170,7 +170,7 @@ body {
   }
 }
 .bob {
-  animation: bob 2.8s ease-in-out infinite alternate;
+  animation: bob 3.6s ease-in-out infinite alternate;
 }
 @keyframes bubble-rise {
   from {
@@ -185,16 +185,16 @@ body {
 .bubble {
   animation: bubble-rise 4.5s ease-in infinite;
 }
-@keyframes fish-swim {
+@keyframes fish-cross {
   from {
-    transform: translateX(0);
+    transform: translateX(-80px);
   }
   to {
-    transform: translateX(42px);
+    transform: translateX(560px);
   }
 }
-.fish {
-  animation: fish-swim 5.5s ease-in-out infinite alternate;
+.fish-cross {
+  animation: fish-cross 26s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

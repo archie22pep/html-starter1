@@ -5,10 +5,18 @@
  * respects prefers-reduced-motion via the global media query.
  */
 
-const WAVE_FRONT =
-  "M-160 152 Q-140 144 -120 152 T-80 152 T-40 152 T0 152 T40 152 T80 152 T120 152 T160 152 T200 152 T240 152 T280 152 T320 152 T360 152 T400 152 T440 152 T480 152 L480 176 L-160 176 Z";
-const WAVE_BACK =
-  "M-180 156 Q-160 150 -140 156 T-100 156 T-60 156 T-20 156 T20 156 T60 156 T100 156 T140 156 T180 156 T220 156 T260 156 T300 156 T340 156 T380 156 T420 156 T460 156 T500 156 L500 184 L-180 184 Z";
+/**
+ * Seamless wave band. The drift animation translates -160px (two full 80px
+ * wave periods), so the path must extend past x = 480 + 160 or the loop
+ * exposes bare sea at the right edge.
+ */
+function wavePath(start: number, end: number, y: number, amp: number, depth: number) {
+  let d = `M${start} ${y} Q${start + 20} ${y - amp} ${start + 40} ${y}`;
+  for (let x = start + 80; x <= end; x += 40) d += ` T${x} ${y}`;
+  return `${d} L${end} ${y + depth} L${start} ${y + depth} Z`;
+}
+const WAVE_FRONT = wavePath(-160, 680, 152, 8, 24);
+const WAVE_BACK = wavePath(-180, 660, 156, 6, 28);
 
 const TAGS = [
   { x: 36, y: 204, w: 164, label: "Covenants & easements", delay: 0.4 },
@@ -126,16 +134,16 @@ export function OceanCard() {
             </g>
           ))}
 
-          {/* Fish */}
-          <g transform="translate(376,296)">
-            <g className="fish">
+          {/* Fish: each crosses the scene nose-first and loops back around offscreen */}
+          <g transform="translate(0,296)">
+            <g className="fish-cross" style={{ animationDelay: "-9s" }}>
               <ellipse cx="0" cy="0" rx="12" ry="6" fill="#83c5b2" />
               <polygon points="-11,0 -20,-6 -20,6" fill="#83c5b2" />
               <circle cx="5" cy="-1.5" r="1.3" fill="#14241e" />
             </g>
           </g>
-          <g transform="translate(96,478) scale(-1,1)">
-            <g className="fish" style={{ animationDuration: "7s", animationDelay: "0.8s" }}>
+          <g transform="translate(480,478) scale(-1,1)">
+            <g className="fish-cross" style={{ animationDuration: "34s", animationDelay: "-22s" }}>
               <ellipse cx="0" cy="0" rx="9" ry="4.5" fill="#5aa893" />
               <polygon points="-8,0 -15,-4.5 -15,4.5" fill="#5aa893" />
               <circle cx="4" cy="-1" r="1" fill="#14241e" />

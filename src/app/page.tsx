@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { FileCheck2, Layers, Puzzle } from "lucide-react";
 import { ArrowIcon, ButtonLink, CheckIcon, Container, SectionHead } from "@/components/ui";
 import { GuaranteeNote } from "@/components/price-card";
 import { OceanCard } from "@/components/ocean-card";
@@ -11,6 +12,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { BUSINESS, FROM_PRICE, STREAMS, tiersFor } from "@/lib/products";
+import { POSTS } from "@/lib/blog";
 import {
   COMPARISON,
   DATA_SOURCES,
@@ -118,11 +120,52 @@ export default function HomePage() {
         </Container>
       </section>
 
+      {/* WHAT WE DO */}
+      <section className="pb-20 lg:pb-24">
+        <Container>
+          <SectionHead
+            index="01"
+            eyebrow="What Precursor does"
+            title="The data is out there. The picture isn't."
+            lead="Almost everything that decides whether a property is a good buy sits on the public record: titles, planning schemes, overlays, sales histories, rental data. It is scattered across a dozen registries, written in jargon, and meaningless in isolation. Our job is the gathering and the joining-up."
+          />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                icon: Layers,
+                title: "Gather every source",
+                body: "Title and contract detail, zoning and overlay maps, comparable sales, rental and vacancy data, infrastructure plans. We pull every dataset relevant to your property into one place, so you don't spend a weekend across forty tabs.",
+              },
+              {
+                icon: Puzzle,
+                title: "Analyse it as a whole",
+                body: "Risk hides in combinations. A heritage overlay reframes a renovation plan; a vacancy trend reframes a yield claim. We read the datasets together, the way risk actually works, not one browser tab at a time.",
+              },
+              {
+                icon: FileCheck2,
+                title: "Explain it in plain English",
+                body: "One report that interprets the data, flags what matters and gives an honest verdict, in 24 to 72 hours. No jargon to decode, no dashboard to learn, no subscription to forget about.",
+              },
+            ].map((card, i) => (
+              <Reveal key={card.title} delay={i * 0.08}>
+                <div className="h-full rounded-[10px] border border-line bg-white p-7 transition-shadow duration-200 hover:shadow-md">
+                  <span className="mb-4 flex size-10 items-center justify-center rounded-md bg-primary-weak text-primary">
+                    <card.icon className="size-5" strokeWidth={1.8} />
+                  </span>
+                  <h3 className="mb-2 font-serif text-lg font-semibold text-ink">{card.title}</h3>
+                  <p className="text-[13.5px] leading-relaxed text-muted-foreground">{card.body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
       {/* PROCESS */}
       <section className="border-y border-line bg-surface py-20 lg:py-24" id="process">
         <Container>
           <SectionHead
-            index="01"
+            index="02"
             eyebrow="How it works"
             title="From brief to report in as little as 24 hours"
             center
@@ -152,7 +195,7 @@ export default function HomePage() {
       <section className="py-20 lg:py-24">
         <Container>
           <SectionHead
-            index="02"
+            index="03"
             eyebrow="Two report streams"
             title="Buying a property, or building on one?"
             lead="Every report is researched from primary sources and written by an analyst. Pick the stream that matches your decision."
@@ -208,7 +251,7 @@ export default function HomePage() {
         <Container className="grid items-center gap-12 lg:grid-cols-2">
           <div>
             <SectionHead
-              index="03"
+              index="04"
               eyebrow="See it before you order"
               title="Read a complete report, not a brochure"
               lead="We publish a real Full Due Diligence report, delivered to a client in June 2026 and republished with their permission (identifying details withheld). Red flags, comparable sales, a rate stress test, negotiation strategy, and an honest verdict. Every report is shaped to the property and your brief; judge the work before you spend a dollar."
@@ -245,7 +288,7 @@ export default function HomePage() {
       <section className="py-20 lg:py-24">
         <Container>
           <SectionHead
-            index="04"
+            index="05"
             eyebrow="What clients say"
             title="Trusted before the biggest decisions"
             center
@@ -324,7 +367,7 @@ export default function HomePage() {
       <section className="border-y border-line bg-surface py-20 lg:py-24">
         <Container>
           <SectionHead
-            index="05"
+            index="06"
             eyebrow="Why Precursor"
             title="Why not a buyers agent, or a data platform?"
             lead="Both have their place. Neither does what Precursor does."
@@ -373,11 +416,55 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* FAQ TEASER + GUARANTEE */}
+      {/* GUIDES */}
       <section className="py-20 lg:py-24">
+        <Container>
+          <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
+            <SectionHead
+              index="07"
+              eyebrow="Guides"
+              title="Learn the game before you play it"
+              lead="Plain-English guides to zoning, overlays, contracts and growth, written from the same research we do for clients."
+              className="mb-0"
+            />
+            <Link
+              href="/blog"
+              className="mb-1 text-sm font-bold whitespace-nowrap text-primary hover:text-primary-hover"
+            >
+              Browse all guides →
+            </Link>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {POSTS.slice(0, 3).map((post, i) => (
+              <Reveal key={post.slug} delay={i * 0.08}>
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="group flex h-full flex-col rounded-[10px] border border-line-strong bg-white p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary hover:shadow-lg"
+                >
+                  <span className="mb-3.5 inline-block self-start rounded-md bg-primary-weak px-2.5 py-1 text-[10.5px] font-bold tracking-[0.08em] text-primary uppercase">
+                    {post.category}
+                  </span>
+                  <h3 className="mb-2 font-serif text-[1.15rem] leading-snug font-semibold text-ink">
+                    {post.title}
+                  </h3>
+                  <p className="mb-4 text-[13.5px] leading-relaxed text-muted-foreground">
+                    {post.excerpt}
+                  </p>
+                  <span className="mt-auto text-[12.5px] font-bold text-primary group-hover:text-primary-hover">
+                    {post.readMin} min read →
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* FAQ TEASER + GUARANTEE */}
+      <section className="border-t border-line py-20 lg:py-24">
         <Container className="grid gap-12 lg:grid-cols-2">
           <div>
-            <SectionHead index="06" eyebrow="Before you order" title="Common questions" />
+            <SectionHead index="08" eyebrow="Before you order" title="Common questions" />
             <Accordion className="rounded-[10px] border border-line bg-white px-6">
               {FAQS.slice(0, 3).map((f) => (
                 <AccordionItem key={f.q} value={f.q}>

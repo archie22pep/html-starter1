@@ -81,6 +81,7 @@ export function SectionHead({
   lead,
   center = false,
   dark = false,
+  className,
 }: {
   index?: string;
   eyebrow: string;
@@ -88,9 +89,10 @@ export function SectionHead({
   lead?: string;
   center?: boolean;
   dark?: boolean;
+  className?: string;
 }) {
   return (
-    <div className={`mb-12 max-w-2xl ${center ? "mx-auto text-center" : ""}`}>
+    <div className={`max-w-2xl ${center ? "mx-auto text-center" : ""} ${className ?? "mb-12"}`}>
       <p
         className={`mb-4 flex items-baseline gap-3 text-[11.5px] font-bold tracking-[0.18em] uppercase ${
           center ? "justify-center" : ""

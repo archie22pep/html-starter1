@@ -71,7 +71,7 @@ export default async function BlogPostPage({
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-        { "@type": "ListItem", position: 2, name: "Insights", item: `${SITE_URL}/blog` },
+        { "@type": "ListItem", position: 2, name: "Guides", item: `${SITE_URL}/blog` },
         { "@type": "ListItem", position: 3, name: post.title, item: `${SITE_URL}/blog/${post.slug}` },
       ],
     },
@@ -92,7 +92,7 @@ export default async function BlogPostPage({
             </Link>{" "}
             &rsaquo;{" "}
             <Link href="/blog" className="hover:text-primary">
-              Insights
+              Guides
             </Link>{" "}
             &rsaquo; <span className="text-body">{post.category}</span>
           </nav>

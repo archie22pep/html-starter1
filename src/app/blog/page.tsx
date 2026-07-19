@@ -18,7 +18,7 @@ export default function BlogIndexPage() {
     "@context": "https://schema.org",
     "@type": "Blog",
     "@id": `${SITE_URL}/blog#blog`,
-    name: "Precursor Insights",
+    name: "Precursor Guides",
     description: "Property due diligence guides for Victorian buyers and developers.",
     url: `${SITE_URL}/blog`,
     inLanguage: "en-AU",
@@ -41,7 +41,7 @@ export default function BlogIndexPage() {
       <section className="border-b border-line bg-gradient-to-b from-paper to-surface">
         <Container className="py-16 text-center lg:py-20">
           <p className="mb-4 text-[11.5px] font-bold tracking-[0.18em] text-primary uppercase">
-            Precursor Insights
+            Precursor Guides
           </p>
           <h1 className="mx-auto mb-4 max-w-2xl font-serif text-[clamp(2.4rem,4.5vw,3.6rem)] leading-[1.08] font-semibold text-ink">
             Buy Victorian property with your eyes open.
