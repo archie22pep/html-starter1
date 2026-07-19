@@ -4,6 +4,7 @@ import { FileCheck2, Layers, Puzzle } from "lucide-react";
 import { ArrowIcon, ButtonLink, CheckIcon, Container, SectionHead } from "@/components/ui";
 import { GuaranteeNote } from "@/components/price-card";
 import { OceanCard } from "@/components/ocean-card";
+import { ReportShowcase } from "@/components/report-showcase";
 import { CountUp, Reveal } from "@/components/motion-bits";
 import {
   Accordion,
@@ -264,23 +265,9 @@ export default function HomePage() {
               <ButtonLink href="/order">Order yours</ButtonLink>
             </div>
           </div>
-          <ul className="grid gap-2.5 sm:grid-cols-2">
-            {[
-              "Executive summary with a clear rating",
-              "Red flags, itemised and explained",
-              "Comparable sales & fair-value range",
-              "10-year growth projection",
-              "Finance & cash-flow snapshot",
-              "Negotiation talking points",
-            ].map((f, i) => (
-              <Reveal key={f} delay={i * 0.05}>
-                <li className="flex items-start gap-2.5 rounded-md border border-cream/12 bg-white/[0.03] px-4 py-3 text-sm text-cream/85">
-                  <CheckIcon className="mt-0.5 size-4 shrink-0 text-primary-light" />
-                  {f}
-                </li>
-              </Reveal>
-            ))}
-          </ul>
+          <Reveal delay={0.1}>
+            <ReportShowcase />
+          </Reveal>
         </Container>
       </section>
 
