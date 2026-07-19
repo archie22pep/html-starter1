@@ -2,7 +2,7 @@ import { ArrowIcon, ButtonLink, CheckIcon, Container, SectionHead } from "@/comp
 import { PriceCard, GuaranteeNote } from "@/components/price-card";
 import { BUSINESS, STREAMS, tiersFor, type StreamKey } from "@/lib/products";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://precursorproperty.com.au";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.precursorproperty.com";
 
 interface StreamPageProps {
   stream: StreamKey;

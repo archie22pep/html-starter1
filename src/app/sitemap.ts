@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { POSTS } from "@/lib/blog";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://precursorproperty.com.au";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.precursorproperty.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();

@@ -4,7 +4,7 @@ import { ArrowIcon, ButtonLink, Container } from "@/components/ui";
 import { Reveal } from "@/components/motion-bits";
 import { POSTS } from "@/lib/blog";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://precursorproperty.com.au";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.precursorproperty.com";
 
 export const metadata: Metadata = {
   title: "Insights: property due diligence guides for Victoria",

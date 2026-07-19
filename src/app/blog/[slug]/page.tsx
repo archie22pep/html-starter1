@@ -10,7 +10,7 @@ import {
   relatedPosts,
 } from "@/lib/blog";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://precursorproperty.com.au";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.precursorproperty.com";
 
 export function generateStaticParams() {
   return POSTS.map((p) => ({ slug: p.slug }));

@@ -99,7 +99,7 @@ export async function POST(req: Request) {
       const origin =
         req.headers.get("origin") ??
         process.env.NEXT_PUBLIC_SITE_URL ??
-        "https://precursorproperty.com.au";
+        "https://www.precursorproperty.com";
 
       const session = await stripe.checkout.sessions.create({
         mode: "payment",

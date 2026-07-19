@@ -20,7 +20,7 @@ const sourceSans = Source_Sans_3({
   weight: ["400", "600", "700", "900"],
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://precursorproperty.com.au";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.precursorproperty.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
