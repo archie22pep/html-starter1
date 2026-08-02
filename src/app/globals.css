@@ -197,38 +197,19 @@ body {
   animation: fish-cross 26s linear infinite;
 }
 
-/* Hero aerial montage: sliding film strip.
-   5 images + duplicated first frame = 6 track slides; each slide is 1/6 of
-   the track, so each step translates a further -16.6667%. Hold ~7s, slide
-   ~1s (2.5% of the 40s cycle); the loop ends on the duplicate of frame 1,
-   so restarting at 0% is invisible. */
-@keyframes montage-slide {
-  0%,
-  17.5% {
+/* Hero aerial montage: continuous right-to-left marquee. The image set is
+   rendered twice, so translating the track by exactly -50% and looping
+   linearly is seamless. */
+@keyframes montage-marquee {
+  from {
     transform: translateX(0);
   }
-  20%,
-  37.5% {
-    transform: translateX(-16.6667%);
-  }
-  40%,
-  57.5% {
-    transform: translateX(-33.3333%);
-  }
-  60%,
-  77.5% {
+  to {
     transform: translateX(-50%);
-  }
-  80%,
-  97.5% {
-    transform: translateX(-66.6667%);
-  }
-  100% {
-    transform: translateX(-83.3333%);
   }
 }
 .montage-track {
-  animation: montage-slide 40s ease-in-out infinite;
+  animation: montage-marquee 75s linear infinite;
   will-change: transform;
 }
 
