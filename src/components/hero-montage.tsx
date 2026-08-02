@@ -2,34 +2,32 @@ import Image from "next/image";
 import type { HeroImage } from "@/lib/hero-images";
 
 /**
- * Full-bleed aerial montage band under the header: a continuously scrolling
- * right-to-left film strip. The image set is rendered twice and the track
- * translates -50% on a linear loop, so the wrap is seamless. The bottom edge
- * is cut by a wave in the page background colour (echoing the ocean brand)
- * instead of a gradient fade. Reduced-motion users get a static strip.
+ * Full-bleed aerial montage band under the header. Five full-screen slides
+ * cross-fade on a 40s cycle with a slow Ken Burns drift. Slide delays start
+ * at -2s so the first frame is already visible on first paint. The bottom
+ * edge is cut by a wave in the page background colour (echoing the ocean
+ * brand). Reduced-motion users get a static first frame (see globals.css).
  */
 export function HeroMontage({ images }: { images: HeroImage[] }) {
-  const slides = [...images, ...images];
   return (
     <div className="relative h-[46vh] max-h-[540px] min-h-[300px] overflow-hidden bg-ink">
-      <div className="montage-track flex h-full w-max">
-        {slides.map((img, i) => (
-          <div
-            key={`${img.src}-${i}`}
-            className="relative h-full w-screen flex-none overflow-hidden border-r-[3px] border-paper"
-          >
-            <Image
-              src={img.src}
-              alt={i < images.length ? img.alt : ""}
-              fill
-              priority={i === 0}
-              loading="eager"
-              sizes="100vw"
-              className="object-cover"
-            />
-          </div>
-        ))}
-      </div>
+      {images.map((img, i) => (
+        <div
+          key={img.src}
+          className="montage-slide absolute inset-0"
+          style={{ animationDelay: `${i * 8 - 2}s` }}
+        >
+          <Image
+            src={img.src}
+            alt={img.alt}
+            fill
+            priority={i === 0}
+            loading="eager"
+            sizes="100vw"
+            className={`object-cover ${i % 2 === 1 ? "kenburns-rev" : "kenburns"}`}
+          />
+        </div>
+      ))}
       {/* Wave-cut bottom edge in the page background colour */}
       <svg
         viewBox="0 0 1440 42"
