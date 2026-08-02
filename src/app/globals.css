@@ -209,7 +209,7 @@ body {
   }
 }
 .montage-track {
-  animation: montage-marquee 75s linear infinite;
+  animation: montage-marquee 110s linear infinite;
   will-change: transform;
 }
 

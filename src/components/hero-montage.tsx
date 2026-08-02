@@ -16,7 +16,7 @@ export function HeroMontage({ images }: { images: HeroImage[] }) {
         {slides.map((img, i) => (
           <div
             key={`${img.src}-${i}`}
-            className="relative h-full w-[85vw] flex-none overflow-hidden border-r-[3px] border-paper sm:w-[45vw]"
+            className="relative h-full w-screen flex-none overflow-hidden border-r-[3px] border-paper"
           >
             <Image
               src={img.src}
@@ -24,7 +24,7 @@ export function HeroMontage({ images }: { images: HeroImage[] }) {
               fill
               priority={i === 0}
               loading="eager"
-              sizes="(min-width: 640px) 45vw, 85vw"
+              sizes="100vw"
               className="object-cover"
             />
           </div>
