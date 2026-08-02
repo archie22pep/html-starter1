@@ -11,23 +11,25 @@ import type { HeroImage } from "@/lib/hero-images";
 export function HeroMontage({ images }: { images: HeroImage[] }) {
   return (
     <div className="relative h-[46vh] max-h-[540px] min-h-[300px] overflow-hidden bg-ink">
-      {images.map((img, i) => (
-        <div
-          key={img.src}
-          className="montage-slide absolute inset-0"
-          style={{ animationDelay: `${i * 8 - 2}s` }}
-        >
-          <Image
-            src={img.src}
-            alt={img.alt}
-            fill
-            priority={i === 0}
-            loading="eager"
-            sizes="100vw"
-            className={`object-cover ${i % 2 === 1 ? "kenburns-rev" : "kenburns"}`}
-          />
-        </div>
-      ))}
+      {images.map((img, i) => {
+        // Fade and zoom share one delay so each slide starts its drift at the
+        // moment it appears, rather than mid-zoom at a different crop.
+        const delay = `${i * 8 - 2}s`;
+        return (
+          <div key={img.src} className="montage-slide absolute inset-0" style={{ animationDelay: delay }}>
+            <Image
+              src={img.src}
+              alt={img.alt}
+              fill
+              priority={i === 0}
+              loading="eager"
+              sizes="100vw"
+              style={{ animationDelay: delay }}
+              className={`object-cover ${i % 2 === 1 ? "kenburns-rev" : "kenburns"}`}
+            />
+          </div>
+        );
+      })}
       {/* Wave-cut bottom edge in the page background colour */}
       <svg
         viewBox="0 0 1440 42"

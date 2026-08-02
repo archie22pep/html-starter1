@@ -219,20 +219,30 @@ body {
   opacity: 0;
   animation: montage-fade 40s linear infinite both;
 }
+/* Ken Burns drift. A slide is only on screen for the first 30% of the shared
+   40s cycle, so all of the visible movement is packed into 0-30% and the
+   reset happens off screen. Scale never drops below 1 or the cover crop
+   would expose the edges. */
 @keyframes kenburns {
-  from {
-    transform: scale(1.03) translate(0.6%, 0.4%);
+  0% {
+    transform: scale(1.03) translate(0.8%, 0.5%);
   }
-  to {
-    transform: scale(1.14) translate(-0.8%, -0.6%);
+  30% {
+    transform: scale(1.17) translate(-1.1%, -0.8%);
+  }
+  100% {
+    transform: scale(1.03) translate(0.8%, 0.5%);
   }
 }
 @keyframes kenburns-rev {
-  from {
-    transform: scale(1.14) translate(-0.8%, 0.5%);
+  0% {
+    transform: scale(1.17) translate(-1%, 0.7%);
   }
-  to {
-    transform: scale(1.03) translate(0.5%, -0.4%);
+  30% {
+    transform: scale(1.03) translate(0.7%, -0.5%);
+  }
+  100% {
+    transform: scale(1.17) translate(-1%, 0.7%);
   }
 }
 .kenburns {
