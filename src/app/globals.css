@@ -197,62 +197,47 @@ body {
   animation: fish-cross 26s linear infinite;
 }
 
-/* Hero aerial montage: 5 slides x 8s = 40s cycle */
-@keyframes montage-fade {
-  0% {
-    opacity: 0;
+/* Hero aerial montage: sliding film strip.
+   5 images + duplicated first frame = 6 track slides; each slide is 1/6 of
+   the track, so each step translates a further -16.6667%. Hold ~7s, slide
+   ~1s (2.5% of the 40s cycle); the loop ends on the duplicate of frame 1,
+   so restarting at 0% is invisible. */
+@keyframes montage-slide {
+  0%,
+  17.5% {
+    transform: translateX(0);
   }
-  4% {
-    opacity: 1;
+  20%,
+  37.5% {
+    transform: translateX(-16.6667%);
   }
-  24% {
-    opacity: 1;
+  40%,
+  57.5% {
+    transform: translateX(-33.3333%);
   }
-  30% {
-    opacity: 0;
+  60%,
+  77.5% {
+    transform: translateX(-50%);
+  }
+  80%,
+  97.5% {
+    transform: translateX(-66.6667%);
   }
   100% {
-    opacity: 0;
+    transform: translateX(-83.3333%);
   }
 }
-.montage-slide {
-  opacity: 0;
-  animation: montage-fade 40s linear infinite both;
-}
-@keyframes kenburns {
-  from {
-    transform: scale(1.03) translate(0.6%, 0.4%);
-  }
-  to {
-    transform: scale(1.14) translate(-0.8%, -0.6%);
-  }
-}
-@keyframes kenburns-rev {
-  from {
-    transform: scale(1.14) translate(-0.8%, 0.5%);
-  }
-  to {
-    transform: scale(1.03) translate(0.5%, -0.4%);
-  }
-}
-.kenburns {
-  animation: kenburns 40s linear infinite both;
-}
-.kenburns-rev {
-  animation: kenburns-rev 40s linear infinite both;
+.montage-track {
+  animation: montage-slide 40s ease-in-out infinite;
+  will-change: transform;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .montage-slide,
-  .kenburns,
-  .kenburns-rev {
+  .montage-track {
     animation: none !important;
-  }
-  .montage-slide:first-child {
-    opacity: 1;
   }
   *,
   *::before,

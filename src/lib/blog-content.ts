@@ -189,6 +189,87 @@ export const BLOG_HTML: Record<string, string> = {
     <li>Confirm <strong>zoning and overlays</strong> independently on VicPlan.</li>
     <li>Have a <strong>conveyancer or solicitor</strong> review it — and get independent due diligence on the things the document doesn't interpret for you.</li>
   </ul>`,
+  "melbourne-vs-regional-victoria-2026": `<p data-lead="">Australia's winter 2026 housing data tells two Victorian stories at once. Melbourne values slipped again in June, the city's third soft month in a row, while regional Victoria's medians pushed to fresh records. Here is what the numbers actually say, the likely reasons for the split, and how to use it if you are deciding where and when to buy.</p>
+  <h2>What the winter numbers actually say</h2>
+  <p>Cotality (formerly CoreLogic) reported <strong>national home values down 0.4% in June 2026</strong>, the steepest monthly fall since December 2022 and the third consecutive decline since national values peaked in March 2026. <strong>Melbourne fell 1.0% for the month</strong>, second only to Sydney's 1.2% fall among the capitals, and is down around 2.6% over the June quarter on Cotality numbers.</p>
+  <p>Zoom out and Melbourne's position is starker: values still sit about <strong>3.2% below the city's March 2022 peak</strong>, with annual growth of roughly half a percent. Four years on, the median Melbourne buyer is paying less in real terms than at the top of the last cycle.</p>
+  <h2>Regional Victoria is running its own race</h2>
+  <p>REIV's June quarter data puts the <strong>regional Victorian median house at $650,000, up 8.3% in a year</strong>. The contrast with the city is not just the growth rate. Regional Victoria passed its previous March 2022 peak back in the September 2025 quarter (at $636,500) and has kept climbing since, while Melbourne has never regained its own. Nationally the same pattern held in June: combined regional markets rose while every major capital except Perth and Darwin fell.</p>
+  <p>Industry reporting through July highlighted affordable Geelong suburbs such as Norlane and Corio among the state's strongest annual performers. Treat single-suburb percentages with care though: small, cheap markets produce dramatic numbers from very few sales.</p>
+  <table>
+    <thead><tr><th></th><th>Melbourne</th><th>Regional Victoria</th></tr></thead>
+    <tbody>
+      <tr><td>June 2026</td><td>Down 1.0% (Cotality)</td><td>Regional markets still rising</td></tr>
+      <tr><td>Past year</td><td>Around +0.5%</td><td>+8.3% median house (REIV)</td></tr>
+      <tr><td>Versus the 2022 peak</td><td>Still 3.2% below</td><td>Surpassed it in late 2025; at record highs</td></tr>
+      <tr><td>Market feel</td><td>Buyer leverage, longer campaigns</td><td>Competition, faster decisions</td></tr>
+    </tbody>
+  </table>
+  <h2>Why the split (probably) exists</h2>
+  <ul>
+    <li><strong>Affordability spillover.</strong> Melbourne's price advantage over Sydney is now enormous (Cotality estimates a Sydney median-house buyer needs about $70,000 more household income than a Melbourne one), and regional Victoria extends that logic further down the ladder. Cheaper markets are absorbing priced-out demand.</li>
+    <li><strong>Holding costs in the city.</strong> Victoria's investor tax stack, from land tax surcharges to the state-wide vacant land tax, weighs heaviest on higher-value metro property. Some investor demand has simply left. Our <a href="/blog/victorian-property-tax-changes-2026">2026 tax guide</a> covers the detail.</li>
+    <li><strong>Cheaper stock is outperforming everywhere.</strong> Units are holding up better than houses in Melbourne, and affordable regional pockets are outrunning both. In a rising-rate year, borrowing capacity is the binding constraint and buyers chase what they can finance.</li>
+    <li><strong>A caution:</strong> these are the plausible drivers, not proven ones. Causal stories about property markets are cheap; treat anyone who is certain with suspicion.</li>
+  </ul>
+  <h2>If you are buying in Melbourne this spring</h2>
+  <ul>
+    <li><strong>A falling month is negotiating room.</strong> Midwinter auction clearance has hovered around 50%, campaigns are running longer, and vendors who need to sell are meeting the market. Use evidence, not enthusiasm: recent comparable sales, days on market, and a walk-away number.</li>
+    <li><strong>Soft markets reward patience.</strong> There is time for proper due diligence before auction day; use it on title, overlays and the <a href="/blog/section-32-red-flags-victoria">Section 32</a>.</li>
+    <li><strong>Do not buy a bad asset because it got cheaper.</strong> Quality land in supply-constrained pockets holds value through soft patches; compromised assets do not. Bank forecasts reported through mid-2026 have Melbourne slightly down for the calendar year, but forecasts disagree with each other by wide margins, as our <a href="/blog/victoria-capital-growth-2026">capital growth guide</a> shows.</li>
+  </ul>
+  <h2>If the regional numbers are tempting you</h2>
+  <ul>
+    <li><strong>Ask what is driving the growth.</strong> A low price base, a single big employer, or one infrastructure announcement can each produce a 20% year. Only some of those repeat.</li>
+    <li><strong>Check rental depth, not just yield.</strong> Vacancy rates and days on market tell you whether demand is real or a statistical blip.</li>
+    <li><strong>Regional land carries regional constraints.</strong> Bushfire and flood overlays are far more common outside the city; a cheap block with a Bushfire Management Overlay is not cheap to build on. Our <a href="/blog/planning-overlays-victoria-explained">overlays guide</a> explains the big four.</li>
+  </ul>
+  <div>
+    <p><strong>A note on data.</strong> Cotality's index and REIV's medians measure different things and can point in different directions for a single quarter. Right now every major dataset agrees that regional Victoria is outrunning Melbourne, which makes the signal unusually strong. When sources disagree, buy the property, not the headline.</p>
+  </div>
+  <p>Sources: Cotality Home Value Index and Monthly Housing Chart Pack (June and July 2026 releases); REIV quarterly median price data (June quarter 2026 and September quarter 2025); major-bank research and industry reporting as at late July 2026. Figures are rounded, and market data dates quickly; confirm current numbers before acting on them.</p>`,
+  "rising-rates-victorian-buyers-2026": `<p data-lead="">The cash rate has risen three times in 2026 and now sits at 4.35%, with the Reserve Bank's next decision due on 11 August. If you are buying in Victoria this year, the useful question is not where rates go next. Nobody reliably knows. The useful question is whether your purchase survives if they keep climbing.</p>
+  <h2>Where rates sit, and how we got here</h2>
+  <p>The RBA lifted the cash rate by 25 basis points three times across the first half of 2026, taking it from 3.60% at the start of the year to <strong>4.35%</strong>, then held it steady at the June meeting. Economists at the major banks are publicly split on whether another rise is coming this year. The next decision lands on <strong>11 August 2026</strong>.</p>
+  <p>Recent years should make everyone humble about rate forecasts. Markets priced cuts that became hikes and hikes that became pauses. Build a purchase that works across the range of outcomes rather than betting on one.</p>
+  <h2>What a rate move does to repayments</h2>
+  <p>The table below shows monthly repayments on a 30-year principal-and-interest loan starting from a 6.50% rate, and what each increase adds. It is <strong>illustrative only</strong>: your rate, fees and loan structure will differ.</p>
+  <table>
+    <thead><tr><th>Loan</th><th>At 6.50%</th><th>+0.25%</th><th>+0.50%</th><th>+1.00%</th></tr></thead>
+    <tbody>
+      <tr><td>$500,000</td><td>$3,160</td><td>$3,243 (+$83)</td><td>$3,327 (+$167)</td><td>$3,496 (+$336)</td></tr>
+      <tr><td>$650,000</td><td>$4,109</td><td>$4,216 (+$107)</td><td>$4,324 (+$215)</td><td>$4,545 (+$436)</td></tr>
+      <tr><td>$800,000</td><td>$5,057</td><td>$5,189 (+$132)</td><td>$5,322 (+$265)</td><td>$5,594 (+$537)</td></tr>
+    </tbody>
+  </table>
+  <p>Two things stand out. A single 25 basis point move is survivable on almost any sensible budget. A full percentage point, roughly what 2026 has already delivered, is $4,000 to $6,500 a year on these loan sizes. That is the scenario to test yourself against.</p>
+  <h2>The buffer the bank applies, and the one you should</h2>
+  <ul>
+    <li><strong>APRA's serviceability buffer</strong> means lenders already assess you at roughly 3 percentage points above the rate you sign at. Passing the bank's test is the floor, not the goal.</li>
+    <li><strong>Run your own test at +1.00%.</strong> If the repayment at one point higher forces lifestyle decisions you would resent, the loan is too big regardless of what the bank approves.</li>
+    <li><strong>Rates are not the only rising cost.</strong> Insurance premiums, owners corporation levies and, for investors, Victoria's <a href="/blog/victorian-property-tax-changes-2026">land tax stack</a> all climb independently of the RBA.</li>
+  </ul>
+  <h2>What 11 August can and cannot change</h2>
+  <p>Three scenarios, none of which should decide your purchase. A <strong>hold</strong> changes nothing. <strong>Another 25 points</strong> moves you one column right in the table above. A <strong>later cut</strong>, if the economy slows, improves your position from a base you already proved you could afford. If a single 25 point move breaks the budget, the problem is the budget, not the Reserve Bank.</p>
+  <h2>The upside: rising rates hand buyers leverage</h2>
+  <ul>
+    <li>Fewer competitors: midwinter auction clearance in Melbourne has hovered around 50%, and <a href="/blog/melbourne-vs-regional-victoria-2026">city values fell through the June quarter</a>.</li>
+    <li>Longer campaigns and vendors meeting the market mean the asking price is a starting point, not a verdict.</li>
+    <li>The buyers who do well in this market negotiate from evidence: comparable sales, days on market, and a stress-tested walk-away number set before auction day.</li>
+  </ul>
+  <h2>How to stress-test a purchase before you sign</h2>
+  <ul>
+    <li>Fix your true loan size: price, stamp duty, costs, minus your deposit.</li>
+    <li>Get actual recent comparable sales for the property, not the agent's guide alone.</li>
+    <li>Model repayments at today's rate, then +0.25%, +0.50% and +1.00%.</li>
+    <li>Add the non-loan holding costs: rates, insurance, maintenance, any owners corporation levies, land tax if investing.</li>
+    <li>Set the walk-away price where the +1.00% scenario still works, and hold it.</li>
+  </ul>
+  <p>This is exactly why every Precursor Full Due Diligence report includes a rate sensitivity table and a fair-value range built from comparable sales for the specific property: so the walk-away number is calculated, not guessed.</p>
+  <div>
+    <p><strong>General information only, not financial advice.</strong> Rate settings and lending policy change quickly. Confirm the current cash rate at rba.gov.au and talk to a mortgage broker or licensed adviser about your own position before committing.</p>
+  </div>
+  <p>Sources: RBA cash rate decisions and statements, 2026 (rba.gov.au); major-bank commentary on the June 2026 hold and August outlook; APRA serviceability guidance. Repayment figures computed with standard loan amortisation and rounded to the nearest dollar.</p>`,
 };
 
 export const BLOG_TAKEAWAYS: Record<string, string[]> = {
@@ -198,4 +279,6 @@ export const BLOG_TAKEAWAYS: Record<string, string[]> = {
   "zoning-explained-for-victorian-buyers": ["Zoning decides how much you can build, rent or subdivide — check it before you fall in love with a block.", "NRZ is the most restrictive, GRZ the middle ground, RGZ the most permissive — but the schedule changes the detail.", "2025 reforms eased small developments, but the exemptions are conditional on zone and overlays.", "Subdivision hinges on minimum lot size and the non-negotiable garden-area rule.", "Overlays can override the zone entirely — always read them together."],
   "planning-overlays-victoria-explained": ["Overlays sit on top of the zone and add their own permit triggers — a good zone doesn't make you safe.", "The big four for buyers: bushfire (BMO), flood (LSIO/FO), heritage (HO) and vegetation overlays.", "The BMO changed in 2026 (Amendment VC248, gazetted 5 May 2026) — confirm the current rules.", "A single block can carry several overlays at once; you must satisfy all of them.", "Check overlays on VicPlan, then read each schedule against your specific plans before you buy."],
   "section-32-red-flags-victoria": ["The Section 32 is a legal disclosure required before you sign (Sale of Land Act 1962, ss 32A–32I).", "Watch for easements/covenants, owners corporation debts, planning/overlay issues, unpermitted works and outstanding charges.", "Liabilities like OC special levies and unpaid charges can transfer to you at settlement.", "Disclosure rules keep expanding (especially owner-builder) — always use the current statement.", "Have it reviewed by a conveyancer/solicitor, and verify zoning and overlays yourself."],
+  "melbourne-vs-regional-victoria-2026": ["Melbourne values fell 1.0% in June 2026 (Cotality) and still sit 3.2% below the March 2022 peak.", "Regional Victoria's median house hit $650,000 in the June quarter, up 8.3% in a year (REIV), and passed its 2022 peak back in late 2025.", "Likely drivers: affordability spillover, Victoria's investor tax load in the city, and buyers chasing what shrinking borrowing power can finance.", "A soft Melbourne market is leverage: clearance near 50%, longer campaigns, and time to do due diligence properly.", "Big regional percentages need scrutiny: low bases, thin markets and overlay risk hide inside headline growth."],
+  "rising-rates-victorian-buyers-2026": ["The cash rate is 4.35% after three 25 basis point rises in 2026; the next RBA decision is 11 August.", "A single 25 point move adds roughly $85 to $135 a month on typical Victorian loan sizes; a full point adds $4,000 to $6,500 a year.", "Banks assess you about 3 points above your rate (APRA buffer); run your own test at +1.00% as well.", "No single RBA meeting should decide a purchase: if 25 points breaks the budget, the budget is the problem.", "Rising rates thin out competition, which is negotiating leverage for prepared buyers with a stress-tested walk-away number."],
 };

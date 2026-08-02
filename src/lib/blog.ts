@@ -21,6 +21,30 @@ export interface BlogPost {
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "melbourne-vs-regional-victoria-2026",
+    title: "Melbourne falls, regional Victoria runs: the mid-2026 divide",
+    description:
+      "Cotality has Melbourne values down 1.0% in June 2026 and 3.2% below their 2022 peak, while REIV puts regional Victorian house prices up 8.3% for the year. What the split means before you buy.",
+    excerpt:
+      "Melbourne slipped again in June while regional medians set records. What is driving the split, and how to use it as a buyer.",
+    category: "Market data",
+    readMin: 8,
+    dateISO: "2026-08-02",
+    dateLabel: "August 2026",
+  },
+  {
+    slug: "rising-rates-victorian-buyers-2026",
+    title: "Three rate rises in 2026: stress-testing a Victorian purchase",
+    description:
+      "The RBA cash rate sits at 4.35% after three rises in 2026, with the next decision on 11 August. What each 25 basis points costs, and how to stress-test repayments before you sign.",
+    excerpt:
+      "The cash rate is 4.35% and the next RBA call lands 11 August. What each 25 basis points costs, and how to know your purchase survives it.",
+    category: "Finance",
+    readMin: 8,
+    dateISO: "2026-08-02",
+    dateLabel: "August 2026",
+  },
+  {
     slug: "victorian-property-tax-changes-2026",
     title: "Property tax & budget changes for Victorian investors in 2026",
     description:
