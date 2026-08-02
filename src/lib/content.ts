@@ -52,28 +52,32 @@ export const PROCESS_STEPS = [
   },
 ];
 
+/**
+ * Real Google Business Profile reviews, quoted verbatim (surnames shortened).
+ * Source: the Precursor Property Google profile linked in BUSINESS.googleProfile.
+ */
 export const TESTIMONIALS = [
   {
     quote:
-      "I was ready to put down an offer on a place in Preston until the Precursor report flagged a restrictive covenant I'd completely missed, one that would have made a future granny flat impossible. Saved me from buying the wrong property. Cost less than dinner for two, and the difference was massive.",
-    name: "Marcus T.",
-    context: "Investment buyer · Preston, VIC",
-    initials: "MT",
+      "We were unsure if we were paying a reasonable price for a property in Montmorency; this report gave us peace of mind for putting an offer forward and provided insight into an owner's corporation to ask the vendor about. Although not currently wanting the property as an investment; this report showed detailed information about rental and capital growth. Was interesting to see the neighbourhood demographics too.",
+    name: "Kristen P.",
+    context: "Home buyer · Montmorency, VIC · Google review",
+    initials: "KP",
     featured: true,
   },
   {
     quote:
-      "I'd been working on a feasibility for a Ballarat duplex for weeks. The Precursor report flagged an overlay risk I'd missed and gave me clean pre-sale comparables, the kind of work I'd normally pay a town planner thousands for. It changed how I structured the whole deal.",
-    name: "Holly W.",
-    context: "Small developer · Ballarat, VIC",
-    initials: "HW",
+      "Genuinely surprised by how much detail you get. Ran a few properties through it before we bought and the crime rate breakdowns and recent sales data saved us from making a decision we would have regretted. The fact you can email in after you get the report to clarify anything is a nice touch too. Solid tool, will be using it again next time we're in the market.",
+    name: "Andy Z.",
+    context: "Property buyer · Google review",
+    initials: "AZ",
   },
   {
     quote:
-      "The comparable sales section was sharper than what my buyer's agent had run. I went into negotiation with hard numbers instead of vibes and got around $25k off the asking price. The report paid for itself many times over on a single deal.",
-    name: "Daniel L.",
-    context: "Investor · Coburg, VIC",
-    initials: "DL",
+      "Really impressed with the depth of data available for investment property research. The property reports break down rental yields, capital growth trends and recent sales data which made comparing potential investment properties across Melbourne so much easier. Having that level of financial analysis in one place saved me hours and gave me a lot more confidence going into negotiations.",
+    name: "Lynn L.",
+    context: "Property investor · Melbourne · Google review",
+    initials: "LL",
   },
 ];
 
