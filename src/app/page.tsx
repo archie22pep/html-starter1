@@ -4,6 +4,8 @@ import { FileCheck2, Layers, Puzzle } from "lucide-react";
 import { ArrowIcon, ButtonLink, CheckIcon, Container, SectionHead } from "@/components/ui";
 import { GuaranteeNote } from "@/components/price-card";
 import { OceanCard } from "@/components/ocean-card";
+import { HeroMontage } from "@/components/hero-montage";
+import { getHeroImages } from "@/lib/hero-images";
 import { ReportShowcase } from "@/components/report-showcase";
 import { CountUp, Reveal } from "@/components/motion-bits";
 import {
@@ -12,7 +14,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { BUSINESS, FROM_PRICE, STREAMS, tiersFor } from "@/lib/products";
+import { BUSINESS, REPORT_PRICE, REPORT_TIER, STREAMS } from "@/lib/products";
 import { POSTS } from "@/lib/blog";
 import {
   COMPARISON,
@@ -26,23 +28,27 @@ import {
 export const metadata: Metadata = {
   title: "Precursor | Property Due Diligence Reports | Victoria",
   description:
-    "Know what you're buying before you sign. Independent due diligence reports for Victorian buyers and developers: zoning, comparable sales, growth signals, feasibility. From A$99, delivered in 24 to 72 hours.",
+    "Know what you're buying before you sign. Independent due diligence reports for Victorian buyers and developers: zoning, comparable sales, growth signals, feasibility. A$49 flat, delivered in about 48 hours.",
   alternates: { canonical: "/" },
 };
 
-export default function HomePage() {
+export default async function HomePage() {
   const featured = TESTIMONIALS.find((t) => t.featured)!;
   const rest = TESTIMONIALS.filter((t) => !t.featured);
+  const heroImages = await getHeroImages();
 
   return (
     <>
+      {/* AERIAL MONTAGE */}
+      <HeroMontage images={heroImages} />
+
       {/* HERO */}
       <section className="border-b border-line bg-gradient-to-b from-paper from-55% to-surface">
         <Container className="grid items-center gap-14 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-24">
           <div>
             <p className="inline-flex items-center gap-2.5 rounded-md border border-line-strong px-3.5 py-1.5 text-[11.5px] font-bold tracking-[0.13em] text-primary uppercase">
               <span className="size-1.5 rounded-full bg-primary" />
-              Independent · Victoria-wide · From {FROM_PRICE}
+              Independent · Victoria-wide · {REPORT_PRICE} flat
             </p>
             <h1 className="mt-6 mb-5 font-serif text-[clamp(2.7rem,5.2vw,4.3rem)] leading-[1.05] font-semibold text-ink">
               Know what you&rsquo;re buying{" "}
@@ -60,7 +66,7 @@ export default function HomePage() {
               </ButtonLink>
             </div>
             <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-[13.5px] font-semibold text-body">
-              {["48-hr average delivery", "Money-back guarantee", "No subscription"].map((t) => (
+              {["48-hr typical delivery", "Money-back guarantee", "No subscription"].map((t) => (
                 <span key={t} className="inline-flex items-center gap-1.5">
                   <CheckIcon className="size-[15px] text-primary" />
                   {t}
@@ -145,7 +151,7 @@ export default function HomePage() {
               {
                 icon: FileCheck2,
                 title: "Explain it in plain English",
-                body: "One report that interprets the data, flags what matters and gives an honest verdict, in 24 to 72 hours. No jargon to decode, no dashboard to learn, no subscription to forget about.",
+                body: "One report that interprets the data, flags what matters and gives an honest verdict, typically inside 48 hours. No jargon to decode, no dashboard to learn, no subscription to forget about.",
               },
             ].map((card, i) => (
               <Reveal key={card.title} delay={i * 0.08}>
@@ -199,47 +205,64 @@ export default function HomePage() {
             index="03"
             eyebrow="Two report streams"
             title="Buying a property, or building on one?"
-            lead="Every report is researched from primary sources and written by an analyst. Pick the stream that matches your decision."
+            lead="Every report is built from primary sources and reviewed by an analyst. Pick the stream that matches your decision."
           />
           <div className="grid gap-5 lg:grid-cols-2">
-            {Object.values(STREAMS).map((stream, i) => {
-              const tiers = tiersFor(stream.key);
-              const from = Math.min(...tiers.map((t) => t.price));
-              return (
-                <Reveal key={stream.key} delay={i * 0.08}>
-                  <Link
-                    href={stream.href}
-                    className="group block h-full rounded-[10px] border border-line-strong bg-white p-8 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary hover:shadow-lg"
-                  >
-                    <p className="mb-3 text-[11px] font-bold tracking-[0.16em] text-primary uppercase">
-                      {stream.audience}
-                    </p>
-                    <h3 className="mb-3 font-serif text-[1.7rem] leading-tight font-semibold text-ink">
-                      {stream.name}
-                    </h3>
-                    <p className="mb-5 text-[15px] leading-relaxed text-muted-foreground">
-                      {stream.description}
-                    </p>
-                    <ul className="mb-6 flex flex-col">
-                      {tiers.map((t) => (
-                        <li
-                          key={t.key}
-                          className="flex items-center justify-between border-b border-line py-2 text-sm"
-                        >
-                          <span className="font-semibold text-body">{t.name}</span>
-                          <span className="lining font-serif text-base font-semibold text-ink">
-                            {`A$${t.price / 100}`}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                    <span className="text-[13.5px] font-bold text-primary transition-colors group-hover:text-primary-hover">
-                      Explore {stream.shortName} reports from A${from / 100} →
-                    </span>
-                  </Link>
-                </Reveal>
-              );
-            })}
+            <Reveal>
+              <Link
+                href={STREAMS.purchase.href}
+                className="group block h-full rounded-[10px] border-2 border-primary bg-white p-8 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+              >
+                <p className="mb-3 text-[11px] font-bold tracking-[0.16em] text-primary uppercase">
+                  {STREAMS.purchase.audience}
+                </p>
+                <h3 className="mb-3 font-serif text-[1.7rem] leading-tight font-semibold text-ink">
+                  {STREAMS.purchase.name}
+                </h3>
+                <p className="mb-5 text-[15px] leading-relaxed text-muted-foreground">
+                  {STREAMS.purchase.description}
+                </p>
+                <div className="mb-6 flex items-baseline justify-between border-y border-line py-3">
+                  <span className="text-sm font-semibold text-body">
+                    {REPORT_TIER.name} · {REPORT_TIER.turnaround}
+                  </span>
+                  <span className="lining font-serif text-2xl font-semibold text-ink">
+                    {REPORT_PRICE}
+                  </span>
+                </div>
+                <span className="text-[13.5px] font-bold text-primary transition-colors group-hover:text-primary-hover">
+                  Explore the {REPORT_PRICE} report →
+                </span>
+              </Link>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <Link
+                href={STREAMS.development.href}
+                className="group block h-full rounded-[10px] border border-line-strong bg-white p-8 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary hover:shadow-lg"
+              >
+                <p className="mb-3 flex items-center gap-2.5 text-[11px] font-bold tracking-[0.16em] text-primary uppercase">
+                  {STREAMS.development.audience}
+                  <span className="rounded-md bg-primary-weak px-2 py-0.5 tracking-[0.08em] text-primary normal-case">
+                    By enquiry
+                  </span>
+                </p>
+                <h3 className="mb-3 font-serif text-[1.7rem] leading-tight font-semibold text-ink">
+                  {STREAMS.development.name}
+                </h3>
+                <p className="mb-5 text-[15px] leading-relaxed text-muted-foreground">
+                  {STREAMS.development.description}
+                </p>
+                <div className="mb-6 flex items-baseline justify-between border-y border-line py-3">
+                  <span className="text-sm font-semibold text-body">
+                    Fixed quote within one business day
+                  </span>
+                  <span className="font-serif text-xl font-semibold text-ink">Free to enquire</span>
+                </div>
+                <span className="text-[13.5px] font-bold text-primary transition-colors group-hover:text-primary-hover">
+                  Make a development enquiry →
+                </span>
+              </Link>
+            </Reveal>
           </div>
           <div className="mt-6">
             <GuaranteeNote />
@@ -381,7 +404,7 @@ export default function HomePage() {
                   Precursor
                 </p>
                 <p className="lining mb-6 font-serif text-[2.1rem] font-semibold">
-                  From {FROM_PRICE} per report
+                  {REPORT_PRICE} per report
                 </p>
                 <ul className="mb-7 flex flex-col gap-3.5">
                   {COMPARISON.precursor.map((item) => (

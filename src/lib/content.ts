@@ -1,10 +1,11 @@
 /** Editorial content shared across pages. */
 
+/** Verifiable facts only: product terms, not performance claims. */
 export const STATS = [
-  { value: 300, suffix: "+", label: "Reports delivered" },
-  { value: 48, suffix: "hr", label: "Average delivery" },
-  { value: 25, prefix: "$", suffix: "k", label: "Avg saving identified" },
-  { value: 5, suffix: " yrs", label: "Victorian market experience" },
+  { value: 49, prefix: "A$", label: "Flat fee, no subscription" },
+  { value: 48, suffix: "hr", label: "Typical turnaround" },
+  { value: 20, suffix: "+", label: "Public data sources per report" },
+  { value: 100, suffix: "%", label: "Money-back first-order guarantee" },
 ];
 
 export const DATA_SOURCES = [
@@ -28,7 +29,7 @@ export const PROCESS_STEPS = [
   {
     num: "01",
     title: "Submit your brief",
-    body: "Choose your report, give us the property address and your main concern. Five minutes, start to finish.",
+    body: "Give us the property address and your main concern. Two short steps, five minutes start to finish.",
     time: "5 min",
   },
   {
@@ -40,8 +41,8 @@ export const PROCESS_STEPS = [
   {
     num: "03",
     title: "We research",
-    body: "Your analyst pulls planning data, title records, comparable sales, and council files from primary sources, by hand.",
-    time: "24-72 hrs",
+    body: "Our pipeline pulls planning data, title records, comparable sales and market data from primary sources. An analyst reviews every finding and writes the conclusions.",
+    time: "~48 hrs",
   },
   {
     num: "04",
@@ -90,8 +91,12 @@ export const FAQS = [
     a: "If our report doesn't address what you asked, email us and we'll revise it free of charge. If you're still not satisfied with your first order, we'll refund it in full. No forms, no friction. We can offer this because we put the time in upfront and rarely need to use it.",
   },
   {
+    q: "How can a full report cost A$49?",
+    a: "Because we automated the expensive part. Our research pipeline gathers the public record (planning schemes, overlays, titles data, sales evidence, market statistics) automatically, and a human analyst then checks every finding and writes the conclusions. You pay for the checking and the judgement, not for someone's day of manual digging. No subscription, no upsell.",
+  },
+  {
     q: "How fast can you turn around a report?",
-    a: "Standard turnaround is 24 to 72 hours depending on the report you order. If you have an auction this weekend or another tight deadline, email us the address first and we'll tell you honestly whether we can fit it in.",
+    a: "Typical turnaround is about 48 hours. If you have an auction this weekend or another tight deadline, email us the address first and we'll tell you honestly whether we can fit it in.",
   },
   {
     q: "Where do you get your data?",
@@ -110,8 +115,8 @@ export const FAQS = [
     a: "No. Precursor reports are desktop research, and that's deliberate. It keeps reports fast and affordable, and everything we analyse (title, zoning, overlays, sales evidence, council records) is documentary. For physical condition we'll always recommend a licensed building inspector, and our reports flag when that matters most.",
   },
   {
-    q: "Can I upgrade a report after ordering?",
-    a: "Yes. If you order a Quick Screen or Site Check and decide to go deeper, email us within 30 days and we'll credit the full amount you paid against the larger report on the same property.",
+    q: "What about development feasibility reports?",
+    a: "Development Intelligence is currently scoped by enquiry rather than a fixed menu, because development sites vary so much. Tell us about the site through the enquiry form and we'll reply within one business day with what we can research and a fixed quote. Enquiring is free and there's no obligation.",
   },
 ];
 
@@ -129,10 +134,10 @@ export const COMPARISON = {
     },
   ],
   precursor: [
-    "A human analyst researches and writes your conclusions. No expertise required on your end",
+    "Automated gathering across the public record, then a human analyst checks every finding and writes your conclusions",
     "No conflict of interest. We don't earn a commission if you buy",
-    "No monthly subscription. Pay only when you need a report",
-    "24 to 72 hour turnaround, ready before auction day",
-    "Purchase due diligence and development feasibility in one service",
+    "No monthly subscription. One flat fee, only when you need a report",
+    "About 48 hour turnaround, ready before auction day",
+    "Purchase due diligence today; development feasibility by enquiry",
   ],
 };

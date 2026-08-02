@@ -4,7 +4,7 @@ import { StreamPage } from "@/components/stream-page";
 export const metadata: Metadata = {
   title: "Purchase Intelligence: buyer due diligence reports",
   description:
-    "Desktop due diligence for Victorian property buyers: title and encumbrances, zoning and overlays, comparable sales, rental yield, growth signals, and negotiation strategy. From A$99.",
+    "Desktop due diligence for Victorian property buyers: title and encumbrances, zoning and overlays, comparable sales, rental yield, growth signals, and negotiation strategy. A$49 flat.",
   alternates: { canonical: "/reports/purchase" },
 };
 

@@ -74,7 +74,7 @@ export default function Image() {
 
         {/* Footer row */}
         <div style={{ display: "flex", alignItems: "center", fontSize: 22, fontWeight: 700, color: "rgba(242,239,230,0.85)" }}>
-          <div style={{ display: "flex" }}>Delivered in 24 to 72 hours</div>
+          <div style={{ display: "flex" }}>Delivered in about 48 hours</div>
           <div
             style={{
               display: "flex",
@@ -85,7 +85,7 @@ export default function Image() {
               borderRadius: 10,
             }}
           >
-            From A$99
+            A$49 flat
           </div>
         </div>
       </div>

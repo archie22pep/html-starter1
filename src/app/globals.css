@@ -197,9 +197,62 @@ body {
   animation: fish-cross 26s linear infinite;
 }
 
+/* Hero aerial montage: 5 slides x 8s = 40s cycle */
+@keyframes montage-fade {
+  0% {
+    opacity: 0;
+  }
+  4% {
+    opacity: 1;
+  }
+  24% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.montage-slide {
+  opacity: 0;
+  animation: montage-fade 40s linear infinite both;
+}
+@keyframes kenburns {
+  from {
+    transform: scale(1.03) translate(0.6%, 0.4%);
+  }
+  to {
+    transform: scale(1.14) translate(-0.8%, -0.6%);
+  }
+}
+@keyframes kenburns-rev {
+  from {
+    transform: scale(1.14) translate(-0.8%, 0.5%);
+  }
+  to {
+    transform: scale(1.03) translate(0.5%, -0.4%);
+  }
+}
+.kenburns {
+  animation: kenburns 40s linear infinite both;
+}
+.kenburns-rev {
+  animation: kenburns-rev 40s linear infinite both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .montage-slide,
+  .kenburns,
+  .kenburns-rev {
+    animation: none !important;
+  }
+  .montage-slide:first-child {
+    opacity: 1;
   }
   *,
   *::before,

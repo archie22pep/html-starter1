@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     template: "%s | Precursor Property",
   },
   description:
-    "Independent property due diligence reports for buyers and small developers across Victoria. Zoning, comparable sales, growth signals and development feasibility, delivered in 24 to 72 hours.",
+    "Independent property due diligence reports for buyers and small developers across Victoria. Zoning, comparable sales, growth signals and development feasibility. A$49 flat, delivered in about 48 hours.",
   keywords: [
     "property due diligence Victoria",
     "buyers due diligence report",
@@ -71,7 +71,7 @@ const orgJsonLd = {
     "Development Feasibility Analysis",
     "Investment Property Research",
   ],
-  priceRange: "A$99-A$399",
+  priceRange: "A$49",
   sameAs: [BUSINESS.instagram, BUSINESS.googleProfile],
 };
 

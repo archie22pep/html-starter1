@@ -14,8 +14,15 @@ export default async function ThanksPage({
 }) {
   const { mode } = await searchParams;
   const paid = mode === "paid";
+  const enquiry = mode === "enquiry";
 
-  const steps = paid
+  const steps = enquiry
+    ? [
+        "Your enquiry has been received and is with our analyst.",
+        "We review the site's zoning, overlays and constraints to scope what's actually possible to research.",
+        "Within one business day you'll get an email with what we can do and a fixed quote. No obligation.",
+      ]
+    : paid
     ? [
         "Your payment is confirmed and your brief is with your analyst.",
         "Research starts from primary sources: VicPlan, Landata, council records, licensed sales data.",
@@ -34,10 +41,14 @@ export default async function ThanksPage({
           <CheckIcon className="size-7" />
         </span>
         <p className="mb-3 text-[11.5px] font-bold tracking-[0.18em] text-primary uppercase">
-          {paid ? "Payment received" : "Brief received"}
+          {enquiry ? "Enquiry received" : paid ? "Payment received" : "Brief received"}
         </p>
         <h1 className="mb-4 font-serif text-[clamp(2rem,4vw,2.8rem)] leading-tight font-semibold text-ink">
-          {paid ? "Your report is underway." : "One more step: payment."}
+          {enquiry
+            ? "We're on it. Expect a reply within one business day."
+            : paid
+              ? "Your report is underway."
+              : "One more step: payment."}
         </h1>
         <ol className="mx-auto mb-8 flex max-w-md flex-col gap-3 text-left">
           {steps.map((s, i) => (

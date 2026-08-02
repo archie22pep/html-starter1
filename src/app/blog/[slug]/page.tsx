@@ -132,7 +132,7 @@ export default async function BlogPostPage({
             </h2>
             <p className="text-[14px] text-cream/65">
               We pressure-test the planning, zoning, overlays and value behind a Victorian
-              property in a clear report, in 24 to 72 hours.
+              property in a clear report. A$49 flat, in about 48 hours.
             </p>
           </div>
           <ButtonLink href="/order">

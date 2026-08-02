@@ -4,7 +4,7 @@ import { StreamPage } from "@/components/stream-page";
 export const metadata: Metadata = {
   title: "Development Intelligence: feasibility reports",
   description:
-    "Desktop feasibility for Victorian sites: zoning and residential code, subdivision potential, permit pathway, margin modelling, and council approval probability. From A$149.",
+    "Desktop feasibility for Victorian sites: zoning and residential code, subdivision potential, permit pathway, margin modelling, and council approval probability. Scoped by enquiry with a fixed quote.",
   alternates: { canonical: "/reports/development" },
 };
 

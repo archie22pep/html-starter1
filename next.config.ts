@@ -13,6 +13,11 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  images: {
+    // Hero montage images served live from the Unsplash CDN when
+    // UNSPLASH_ACCESS_KEY is configured; committed /public/hero files otherwise.
+    remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
+  },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },

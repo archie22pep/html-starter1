@@ -25,6 +25,8 @@ export function StreamPage({
 }: StreamPageProps) {
   const meta = STREAMS[stream];
   const tiers = tiersFor(stream);
+  const enquiryOnly = !!meta.enquiryOnly;
+  const orderHref = enquiryOnly ? "/order?stream=development" : "/order";
 
   const serviceJsonLd = {
     "@context": "https://schema.org",
@@ -35,14 +37,16 @@ export function StreamPage({
     description: meta.description,
     provider: { "@id": `${SITE_URL}/#business` },
     areaServed: { "@type": "AdministrativeArea", name: BUSINESS.region },
-    offers: tiers.map((t) => ({
-      "@type": "Offer",
-      name: t.name,
-      price: (t.price / 100).toString(),
-      priceCurrency: "AUD",
-      url: `${SITE_URL}/order?tier=${t.key}`,
-      description: t.tagline,
-    })),
+    ...(tiers.length > 0 && {
+      offers: tiers.map((t) => ({
+        "@type": "Offer",
+        name: t.name,
+        price: (t.price / 100).toString(),
+        priceCurrency: "AUD",
+        url: `${SITE_URL}/order?tier=${t.key}`,
+        description: t.tagline,
+      })),
+    }),
   };
 
   const breadcrumbJsonLd = {
@@ -70,8 +74,8 @@ export function StreamPage({
           </h1>
           <p className="mb-8 max-w-2xl text-[1.1rem] leading-relaxed text-muted-foreground">{heroLead}</p>
           <div className="flex flex-wrap gap-3">
-            <ButtonLink href={`/order?stream=${stream}`}>
-              Order {meta.shortName} report <ArrowIcon />
+            <ButtonLink href={orderHref}>
+              {enquiryOnly ? "Make an enquiry" : `Order ${meta.shortName} report`} <ArrowIcon />
             </ButtonLink>
             <ButtonLink href="/sample-report.html" variant="secondary">
               Read a sample first
@@ -99,23 +103,47 @@ export function StreamPage({
         </Container>
       </section>
 
-      {/* PRICING */}
+      {/* PRICING / ENQUIRY */}
       <section className="border-y border-line bg-surface py-18 lg:py-22" id="pricing">
         <Container>
-          <SectionHead
-            index="02"
-            eyebrow="Choose your depth"
-            title={`${meta.name} pricing`}
-            lead="Fixed prices, no subscription. Click a report to start your order. Payment is the last step."
-          />
-          <div className="mx-auto grid max-w-4xl items-start gap-5 pt-3 sm:grid-cols-2">
-            {tiers.map((t) => (
-              <PriceCard key={t.key} tier={t} />
-            ))}
-          </div>
-          <div className="mt-6">
-            <GuaranteeNote />
-          </div>
+          {enquiryOnly ? (
+            <>
+              <SectionHead
+                index="02"
+                eyebrow="How it works"
+                title="Scoped by enquiry, quoted up front"
+                lead="Development sites vary too much for one fixed menu, so we scope each one individually. Tell us about the site and what you're weighing up. Within one business day we'll reply with exactly what we can research and a fixed quote. No payment until you say go."
+              />
+              <div className="mx-auto max-w-2xl rounded-[10px] border border-line-strong bg-white p-8 text-center">
+                <p className="mb-2 text-[11px] font-bold tracking-[0.16em] text-primary uppercase">
+                  Free to enquire
+                </p>
+                <p className="mb-5 font-serif text-[1.5rem] leading-snug font-semibold text-ink">
+                  Two minutes to tell us about the site. One business day to a fixed quote.
+                </p>
+                <ButtonLink href={orderHref}>
+                  Make an enquiry <ArrowIcon />
+                </ButtonLink>
+              </div>
+            </>
+          ) : (
+            <>
+              <SectionHead
+                index="02"
+                eyebrow="One report, one price"
+                title={`${meta.name} pricing`}
+                lead="One complete report at a flat fee, no subscription. Click through to start your order. Payment is the last step."
+              />
+              <div className="mx-auto max-w-md pt-3">
+                {tiers.map((t) => (
+                  <PriceCard key={t.key} tier={t} badge="Flat fee" />
+                ))}
+              </div>
+              <div className="mx-auto mt-6 max-w-md">
+                <GuaranteeNote />
+              </div>
+            </>
+          )}
         </Container>
       </section>
 
@@ -159,15 +187,18 @@ export function StreamPage({
         <Container className="flex flex-wrap items-center justify-between gap-6">
           <div>
             <h2 className="mb-2 font-serif text-[1.8rem] font-semibold">
-              Ready when you are, usually within 48 hours.
+              {enquiryOnly
+                ? "Tell us about the site, no obligation."
+                : "Ready when you are, usually within 48 hours."}
             </h2>
             <p className="text-[14.5px] text-cream/60">
-              Not sure which depth you need? Email the address to hello@precursorproperty.com.au
-              and we&rsquo;ll recommend one, no obligation.
+              {enquiryOnly
+                ? "A fixed quote within one business day, and an honest “you don’t need us for this” when that’s the truth."
+                : "Not sure it’s worth it for your property? Email the address to hello@precursorproperty.com.au and we’ll tell you honestly."}
             </p>
           </div>
-          <ButtonLink href={`/order?stream=${stream}`}>
-            Start your order <ArrowIcon />
+          <ButtonLink href={orderHref}>
+            {enquiryOnly ? "Make an enquiry" : "Start your order"} <ArrowIcon />
           </ButtonLink>
         </Container>
       </section>

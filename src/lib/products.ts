@@ -30,6 +30,8 @@ export interface Stream {
   audience: string;
   description: string;
   href: string;
+  /** No online payment: prospects submit a brief and get a scoped quote. */
+  enquiryOnly?: boolean;
 }
 
 /**
@@ -67,37 +69,24 @@ export const STREAMS: Record<StreamKey, Stream> = {
     shortName: "Development",
     audience: "Owners and small developers",
     description:
-      "For owners and developers exploring subdivision, renovation, or redevelopment. We assess what the site can actually do.",
+      "For owners and developers exploring subdivision, renovation, or redevelopment. Scoped by enquiry: tell us about the site and we'll come back with what's possible and a fixed quote.",
     href: "/reports/development",
+    enquiryOnly: true,
   },
 };
 
 export const TIERS: Tier[] = [
   {
-    key: "quick-screen",
-    stream: "purchase",
-    name: "Quick Screen",
-    price: 9900,
-    turnaround: "~24 hours",
-    tagline: "A rapid health check. Spot deal-breakers before you invest further time.",
-    features: [
-      "Title & encumbrance check",
-      "Zoning & overlay summary",
-      "Flood & risk flag review",
-      "Suburb growth snapshot",
-    ],
-    stripeLink: "https://buy.stripe.com/28E8wPfgEbYt5FyesH3Je00",
-  },
-  {
     key: "full-due-diligence",
     stream: "purchase",
     name: "Full Due Diligence",
-    price: 24900,
+    price: 4900,
     turnaround: "~48 hours",
     tagline:
-      "Our most complete purchase report, from title to negotiation strategy, shaped to the property and your brief.",
+      "The complete purchase report, from title to negotiation strategy, shaped to the property and your brief.",
     features: [
-      "Everything in Quick Screen",
+      "Title & encumbrance check",
+      "Zoning, overlays & risk flags (flood, bushfire)",
       "Investor scorecard with plain-English ratings",
       "Price check & underquoting review",
       "Plain-English Section 32 & title review",
@@ -108,48 +97,13 @@ export const TIERS: Tier[] = [
       "Vendor intelligence & negotiation talking points",
       "10-year projection, next steps & glossary",
     ],
-    popular: true,
+    // Payment Link edited in Stripe to A$49 (verified 2026-08-02).
     stripeLink: "https://buy.stripe.com/8x200j8Sg0fL0le4S73Je02",
   },
-  {
-    key: "site-check",
-    stream: "development",
-    name: "Site Check",
-    price: 14900,
-    turnaround: "~24 hours",
-    tagline: "A quick read on development feasibility before you engage a town planner.",
-    features: [
-      "Zoning & residential code check",
-      "Lot size & subdivision potential",
-      "Overlay constraints summary",
-      "Servicing & access flags",
-    ],
-    stripeLink: "https://buy.stripe.com/6oU4gzb0od2x2tm0BR3Je03",
-  },
-  {
-    key: "full-feasibility",
-    stream: "development",
-    name: "Full Feasibility",
-    price: 39900,
-    turnaround: "~72 hours",
-    tagline:
-      "Our most thorough development report. Build a business case or stress-test your assumptions.",
-    features: [
-      "Everything in Site Check",
-      "Permit pathway assessment",
-      "Comparable development outcomes",
-      "End-value & margin modelling",
-      "Objection risk assessment",
-      "Multi-scenario feasibility model",
-      "Construction cost benchmarks",
-      "Pre-sale & hold strategy analysis",
-      "Council approval probability score",
-      "Summary deck for finance/partners",
-    ],
-    popular: true,
-    stripeLink: "https://buy.stripe.com/bJeeVdd8w1jP8RK3O33Je05",
-  },
 ];
+
+/** The single purchasable report. */
+export const REPORT_TIER = TIERS[0];
 
 export function tiersFor(stream: StreamKey): Tier[] {
   return TIERS.filter((t) => t.stream === stream);
@@ -163,4 +117,4 @@ export function formatAud(cents: number): string {
   return `A$${(cents / 100) % 1 === 0 ? (cents / 100).toLocaleString("en-AU") : (cents / 100).toFixed(2)}`;
 }
 
-export const FROM_PRICE = formatAud(Math.min(...TIERS.map((t) => t.price)));
+export const REPORT_PRICE = formatAud(REPORT_TIER.price);

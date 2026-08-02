@@ -45,6 +45,9 @@ export async function POST(req: Request) {
   } = body;
   const tier = getTier(tierKey);
   if (!tier) return bad("Unknown report tier.");
+  // Enquiry-only streams (development) never take payment; those briefs go
+  // straight to Web3Forms from the browser and never reach this route.
+  if (STREAMS[tier.stream].enquiryOnly) return bad("This report is quoted by enquiry.");
   if (!name?.trim() || !address?.trim()) return bad("Name and property address are required.");
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email ?? "")) return bad("A valid email is required.");
 

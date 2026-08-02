@@ -90,7 +90,7 @@ export default function BlogIndexPage() {
                 Know exactly what you&rsquo;re buying.
               </h2>
               <p className="text-[14.5px] text-cream/65">
-                Independent due diligence reports on any Victorian property, in 24 to 72 hours.
+                Independent due diligence on any Victorian property. A$49 flat, in about 48 hours.
               </p>
             </div>
             <ButtonLink href="/order">

@@ -2,17 +2,26 @@ import Link from "next/link";
 import { formatAud, type Tier } from "@/lib/products";
 import { CheckIcon } from "./ui";
 
-export function PriceCard({ tier, compact = false }: { tier: Tier; compact?: boolean }) {
+export function PriceCard({
+  tier,
+  compact = false,
+  badge,
+}: {
+  tier: Tier;
+  compact?: boolean;
+  badge?: string;
+}) {
+  const highlighted = tier.popular || !!badge;
   return (
     <Link
       href={`/order?tier=${tier.key}`}
       className={`group relative flex flex-col rounded-[10px] border bg-white p-6 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg ${
-        tier.popular ? "border-2 border-primary" : "border-line-strong hover:border-primary"
+        highlighted ? "border-2 border-primary" : "border-line-strong hover:border-primary"
       }`}
     >
-      {tier.popular && (
+      {(badge ?? (tier.popular ? "Most popular" : null)) && (
         <span className="absolute -top-3 left-6 rounded-md bg-primary px-3 py-1 text-[10.5px] font-bold tracking-[0.1em] text-white uppercase">
-          Most popular
+          {badge ?? "Most popular"}
         </span>
       )}
       <div className="mb-2.5 flex items-start justify-between gap-3">
