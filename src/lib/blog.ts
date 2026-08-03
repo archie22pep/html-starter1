@@ -21,6 +21,18 @@ export interface BlogPost {
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "melbourne-apartment-resale-losses-2026",
+    title: "Why one in five Melbourne apartment resales loses money",
+    description:
+      "Unit prices fell again in 2026, but the monthly number is not the problem. Cotality's Pain & Gain data shows about 81% of Melbourne apartment resales turn a profit against 97.9% for houses. Why the gap exists and what to check before buying.",
+    excerpt:
+      "Apartments fell less than houses this quarter. The real gap shows up at resale, and it is about expectations more than the cycle.",
+    category: "Apartments",
+    readMin: 8,
+    dateISO: "2026-08-04",
+    dateLabel: "August 2026",
+  },
+  {
     slug: "melbourne-vs-regional-victoria-2026",
     title: "Melbourne falls, regional Victoria runs: the mid-2026 divide",
     description:

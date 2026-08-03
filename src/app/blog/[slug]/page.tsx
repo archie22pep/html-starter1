@@ -118,7 +118,9 @@ export default async function BlogPostPage({
               {takeaways.map((t) => (
                 <li key={t} className="flex items-start gap-2.5 text-[14.5px] leading-relaxed text-body">
                   <CheckIcon className="mt-1 size-4 shrink-0 text-primary" />
-                  {t}
+                  {/* Takeaways carry inline markup and entities, from the same
+                      generated file as the article body. */}
+                  <span dangerouslySetInnerHTML={{ __html: t }} />
                 </li>
               ))}
             </ul>
