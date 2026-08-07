@@ -21,6 +21,18 @@ export interface BlogPost {
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "investor-exodus-victoria-2026",
+    title: "Investors are pulling out of Victorian property. Is this your window?",
+    description:
+      "Westpac investor loan applications fell around 20% after the May 2026 budget's proposed negative gearing and capital gains tax changes. What a thinner market means for buyers, and the three traps inside the good news.",
+    excerpt:
+      "Investor loan applications fell around 20% after the budget. Less competition is a real window, and it comes with three traps.",
+    category: "Strategy",
+    readMin: 7,
+    dateISO: "2026-08-07",
+    dateLabel: "August 2026",
+  },
+  {
     slug: "melbourne-apartment-resale-losses-2026",
     title: "Why one in five Melbourne apartment resales loses money",
     description:
