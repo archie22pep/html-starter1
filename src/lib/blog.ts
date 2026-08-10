@@ -21,6 +21,18 @@ export interface BlogPost {
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "victorian-suburbs-to-watch-2026",
+    title: "Five Victorian suburbs to watch for the rest of 2026, and how each could disappoint you",
+    description:
+      "Kurunjang, Hampton, Mount Helen, North Bendigo and the Stage 2 activity centres. REIV June quarter 2026 growth data, the council and state decisions behind each, and an honest account of how every pick could be wrong.",
+    excerpt:
+      "Five suburbs with real data and a documented council catalyst behind each, plus the way each one could disappoint you.",
+    category: "Market data",
+    readMin: 9,
+    dateISO: "2026-08-07",
+    dateLabel: "August 2026",
+  },
+  {
     slug: "investor-exodus-victoria-2026",
     title: "Investors are pulling out of Victorian property. Is this your window?",
     description:
