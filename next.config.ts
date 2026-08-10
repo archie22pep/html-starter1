@@ -24,7 +24,18 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 2678400,
   },
   async headers() {
-    return [{ source: "/(.*)", headers: securityHeaders }];
+    return [
+      { source: "/(.*)", headers: securityHeaders },
+      {
+        // The hero stills are immutable committed assets. Without this they
+        // are served max-age=0, must-revalidate, and /_next/image inherits
+        // that from the upstream file, so every visit refetches them.
+        source: "/hero/:file*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+    ];
   },
 };
 
