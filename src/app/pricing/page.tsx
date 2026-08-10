@@ -3,6 +3,7 @@ import { ArrowIcon, ButtonLink, Container, SectionHead } from "@/components/ui";
 import { PriceCard, GuaranteeNote } from "@/components/price-card";
 import { Reveal } from "@/components/motion-bits";
 import { BUSINESS, REPORT_PRICE, REPORT_TIER, STREAMS } from "@/lib/products";
+import { SITE_URL, breadcrumbJsonLd, jsonLdScript } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Pricing: one report, A$49 flat, no subscription",
@@ -12,8 +13,32 @@ export const metadata: Metadata = {
 };
 
 export default function PricingPage() {
+  const offerJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": `${SITE_URL}/pricing#report`,
+    name: `${STREAMS.purchase.name}: ${REPORT_TIER.name}`,
+    description: REPORT_TIER.tagline,
+    brand: { "@id": `${SITE_URL}/#business` },
+    category: "Property due diligence report",
+    offers: {
+      "@type": "Offer",
+      price: (REPORT_TIER.price / 100).toString(),
+      priceCurrency: "AUD",
+      availability: "https://schema.org/InStock",
+      url: `${SITE_URL}/order`,
+      seller: { "@id": `${SITE_URL}/#business` },
+    },
+  };
+
   return (
     <>
+      <script
+        {...jsonLdScript([
+          offerJsonLd,
+          breadcrumbJsonLd([{ name: "Pricing", path: "/pricing" }]),
+        ])}
+      />
       <section className="border-b border-line bg-gradient-to-b from-paper to-surface">
         <Container className="py-16 text-center lg:py-20">
           <p className="mb-4 text-[11.5px] font-bold tracking-[0.18em] text-primary uppercase">

@@ -21,8 +21,10 @@ export function HeroMontage({ images }: { images: HeroImage[] }) {
               src={img.src}
               alt={img.alt}
               fill
+              // Only frame 1 is on screen at load; the rest fade in from 8s
+              // onward. Loading all five eagerly cost about 1MB up front and
+              // hurt LCP on the most important page.
               priority={i === 0}
-              loading="eager"
               sizes="100vw"
               style={{ animationDelay: delay }}
               className={`object-cover ${i % 2 === 1 ? "kenburns-rev" : "kenburns"}`}

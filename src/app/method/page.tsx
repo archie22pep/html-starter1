@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ArrowIcon, ButtonLink, CheckIcon, Container, SectionHead } from "@/components/ui";
 import { METHOD_SOURCES } from "@/lib/content";
+import { breadcrumbJsonLd, jsonLdScript } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Our Method: primary sources, human analysis",
@@ -31,6 +32,7 @@ const PRINCIPLES = [
 export default function MethodPage() {
   return (
     <>
+      <script {...jsonLdScript(breadcrumbJsonLd([{ name: "Our Method", path: "/method" }]))} />
       <section className="border-b border-line bg-gradient-to-b from-paper to-surface">
         <Container className="py-16 lg:py-20">
           <p className="mb-4 text-[11.5px] font-bold tracking-[0.18em] text-primary uppercase">

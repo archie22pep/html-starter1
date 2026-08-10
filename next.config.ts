@@ -17,6 +17,11 @@ const nextConfig: NextConfig = {
     // Hero montage images served live from the Unsplash CDN when
     // UNSPLASH_ACCESS_KEY is configured; committed /public/hero files otherwise.
     remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
+    // AVIF first (roughly 30% smaller than WebP), WebP as the fallback.
+    formats: ["image/avif", "image/webp"],
+    // Optimised images were being served max-age=0, must-revalidate, so repeat
+    // visitors and crawlers refetched them every time. 31 days.
+    minimumCacheTTL: 2678400,
   },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui";
 import { OrderForm } from "./order-form";
+import { breadcrumbJsonLd, jsonLdScript } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Order a report",
@@ -19,6 +20,7 @@ export default async function OrderPage({
 
   return (
     <>
+      <script {...jsonLdScript(breadcrumbJsonLd([{ name: "Order a report", path: "/order" }]))} />
       <section className="border-b border-line bg-gradient-to-b from-paper to-surface">
         <Container className="py-12 lg:py-16">
           <p className="mb-4 text-[11.5px] font-bold tracking-[0.18em] text-primary uppercase">

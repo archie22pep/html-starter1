@@ -7,6 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { FAQS } from "@/lib/content";
+import { breadcrumbJsonLd, jsonLdScript } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "FAQ: before you order",
@@ -29,8 +30,7 @@ export default function FaqPage() {
   return (
     <>
       <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        {...jsonLdScript([faqJsonLd, breadcrumbJsonLd([{ name: "FAQ", path: "/faq" }])])}
       />
       <section className="border-b border-line bg-gradient-to-b from-paper to-surface">
         <Container className="py-16 text-center lg:py-20">

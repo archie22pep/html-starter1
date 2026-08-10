@@ -38,7 +38,6 @@ export const metadata: Metadata = {
     "comparable sales report",
     "subdivision feasibility Victoria",
   ],
-  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     siteName: BUSINESS.name,
@@ -51,8 +50,12 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
-  // Add your Google Search Console token here once verified:
-  // verification: { google: "..." },
+  // Set GOOGLE_SITE_VERIFICATION in Vercel to verify Search Console without
+  // a code change. Omitted from the output entirely when unset.
+  ...(process.env.GOOGLE_SITE_VERIFICATION && {
+    verification: { google: process.env.GOOGLE_SITE_VERIFICATION },
+  }),
+  alternates: { canonical: "/" },
 };
 
 const orgJsonLd = {
@@ -91,8 +94,17 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={cn("h-full antialiased font-sans", garamond.variable, sourceSans.variable)}>
+    <html lang="en-AU" className={cn("h-full antialiased font-sans", garamond.variable, sourceSans.variable)}>
       <body className="flex min-h-full flex-col">
+        {/* Declared here rather than via metadata.alternates.types, because a
+            page's own `alternates` replaces the layout's wholesale and every
+            page sets its own canonical. React hoists this into <head>. */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Precursor Property Guides"
+          href={`${SITE_URL}/blog/feed.xml`}
+        />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-42ZVB1XCDB"
           strategy="afterInteractive"
