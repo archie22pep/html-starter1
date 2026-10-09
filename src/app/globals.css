@@ -256,19 +256,38 @@ body {
   html {
     scroll-behavior: auto;
   }
+
+  /* One instant pass, never a loop. Capping the duration alone is not enough:
+     animation-iteration-count stays `infinite`, so a 0.01ms animation restarts
+     about 100,000 times a second and flickers, which is the opposite of
+     reducing motion. */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Purely decorative loops are switched off rather than fast-forwarded,
+     because their end keyframe is off-canvas or invisible (the fish finish
+     past the right edge, the bubbles finish at opacity 0). */
+  .fish-cross,
+  .bubble,
+  .wave-drift,
+  .wave-drift-slow,
+  .bob,
   .montage-slide,
   .kenburns,
   .kenburns-rev {
     animation: none !important;
   }
+  /* Park the fish mid-scene instead of at their off-canvas end position. */
+  .fish-cross {
+    transform: translateX(170px);
+  }
   .montage-slide:first-child {
     opacity: 1;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
   }
 }
 
